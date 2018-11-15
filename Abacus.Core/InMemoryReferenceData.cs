@@ -1,15 +1,16 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Abacus.Common;
 
 namespace Abacus.Core
 {
-    public class ImmutableReferenceData : IReferenceData
+    public class InMemoryReferenceData : IReferenceData
     {
         private readonly ImmutableHelper _immutableHelper = new ImmutableHelper();
         private readonly IReadOnlyDictionary<object, object> _data;
 
-        public ImmutableReferenceData(IDictionary<object, object> data)
+        public InMemoryReferenceData(IDictionary<object, object> data)
         {
             _data = new ReadOnlyDictionary<object, object>(data);
         }

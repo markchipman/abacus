@@ -1,8 +1,8 @@
 using System;
 
-namespace Abacus.Core
+namespace Abacus.Common
 {
-    internal class ImmutableHelper
+    public class ImmutableHelper
     {
         private int? _cachedHashCode;
         private string _cachedToString;
