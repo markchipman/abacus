@@ -88,21 +88,10 @@ namespace Abacus.Product
     {
         public static void Main()
         {
-            new Bill().Security = new ResolveableByValue<ISecurity>(null);
-            new Bill().Security = new ResolveableById<ISecurity>(null);
-        }
-    }
-
-    public static class ResolvableExtensions
-    {
-        public static IResolveableById<T> AsResolvableId<T>(this IStandardId id) where T : class
-        {
-            return new ResolveableById<T>(id);
-        }
-
-        public static IResolveableByValue<T> AsResolvableValue<T>(this T value) where T : class
-        {
-            return new ResolveableByValue<T>(value);
+            var x = new Bill();
+            x.Security = new ResolveableByValue<ISecurity>(null);
+            x.Security = new ResolveableById<ISecurity>(null);
+            var security = x.Security.Resolve(null);
         }
     }
 }
