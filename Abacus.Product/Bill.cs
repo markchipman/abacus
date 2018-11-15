@@ -79,19 +79,41 @@ namespace Abacus.Product
     {
     }
 
-    public class Bill
+    public class Bill : IResolveable<ResolvedBill>
     {
         public IResolveable<ISecurity> Security { get; set; }
+
+        public ResolvedBill Resolve(IResolver resolver)
+        {
+            return new ResolvedBill(Security.Resolve(resolver));
+        }
+
+        public ResolvedBill ResolveOrDefault(IResolver resolver, ResolvedBill @default = null)
+        {
+            return Resolve(resolver);
+        }
+    }
+
+    public class ResolvedBill
+    {
+        public ResolvedBill(ISecurity security)
+        {
+            Security = security;
+        }
+
+        private ISecurity Security { get; }
     }
 
     public static class Test
     {
         public static void Main()
         {
-            var x = new Bill();
-            x.Security = new ResolveableByValue<ISecurity>(null);
-            x.Security = new ResolveableById<ISecurity>(null);
-            var security = x.Security.Resolve(null);
+            Bill x = new Bill
+            {
+                Security = new ResolveableByValue<ISecurity>(null)
+            };
+
+            var rx = x.Resolve(null);
         }
     }
 }
