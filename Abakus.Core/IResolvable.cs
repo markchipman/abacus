@@ -1,4 +1,4 @@
-namespace Abacus.Core
+namespace Abakus.Core
 {
     public interface IResolvable<T>
     {

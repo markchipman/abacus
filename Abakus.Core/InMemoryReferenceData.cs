@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Abacus.Common;
+using Abakus.Common;
 
-namespace Abacus.Core
+namespace Abakus.Core
 {
     public class InMemoryReferenceData : IReferenceData
     {

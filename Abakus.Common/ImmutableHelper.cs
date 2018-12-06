@@ -1,6 +1,6 @@
 using System;
 
-namespace Abacus.Common
+namespace Abakus.Common
 {
     public class ImmutableHelper
     {

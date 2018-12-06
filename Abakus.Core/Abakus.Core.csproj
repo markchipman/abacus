@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\Abacus.Common\Abacus.Common.csproj" />
+    <ProjectReference Include="..\Abakus.Common\Abakus.Common.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

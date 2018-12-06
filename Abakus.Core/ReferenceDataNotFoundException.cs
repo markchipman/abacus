@@ -1,6 +1,6 @@
 using System;
 
-namespace Abacus.Core
+namespace Abakus.Core
 {
     public class ReferenceDataNotFoundException<T> : Exception
     {
