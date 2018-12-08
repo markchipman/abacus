@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 
-namespace Abakus.Common
+namespace Abacus.Common
 {
     public static class ComparableExtensions
     {

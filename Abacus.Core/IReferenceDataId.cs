@@ -1,4 +1,4 @@
-namespace Abakus.Core
+namespace Abacus.Core
 {
     public interface IReferenceDataId<T>
     {
