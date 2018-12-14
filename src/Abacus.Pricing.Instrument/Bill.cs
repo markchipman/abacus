@@ -1,6 +1,6 @@
 using System;
 
-namespace Abacus.Product
+namespace Abacus.Pricing.Instrument
 {
     public interface IResolvable<T>
     {
