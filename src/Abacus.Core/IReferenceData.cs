@@ -6,6 +6,6 @@ namespace Abacus.Core
 
         T GetValue<T>(IReferenceDataId<T> id) where T : class;
 
-        T GetValueOrDefault<T>(IReferenceDataId<T> id, T defaultValue = default)  where T : class;
+        T GetValueOrDefault<T>(IReferenceDataId<T> id, T @default = default) where T : class;
     }
 }

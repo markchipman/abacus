@@ -27,10 +27,10 @@ namespace Abacus.Core
             return (T)_data[id];
         }
 
-        public T GetValueOrDefault<T>(IReferenceDataId<T> id, T defaultValue = default) where T : class
+        public T GetValueOrDefault<T>(IReferenceDataId<T> id, T @default = default) where T : class
         {
             if (id == null) throw new ArgumentNullException(nameof(id));
-            return (T)(_data.TryGetValue(id, out object value) ? value : defaultValue);
+            return (T)(_data.TryGetValue(id, out object value) ? value : @default);
         }
     }
 }
