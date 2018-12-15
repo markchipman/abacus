@@ -1,4 +1,4 @@
-namespace Abacus.Core
+namespace Abacus.Core.ReferenceData
 {
     public static class MergedReferenceDataExtensions
     {

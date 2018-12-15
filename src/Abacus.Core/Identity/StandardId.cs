@@ -1,7 +1,7 @@
 using System;
 using Abacus.Common;
 
-namespace Abacus.Core
+namespace Abacus.Core.Identity
 {
     public class StandardId : IEquatable<StandardId>, IComparable<StandardId>
     {

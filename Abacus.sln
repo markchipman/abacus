@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28010.2050
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abacus.Core", "src\Abacus.Core\Abacus.Core.csproj", "{5714F2D6-8C71-44E0-B46F-6DDED04062CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abacus.Pricing.Instrument", "src\Abacus.Pricing.Instrument\Abacus.Pricing.Instrument.csproj", "{C294DB25-D846-4713-9920-21C9621EC0C6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abacus.Pricing", "src\Abacus.Pricing\Abacus.Pricing.csproj", "{C294DB25-D846-4713-9920-21C9621EC0C6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abacus.Common", "src\Abacus.Common\Abacus.Common.csproj", "{07E917E5-7607-4E7D-B36F-CFED5E47E70A}"
 EndProject

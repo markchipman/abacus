@@ -1,6 +1,6 @@
 using System;
 
-namespace Abacus.Core
+namespace Abacus.Core.ReferenceData
 {
     public class MergedReferenceData : IReferenceData
     {

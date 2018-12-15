@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Abacus.Common;
 
-namespace Abacus.Core
+namespace Abacus.Core.ReferenceData
 {
     public class InMemoryReferenceData : IReferenceData
     {
