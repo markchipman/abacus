@@ -9,4 +9,8 @@
     <ProjectReference Include="..\Abacus.Core\Abacus.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Pricer\" />
+  </ItemGroup>
+
 </Project>
