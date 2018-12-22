@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Abacus.Common;
 
 namespace Abacus.Core.Identity
@@ -29,7 +30,10 @@ namespace Abacus.Core.Identity
 
         public int CompareTo(StandardId other)
         {
-            return this.MultiLevelCompareTo(() => Scheme.CompareTo(other.Scheme), () => Value.CompareTo(other.Value));
+            return new Func<int>[] {
+                () => Scheme.CompareTo(other.Scheme), 
+                () => Value.CompareTo(other.Value)
+            }.Select(_ => _()).FirstOrDefault(c => c != 0);
         }
 
         public override bool Equals(object obj)
