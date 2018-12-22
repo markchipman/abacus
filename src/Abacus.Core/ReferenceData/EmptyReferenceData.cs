@@ -4,9 +4,9 @@ namespace Abacus.Core.ReferenceData
     {
         public static readonly EmptyReferenceData Instance = new EmptyReferenceData();
 
-        // http://csharpindepth.com/articles/general/singleton.aspx
         static EmptyReferenceData()
         {
+            // http://csharpindepth.com/articles/general/singleton.aspx
         }
 
         private EmptyReferenceData()

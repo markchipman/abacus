@@ -9,7 +9,23 @@
             "type": "shell",
             "group": "build",
             "presentation": {
-                "reveal": "silent"
+                "panel": "dedicated",
+                "reveal": "always",
+                "focus": true,
+                "clear": true
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "Clean",
+            "command": "dotnet clean",
+            "type": "shell",
+            "group": "build",
+            "presentation": {
+                "panel": "dedicated",
+                "reveal": "always",
+                "focus": true,
+                "clear": true,
             },
             "problemMatcher": "$msCompile"
         }
