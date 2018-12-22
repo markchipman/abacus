@@ -1,6 +1,6 @@
 namespace Abacus.Core.Resolvable
 {
-    public class ResolvableByValue<T> : IResolvableByValue<T>
+    public class ResolvableByValue<T> : IResolvable<T>
     {
         public ResolvableByValue(T value)
         {
@@ -11,12 +11,12 @@ namespace Abacus.Core.Resolvable
 
         public T Resolve(IResolver resolver)
         {
-            return resolver.Resolve<T, IResolvableByValue<T>>(this);
+            return Value;
         }
 
         public T ResolveOrDefault(IResolver resolver, T @default = default)
         {
-            return resolver.ResolveOrDefault<T, IResolvableByValue<T>>(this, @default);
+            return Value;
         }
     }
 }

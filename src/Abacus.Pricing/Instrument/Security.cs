@@ -1,6 +1,6 @@
 namespace Abacus.Pricing.Instrument
 {
-    public interface ISecurity
+    public abstract class Security
     {
     }
 }
