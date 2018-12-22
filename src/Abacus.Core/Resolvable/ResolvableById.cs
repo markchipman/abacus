@@ -15,10 +15,5 @@ namespace Abacus.Core.Resolvable
         {
             return resolver.Resolve<T, ResolvableById<T>>(this);
         }
-
-        protected override T ResolveOrDefault(IResolver resolver, T @default = default)
-        {
-            return resolver.ResolveOrDefault<T, ResolvableById<T>>(this, @default);
-        }
     }
 }
