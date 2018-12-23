@@ -1,33 +1,42 @@
 {
-    // See https://go.microsoft.com/fwlink/?LinkId=733558
-    // for the documentation about the tasks.json format
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Build",
-            "command": "dotnet build",
-            "type": "shell",
-            "group": "build",
+            "label": "build",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "command": "dotnet",
+            "args": [
+                "build"
+            ],
+            "problemMatcher": "$msCompile",
             "presentation": {
-                "panel": "dedicated",
+                "echo": true,
                 "reveal": "always",
                 "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
                 "clear": true
-            },
-            "problemMatcher": "$msCompile"
+            }
         },
         {
-            "label": "Clean",
-            "command": "dotnet clean",
-            "type": "shell",
+            "label": "clean",
             "group": "build",
+            "command": "dotnet",
+            "args": [
+                "clean"
+            ],
+            "problemMatcher": "$msCompile",
             "presentation": {
-                "panel": "dedicated",
+                "echo": true,
                 "reveal": "always",
                 "focus": true,
-                "clear": true,
-            },
-            "problemMatcher": "$msCompile"
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": true
+            }
         }
     ]
 }
