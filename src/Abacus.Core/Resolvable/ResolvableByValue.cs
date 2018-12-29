@@ -2,16 +2,16 @@ namespace Abacus.Core.Resolvable
 {
     public class ResolvableByValue<T> : Resolvable<T>
     {
-        private readonly T _value;
+        private readonly T value;
 
         public ResolvableByValue(T value)
         {
-            _value = value;
+            this.value = value;
         }
 
         protected override T Resolve(IResolver resolver)
         {
-            return _value;
+            return value;
         }
     }
 }

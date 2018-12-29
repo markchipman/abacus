@@ -4,28 +4,28 @@ namespace Abacus.Core.ReferenceData
 {
     public class MergedReferenceData : IReferenceData
     {
-        private readonly IReferenceData _first;
-        private readonly IReferenceData _second;
+        private readonly IReferenceData first;
+        private readonly IReferenceData second;
 
         public MergedReferenceData(IReferenceData first, IReferenceData second)
         {
-            _first = first ?? EmptyReferenceData.Instance;
-            _second = second ?? EmptyReferenceData.Instance;
+            this.first = first ?? EmptyReferenceData.Instance;
+            this.second = second ?? EmptyReferenceData.Instance;
         }
 
         public bool Contains<T>(IReferenceDataId<T> id) where T : class
         {
-            return _first.Contains(id) || _second.Contains(id);
+            return first.Contains(id) || second.Contains(id);
         }
 
         public T GetValue<T>(IReferenceDataId<T> id) where T : class
         {
-            return _first.GetValueOrDefault(id) ?? _second.GetValueOrDefault(id) ?? throw new ReferenceDataNotFoundException<T>(id);
+            return first.GetValueOrDefault(id) ?? second.GetValueOrDefault(id) ?? throw new ReferenceDataNotFoundException<T>(id);
         }
 
         public T GetValueOrDefault<T>(IReferenceDataId<T> id, T defaultValue = default) where T : class
         {
-            return _first.Contains(id) ? _first.GetValue(id) : _second.GetValueOrDefault(id);
+            return first.Contains(id) ? first.GetValue(id) : second.GetValueOrDefault(id);
         }
     }
 }

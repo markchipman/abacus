@@ -2,8 +2,6 @@ namespace Abacus.Core.ReferenceData
 {
     public class EmptyReferenceData : IReferenceData
     {
-        public static readonly EmptyReferenceData Instance = new EmptyReferenceData();
-
         static EmptyReferenceData()
         {
             // http://csharpindepth.com/articles/general/singleton.aspx
@@ -12,6 +10,9 @@ namespace Abacus.Core.ReferenceData
         private EmptyReferenceData()
         {
         }
+
+        public static readonly EmptyReferenceData Instance = new EmptyReferenceData();
+
 
         public bool Contains<T>(IReferenceDataId<T> id) where T : class
         {

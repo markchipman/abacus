@@ -1,17 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2050
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28407.52
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abacus.Core", "src\Abacus.Core\Abacus.Core.csproj", "{5714F2D6-8C71-44E0-B46F-6DDED04062CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Abacus.Core", "src\Abacus.Core\Abacus.Core.csproj", "{5714F2D6-8C71-44E0-B46F-6DDED04062CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abacus.Pricing", "src\Abacus.Pricing\Abacus.Pricing.csproj", "{C294DB25-D846-4713-9920-21C9621EC0C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Abacus.Pricing", "src\Abacus.Pricing\Abacus.Pricing.csproj", "{C294DB25-D846-4713-9920-21C9621EC0C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abacus.Common", "src\Abacus.Common\Abacus.Common.csproj", "{07E917E5-7607-4E7D-B36F-CFED5E47E70A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Abacus.Common", "src\Abacus.Common\Abacus.Common.csproj", "{07E917E5-7607-4E7D-B36F-CFED5E47E70A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{34867CEA-6A77-4F6E-A0C6-1781A694BD55}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abacus.CLI", "src\abacus.cli\Abacus.CLI.csproj", "{62AF25C6-09FC-497C-8854-BA8ABECF184B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Abacus.CLI", "src\abacus.cli\Abacus.CLI.csproj", "{62AF25C6-09FC-497C-8854-BA8ABECF184B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,10 +39,13 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5714F2D6-8C71-44E0-B46F-6DDED04062CF} = {34867CEA-6A77-4F6E-A0C6-1781A694BD55}
+		{C294DB25-D846-4713-9920-21C9621EC0C6} = {34867CEA-6A77-4F6E-A0C6-1781A694BD55}
+		{07E917E5-7607-4E7D-B36F-CFED5E47E70A} = {34867CEA-6A77-4F6E-A0C6-1781A694BD55}
+		{62AF25C6-09FC-497C-8854-BA8ABECF184B} = {34867CEA-6A77-4F6E-A0C6-1781A694BD55}
+	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {80C513D2-EADF-4D83-B8FA-39AC816BB723}
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{62AF25C6-09FC-497C-8854-BA8ABECF184B} = {34867CEA-6A77-4F6E-A0C6-1781A694BD55}
 	EndGlobalSection
 EndGlobal

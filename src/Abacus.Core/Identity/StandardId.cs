@@ -8,7 +8,7 @@ namespace Abacus.Core.Identity
     {
         private static readonly string IdSeparator = "~";
 
-        private readonly ImmutableHelper _immutableHelper = new ImmutableHelper();
+        private readonly ImmutableHelper immutableHelper = new ImmutableHelper();
 
         public StandardId(string scheme, string value)
         {
@@ -33,7 +33,7 @@ namespace Abacus.Core.Identity
             return new Func<int>[] {
                 () => Scheme.CompareTo(other.Scheme), 
                 () => Value.CompareTo(other.Value)
-            }.Select(_ => _()).FirstOrDefault(c => c != 0);
+            }.Select(c => c()).FirstOrDefault(x => x != 0);
         }
 
         public override bool Equals(object obj)
@@ -46,7 +46,7 @@ namespace Abacus.Core.Identity
 
         public override int GetHashCode()
         {
-            return _immutableHelper.GetCachedHashCode(() =>
+            return immutableHelper.GetCachedHashCode(() =>
             {
                 unchecked
                 {
@@ -62,7 +62,7 @@ namespace Abacus.Core.Identity
 
         public override string ToString()
         {
-            return _immutableHelper.GetCachedToString(() => Scheme + IdSeparator + Value);
+            return immutableHelper.GetCachedToString(() => Scheme + IdSeparator + Value);
         }
 
         public static StandardId Parse(string id)

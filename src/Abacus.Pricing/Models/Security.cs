@@ -1,4 +1,4 @@
-namespace Abacus.Pricing.Instrument
+namespace Abacus.Pricing.Models
 {
     public abstract class Security
     {

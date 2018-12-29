@@ -4,19 +4,19 @@ namespace Abacus.Common
 {
     public class ImmutableHelper
     {
-        private int? _cachedHashCode;
-        private string _cachedToString;
+        private int? cachedHashCode;
+        private string cachedToString;
 
         public int GetCachedHashCode(Func<int> generateHashCode)
         {
             if (generateHashCode == null) throw new ArgumentNullException(nameof(generateHashCode));
-            return _cachedHashCode ?? (_cachedHashCode = generateHashCode()).Value;
+            return cachedHashCode ?? (cachedHashCode = generateHashCode()).Value;
         }
 
         public string GetCachedToString(Func<string> generateToString)
         {
             if (generateToString == null) throw new ArgumentNullException(nameof(generateToString));
-            return _cachedToString ?? (_cachedToString = generateToString());
+            return cachedToString ?? (cachedToString = generateToString());
         }
     }
 }
