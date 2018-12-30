@@ -6,22 +6,20 @@ namespace Abacus.Pricing.Models
     {
         public DateTime PaymentDate { get; }
 
-        public DateTime? ExDate { get; }
-
         public CurrencyAmount Notional { get; }
 
-        public decimal AnnualRate { get; }
+        public decimal Rate { get; }
 
-        public decimal YearFraction { get; }
+        public DateTime? ExDate { get; }
 
         public bool HasExDate
         {
-            get { return ExDate.HasValue;  }
+            get { return ExDate.HasValue; }
         }
 
-        public Payment AsPayment()
+        public Payment GetPayment()
         {
-            return new Payment(PaymentDate, new CurrencyAmount(Notional.Value * AnnualRate * YearFraction, Notional.Currency), ExDate);
+            return new Payment(PaymentDate, new CurrencyAmount(Notional.Value * Rate, Notional.Currency), ExDate);
         }
     }
 }

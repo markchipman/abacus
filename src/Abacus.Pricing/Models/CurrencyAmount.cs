@@ -21,45 +21,105 @@ namespace Abacus.Pricing.Models
 
         public static CurrencyAmount operator +(CurrencyAmount first, CurrencyAmount second)
         {
-            if (first.Currency != second.Currency) throw new InvalidOperationException("Cannot add two ammounts with different currencies. First: '" + first + "', Second: '" + second + "'.");
+            if (first == null)
+            {
+                return second;
+            }
+            if (second == null)
+            {
+                return first;
+            }
+            if (first.Currency != second.Currency)
+            {
+                throw new InvalidOperationException("Cannot add two ammounts of different currencies. First: '" + first + "', Second: '" + second + "'.");
+            }
             return new CurrencyAmount(first.Value + second.Value, first.Currency);
         }
 
         public static CurrencyAmount operator -(CurrencyAmount first, CurrencyAmount second)
         {
-            if (first.Currency != second.Currency) throw new InvalidOperationException("Cannot subtract two ammounts with different currencies. First: '" + first + "', Second: '" + second + "'.");
+            if (first == null)
+            {
+                return second;
+            }
+            if (second == null)
+            {
+                return first;
+            }
+            if (first.Currency != second.Currency)
+            {
+                throw new InvalidOperationException("Cannot add two ammounts of different currencies. First: '" + first + "', Second: '" + second + "'.");
+            }
             return new CurrencyAmount(first.Value - second.Value, first.Currency);
         }
 
         public static CurrencyAmount operator *(CurrencyAmount first, CurrencyAmount second)
         {
-            if (first.Currency != second.Currency) throw new InvalidOperationException("Cannot multiply two ammounts with different currencies. First: '" + first + "', Second: '" + second + "'.");
+            if (first == null)
+            {
+                return second;
+            }
+            if (second == null)
+            {
+                return first;
+            }
+            if (first.Currency != second.Currency)
+            {
+                throw new InvalidOperationException("Cannot add two ammounts of different currencies. First: '" + first + "', Second: '" + second + "'.");
+            }
             return new CurrencyAmount(first.Value * second.Value, first.Currency);
         }
 
         public static CurrencyAmount operator /(CurrencyAmount first, CurrencyAmount second)
         {
-            if (first.Currency != second.Currency) throw new InvalidOperationException("Cannot divide two ammounts with different currencies. First: '" + first + "', Second: '" + second + "'.");
+            if (first == null)
+            {
+                return second;
+            }
+            if (second == null)
+            {
+                return first;
+            }
+            if (first.Currency != second.Currency)
+            {
+                throw new InvalidOperationException("Cannot add two ammounts of different currencies. First: '" + first + "', Second: '" + second + "'.");
+            }
             return new CurrencyAmount(first.Value / second.Value, first.Currency);
         }
 
         public static CurrencyAmount operator +(CurrencyAmount first, decimal amount)
         {
+            if (first == null)
+            {
+                throw new ArgumentNullException(nameof(first));
+            }
             return new CurrencyAmount(first.Value + amount, first.Currency);
         }
 
         public static CurrencyAmount operator -(CurrencyAmount first, decimal amount)
         {
+            if (first == null)
+            {
+                throw new ArgumentNullException(nameof(first));
+            }
             return new CurrencyAmount(first.Value - amount, first.Currency);
         }
 
         public static CurrencyAmount operator *(CurrencyAmount first, decimal amount)
         {
+            if (first == null)
+            {
+                throw new ArgumentNullException(nameof(first));
+            }
             return new CurrencyAmount(first.Value * amount, first.Currency);
         }
 
         public static CurrencyAmount operator /(CurrencyAmount first, decimal amount)
         {
+            if (first == null)
+            {
+                throw new ArgumentNullException(nameof(first));
+            }
             return new CurrencyAmount(first.Value / amount, first.Currency);
         }
     }

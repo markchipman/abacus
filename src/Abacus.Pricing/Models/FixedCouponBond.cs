@@ -17,8 +17,6 @@ namespace Abacus.Pricing.Models
 
         public Frequency Frequency { get; }
 
-        public DayCount DayCount { get; }
-
         public YieldConvention YieldConvention { get; }
 
         public DateTime StartDate { get; }
@@ -31,7 +29,7 @@ namespace Abacus.Pricing.Models
 
         public DateTime AdjustedEndDate { get; }
 
-        public DateAdjustment SettlementDateOffset { get; }
+        public DayCountConvention DayCountConvention { get; }
 
         public Payment NominalPayment { get; }
 

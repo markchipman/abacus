@@ -3,20 +3,26 @@ using System.Collections.Generic;
 
 namespace Abacus.Pricing.Models
 {
+    public class Curve
+    {
+        public decimal Y(decimal x)
+        {
+            return 1;
+        }
+    }
+
     public class DiscountFactors
     {
         private readonly DateTime valuationDate;
-        private readonly DayCountConvention dayCountConvention;
-        private readonly IReadOnlyDictionary<decimal, decimal> discountFactorDict;
+        private readonly Curve curve;
 
-        public DiscountFactors(DateTime valuationDate, DayCountConvention dayCountConvention, IReadOnlyDictionary<decimal, decimal> discountFactorDict)
+        public DiscountFactors(DateTime valuationDate, Curve curve)
         {
             this.valuationDate = valuationDate;
-            this.dayCountConvention = dayCountConvention ?? throw new ArgumentNullException(nameof(dayCountConvention));
-            this.discountFactorDict = discountFactorDict ?? throw new ArgumentNullException(nameof(discountFactorDict));
+            this.curve = curve ?? throw new ArgumentNullException(nameof(curve));
         }
 
-        public decimal GetDiscountFactor(DateTime date)
+        public decimal GetDiscountFactor(DateTime date, DayCountConvention dayCountConvention)
         {
             var yearFraction = dayCountConvention.RelativeYearFraction(valuationDate, date);
             var discountFactor = GetDiscountFactor(yearFraction);
@@ -25,12 +31,8 @@ namespace Abacus.Pricing.Models
 
         public decimal GetDiscountFactor(decimal yearFraction)
         {
-            var discountFactor = discountFactorDict[yearFraction];
+            var discountFactor = curve.Y(yearFraction);
             return discountFactor;
         }
-    }
-
-    public class Curve
-    {
     }
 }
