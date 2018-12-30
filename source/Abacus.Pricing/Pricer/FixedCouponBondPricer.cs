@@ -3,35 +3,6 @@ using System;
 
 namespace Abacus.Pricing.Pricer
 {
-    public class PaymentPricer
-    {
-        public CurrencyAmount PresentValuePayment(DateTime valuationDate, Payment payment, DayCountConvention dayCountConvention, DiscountFactors discountFactors)
-        {
-            if (payment == null)
-            {
-                throw new ArgumentNullException(nameof(payment));
-            }
-            if (discountFactors == null)
-            {
-                throw new ArgumentNullException(nameof(discountFactors));
-            }
-
-            if (payment.ExDate <= valuationDate)
-            {
-                return payment.Amount * 0;
-            }
-            if (payment.PaymentDate < valuationDate)
-            {
-                return payment.Amount * 0;
-            }
-
-            var discountFactor = discountFactors.GetDiscountFactor(payment.PaymentDate, dayCountConvention);
-            var pvPayment = payment.Amount * discountFactor;
-
-            return pvPayment;
-        }
-    }
-
     public class FixedCouponBondPricer
     {
         private readonly PaymentPricer paymentPricer = null;
@@ -71,7 +42,7 @@ namespace Abacus.Pricing.Pricer
                 throw new ArgumentNullException(nameof(discountFactors));
             }
 
-            var pvNominalPayment = paymentPricer.PresentValuePayment(valuationDate, bond.NominalPayment, bond.DayCountConvention, discountFactors);
+            var pvNominalPayment = paymentPricer.PresentValuePayment(valuationDate, bond.NominalPayment, bond.ScheduleInfo.DayCountConvention, discountFactors);
 
             return pvNominalPayment;
         }
@@ -87,11 +58,11 @@ namespace Abacus.Pricing.Pricer
                 throw new ArgumentNullException(nameof(discountFactors));
             }
 
-            var pvCouponPayments = new CurrencyAmount(0, bond.Currency);
+            var pvCouponPayments = bond.Notional * 0;
 
             foreach (var period in bond.CouponSchedule)
             {
-                var pvCouponPayment = paymentPricer.PresentValuePayment(valuationDate, period.GetPayment(), bond.DayCountConvention, discountFactors);
+                var pvCouponPayment = paymentPricer.PresentValuePayment(valuationDate, period.GetPayment(), bond.ScheduleInfo.DayCountConvention, discountFactors);
                 pvCouponPayments += pvCouponPayment;
             }
 

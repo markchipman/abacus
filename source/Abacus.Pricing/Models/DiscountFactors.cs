@@ -1,15 +1,7 @@
 using System;
-using System.Collections.Generic;
 
 namespace Abacus.Pricing.Models
 {
-    public class Curve
-    {
-        public decimal Y(decimal x)
-        {
-            return 1;
-        }
-    }
 
     public class DiscountFactors
     {
