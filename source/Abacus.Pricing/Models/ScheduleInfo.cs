@@ -12,6 +12,8 @@ namespace Abacus.Pricing.Models
 
         public DayCountConvention DayCountConvention { get; }
 
+        public Frequency Frequency { get; }
+
         public DateTime AdjustedStartDate { get; }
 
         public DateTime AdjustedEndDate { get; }

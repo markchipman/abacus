@@ -4,6 +4,6 @@ namespace Abacus.Pricing.Models
     {
         public decimal Amount { get; }
 
-        public Periodicity Periodicity { get; }
+        public Frequency Frequency { get; }
     }
 }
