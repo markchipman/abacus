@@ -8,11 +8,6 @@ namespace Abacus.Pricing.Models
 
         public DateTime? ExDate { get; }
 
-        public bool HasExDate
-        {
-            get { return ExDate.HasValue; }
-        }
-
         public CurrencyAmount Notional { get; }
 
         public virtual Payment GetPayment()

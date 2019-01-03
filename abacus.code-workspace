@@ -8,6 +8,8 @@
 		"typescript.preferences.importModuleSpecifier": "relative",
 		"javascript.preferences.importModuleSpecifier": "relative",
 		"javascript.preferences.quoteStyle": "single",
-		"typescript.preferences.quoteStyle": "single"
+		"typescript.preferences.quoteStyle": "single",
+		"files.trimFinalNewlines": true,
+		"files.insertFinalNewline": true
 	}
 }

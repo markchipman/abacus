@@ -2,7 +2,6 @@ using System;
 
 namespace Abacus.Pricing.Models
 {
-
     public class DiscountFactors
     {
         private readonly DateTime valuationDate;
@@ -16,14 +15,14 @@ namespace Abacus.Pricing.Models
 
         public decimal GetDiscountFactor(DateTime date, DayCountConvention dayCountConvention)
         {
-            var yearFraction = dayCountConvention.RelativeYearFraction(valuationDate, date);
-            var discountFactor = GetDiscountFactor(yearFraction);
+            var years = dayCountConvention.CountYears(valuationDate, date);
+            var discountFactor = GetDiscountFactor(years);
             return discountFactor;
         }
 
-        public decimal GetDiscountFactor(decimal yearFraction)
+        public decimal GetDiscountFactor(decimal years)
         {
-            var discountFactor = curve.Y(yearFraction);
+            var discountFactor = curve.Y(years);
             return discountFactor;
         }
     }

@@ -1,6 +1,5 @@
 namespace Abacus.Pricing.Models
 {
-
     public class RatePaymentPeriod : PaymentPeriod
     {
         public decimal Rate { get; }

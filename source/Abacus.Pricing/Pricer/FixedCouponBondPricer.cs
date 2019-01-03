@@ -69,13 +69,4 @@ namespace Abacus.Pricing.Pricer
             return pvCouponPayments;
         }
     }
-
-    public interface IMarketData
-    {
-        T GetMarketData<T>();
-    }
-
-    public interface IRequireMarketData
-    {
-    }
 }
