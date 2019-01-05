@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace Abacus.Pricing.Models
 {
-    public sealed class FixedCouponBond
+    public sealed class FixedCouponBond : Instrument
     {
         public Counterparty Issuer { get; }
 

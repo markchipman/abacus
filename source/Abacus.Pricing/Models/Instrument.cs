@@ -1,6 +1,6 @@
 namespace Abacus.Pricing.Models
 {
-    public class Currency
+    public class Instrument
     {
     }
 }

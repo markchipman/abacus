@@ -5,7 +5,7 @@ namespace Abacus.Pricing.Pricer
 {
     public class PaymentPricer
     {
-        public CurrencyAmount PresentValuePayment(DateTime valuationDate, Payment payment, DayCountConvention dayCountConvention, DiscountFactors discountFactors)
+        public CurrencyAmount PresentValuePayment(DateTime valuationDate, Payment payment, DiscountFactors discountFactors)
         {
             if (payment == null)
             {
@@ -25,7 +25,7 @@ namespace Abacus.Pricing.Pricer
                 return payment.Amount * 0;
             }
 
-            var discountFactor = discountFactors.GetDiscountFactor(payment.PaymentDate, dayCountConvention);
+            var discountFactor = discountFactors.GetDiscountFactor(payment.PaymentDate);
             var pvPayment = payment.Amount * discountFactor;
 
             return pvPayment;

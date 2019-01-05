@@ -42,7 +42,7 @@ namespace Abacus.Pricing.Pricer
                 throw new ArgumentNullException(nameof(discountFactors));
             }
 
-            var pvNominalPayment = paymentPricer.PresentValuePayment(valuationDate, bond.NominalPayment, bond.ScheduleInfo.DayCountConvention, discountFactors);
+            var pvNominalPayment = paymentPricer.PresentValuePayment(valuationDate, bond.NominalPayment, discountFactors);
 
             return pvNominalPayment;
         }
@@ -62,7 +62,7 @@ namespace Abacus.Pricing.Pricer
 
             foreach (var period in bond.CouponSchedule)
             {
-                var pvCouponPayment = paymentPricer.PresentValuePayment(valuationDate, period.GetPayment(), bond.ScheduleInfo.DayCountConvention, discountFactors);
+                var pvCouponPayment = paymentPricer.PresentValuePayment(valuationDate, period.GetPayment(), discountFactors);
                 pvCouponPayments += pvCouponPayment;
             }
 
