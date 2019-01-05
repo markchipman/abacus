@@ -2,22 +2,34 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "attach",
+            "type": "coreclr",
+            "request": "attach",
+            "processId": "${command:pickProcess}"
+        },
+        {
             "name": "launch cli",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/src/abacus.cli/bin/Debug/netcoreapp2.1/Abacus.CLI.dll",
+            "program": "bin/Debug/netcoreapp2.1/Abacus.CLI.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/src/abacus.cli",
+            "cwd": "${workspaceFolder}/source/Abacus.CLI",
             "console": "integratedTerminal",
             "stopAtEntry": false,
             "internalConsoleOptions": "neverOpen"
         },
         {
-            "name": "attach cli",
+            "name": "launch pricing api",
             "type": "coreclr",
-            "request": "attach",
-            "processId": "${command:pickProcess}"
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "bin/Debug/netcoreapp2.1/Abacus.Pricing.API.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/source/Abacus.Pricing.API",
+            "console": "integratedTerminal",
+            "stopAtEntry": false,
+            "internalConsoleOptions": "neverOpen"
         }
     ]
 }

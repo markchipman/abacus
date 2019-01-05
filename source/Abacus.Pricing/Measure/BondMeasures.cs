@@ -10,21 +10,21 @@ namespace Abacus.Pricing.Measure
         T Get<T>();
     }
 
-    public class FixedCouponBondMeasures : ICalculateMeasure<FixedCouponBond, PresentValue>
+    public class FixedCouponBondPresentValueMeasureCalculator : IMeasureCalculator<FixedCouponBond, PresentValue>
     {
         private readonly FixedCouponBondPricer pricer;
 
-        public FixedCouponBondMeasures(FixedCouponBondPricer pricer)
+        public FixedCouponBondPresentValueMeasureCalculator(FixedCouponBondPricer pricer)
         {
             this.pricer = pricer ?? throw new ArgumentNullException(nameof(pricer));
         }
 
-        IList<MarketDataRequirement> ICalculateMeasure<FixedCouponBond, PresentValue>.Requirements(DateTime valuationDate, FixedCouponBond instrument)
+        public IList<MarketDataRequirement> Requirements(DateTime valuationDate, FixedCouponBond instrument)
         {
             throw new NotImplementedException();
         }
 
-        PresentValue ICalculateMeasure<FixedCouponBond, PresentValue>.Calculate(DateTime valuationDate, IMarketData marketData, FixedCouponBond instrument)
+        public PresentValue Calculate(DateTime valuationDate, IMarketData marketData, FixedCouponBond instrument)
         {
             var discountFactors = marketData.Get<DiscountFactors>();
             var result = pricer.PresentValue(valuationDate, instrument, discountFactors);
@@ -32,7 +32,7 @@ namespace Abacus.Pricing.Measure
         }
     }
 
-    public interface ICalculateMeasure<TInstrument, TMeasure> where TInstrument : Instrument where TMeasure : Measure
+    public interface IMeasureCalculator<TInstrument, TMeasure> where TInstrument : Instrument where TMeasure : Measure
     {
         IList<MarketDataRequirement> Requirements(DateTime valuationDate, TInstrument instrument);
 
@@ -42,16 +42,6 @@ namespace Abacus.Pricing.Measure
     public class PresentValue : Measure
     {
         public PresentValue(CurrencyAmount value)
-        {
-            Value = value;
-        }
-
-        public CurrencyAmount Value { get; }
-    }
-
-    public class ForecaseValue : Measure
-    {
-        public ForecaseValue(CurrencyAmount value)
         {
             Value = value;
         }

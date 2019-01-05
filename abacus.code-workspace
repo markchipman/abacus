@@ -1,13 +1,27 @@
 {
-	"folders": [
-		{
-			"path": "."
-		}
-	],
-	"settings": {
-		"typescript.preferences.importModuleSpecifier": "relative",
-		"javascript.preferences.importModuleSpecifier": "relative",
+    "folders": [
+        {
+            "path": "."
+        }
+    ],
+    "settings": {
+        "typescript.preferences.importModuleSpecifier": "relative",
+        "javascript.preferences.importModuleSpecifier": "relative",
         "vssolution.solutionExplorerIcons": "current-theme",
-        "vssolution.showMode": "explorer"
-	}
+        "vssolution.showMode": "explorer",
+        "json.schemas": [
+            {
+                "fileMatch": [
+                    "global.json"
+                ],
+                "url": "http://json.schemastore.org/global"
+            },
+            {
+                "fileMatch": [
+                    "lauchSettings.json"
+                ],
+                "url": "http://json.schemastore.org/launchsettings.json"
+            }
+        ]
+    }
 }
