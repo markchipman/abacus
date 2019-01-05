@@ -6,9 +6,12 @@ namespace Abacus.CLI
     {
         private static void Main(string[] args)
         {
-            Console.WriteLine();
-            Console.WriteLine("Press RETURN to exit.");
-            Console.ReadLine();
+            Console.WriteLine("Write something:");
+            while (true)
+            {
+                var input = Console.ReadLine();
+                Console.WriteLine(input);
+            }
         }
     }
 }

@@ -1,5 +1,7 @@
 using System;
 using Xunit;
+using Abacus.Pricing.Measure;
+using Abacus.Pricing.Models;
 
 namespace Abacus.UnitTests
 {
@@ -8,7 +10,13 @@ namespace Abacus.UnitTests
         [Fact]
         public void Test1()
         {
-            Assert.Equal(4, 4);
+            var valuationDate = DateTime.UtcNow;
+            var instrument = new FixedCouponBond();
+            var measureCalculator = new MeasureCalculationService();
+
+            measureCalculator.CalculateMeasures(valuationDate, instrument, Measure.PresentValue);
+
+            Assert.True(true);
         }
     }
 }

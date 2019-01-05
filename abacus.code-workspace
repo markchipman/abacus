@@ -7,6 +7,7 @@
     "settings": {
         "typescript.preferences.importModuleSpecifier": "relative",
         "javascript.preferences.importModuleSpecifier": "relative",
+        "debug.internalConsoleOptions": "neverOpen",
         "vssolution.solutionExplorerIcons": "current-theme",
         "vssolution.showMode": "explorer",
         "json.schemas": [

@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Abacus.Pricing.Models;
+using Microsoft.AspNetCore.Mvc;
 
-namespace Abacus.Pricing.API.Controllers
+namespace Abacus.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -9,7 +10,7 @@ namespace Abacus.Pricing.API.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok();
+            return Ok(new FixedCouponBond());
         }
 
         [HttpPost]

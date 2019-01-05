@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace Abacus.Pricing.API
+namespace Abacus.API
 {
     public class Program
     {
