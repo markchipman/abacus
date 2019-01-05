@@ -14,7 +14,7 @@
             "name": "launch cli",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build",
+            "preLaunchTask": "build debug",
             "console": "integratedTerminal",
             // If you have changed target frameworks, make sure to update the program path.
             "program": "${workspaceFolder}/source/Abacus.CLI/bin/Debug/netcoreapp2.1/Abacus.CLI.dll",
@@ -27,7 +27,7 @@
             "name": "launch api",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build",
+            "preLaunchTask": "build debug",
             "console": "integratedTerminal",
             // If you have changed target frameworks, make sure to update the program path.
             "program": "${workspaceFolder}/source/Abacus.API/bin/Debug/netcoreapp2.1/Abacus.API.dll",

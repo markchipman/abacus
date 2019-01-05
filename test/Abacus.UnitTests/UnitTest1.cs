@@ -1,6 +1,6 @@
 using System;
 using Xunit;
-using Abacus.Pricing.Measure;
+using Abacus.Pricing.Measures;
 using Abacus.Pricing.Models;
 
 namespace Abacus.UnitTests
@@ -12,7 +12,7 @@ namespace Abacus.UnitTests
         {
             var valuationDate = DateTime.UtcNow;
             var instrument = new FixedCouponBond();
-            var measureCalculator = new MeasureCalculationService();
+            var measureCalculator = new FixedCouponBondMeasureCalculator();
 
             measureCalculator.CalculateMeasures(valuationDate, instrument, Measure.PresentValue);
 
