@@ -3,8 +3,11 @@ using Abacus.Pricing.Models;
 
 namespace Abacus.Pricing.Measures
 {
-    public enum Measure
+    public abstract class Measure
     {
-        PresentValue
+    }
+
+    public class PresentValueMeasure : Measure
+    {
     }
 }

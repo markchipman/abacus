@@ -12,9 +12,9 @@ namespace Abacus.UnitTests
         {
             var valuationDate = DateTime.UtcNow;
             var instrument = new FixedCouponBond();
-            var measuresCalculator = new FixedCouponBondMeasuresCalculator();
+            var measuresCalculator = new FixedCouponBondMeasuresCalculator(null);
 
-            measuresCalculator.CalculateMeasures(valuationDate, instrument, Measure.PresentValue);
+            measuresCalculator.CalculateMeasures(valuationDate, instrument, new PresentValueMeasure());
 
             Assert.True(true);
         }

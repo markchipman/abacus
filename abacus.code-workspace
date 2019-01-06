@@ -8,8 +8,8 @@
         "debug.internalConsoleOptions": "neverOpen",
         "typescript.preferences.importModuleSpecifier": "relative",
         "javascript.preferences.importModuleSpecifier": "relative",
-        "vssolution.solutionExplorerIcons": "current-theme",
         "vssolution.showMode": "explorer",
+        "vssolution.solutionExplorerIcons": "current-theme",
         "json.schemas": [
             {
                 "fileMatch": [

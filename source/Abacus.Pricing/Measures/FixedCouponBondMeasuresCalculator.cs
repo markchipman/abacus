@@ -4,18 +4,16 @@ using Abacus.Pricing.Models;
 
 namespace Abacus.Pricing.Measures
 {
-    public class FixedCouponBondMeasuresCalculator : IInstrumentMeasuresCalculator<FixedCouponBond>
+    public class FixedCouponBondMeasuresCalculator : InstrumentMeasuresCalculator<FixedCouponBond>
     {
-        private readonly IDictionary<Measure, IInstrumentMeasureCalculator<FixedCouponBond>> measureCalculators = new Dictionary<Measure, IInstrumentMeasureCalculator<FixedCouponBond>>();
+        public FixedCouponBondMeasuresCalculator(IDictionary<Measure, InstrumentMeasureCalculator<FixedCouponBond>> measureCalculators)
+            : base(measureCalculators)
+        {
+        }
 
-        public object CalculateMeasures(DateTime valuationDate, FixedCouponBond instrument, params Measure[] measures)
+        public override object CalculateMeasures(DateTime valuationDate, FixedCouponBond instrument, params Measure[] measures)
         {
             throw new NotImplementedException();
         }
-    }
-
-    public interface IInstrumentMeasureCalculator<TInstrument>
-    {
-        object CalculateMeasure(DateTime valuationDate, TInstrument instrument);
     }
 }
