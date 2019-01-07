@@ -1,7 +1,7 @@
 ﻿using Abacus.Pricing.Models;
 using System;
 
-namespace Abacus.Pricing.Pricer
+namespace Abacus.Pricing.Pricers
 {
     public class PaymentPricer
     {

@@ -2,17 +2,11 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Abacus.Pricing.Data;
 using Abacus.Pricing.Models;
 
-namespace Abacus.Pricing.Measures
+namespace Abacus.Pricing.Measures.Calculators
 {
-    public class MarketData
-    {
-        public T GetMarketData<T>()
-        {
-            return default(T);
-        }
-    }
 
     public abstract class InstrumentMeasuresCalculator<TInstrument> where TInstrument : Instrument
     {

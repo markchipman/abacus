@@ -1,7 +1,8 @@
 using System;
+using Abacus.Pricing.Data;
 using Abacus.Pricing.Models;
 
-namespace Abacus.Pricing.Measures
+namespace Abacus.Pricing.Measures.Calculators
 {
     public abstract class InstrumentMeasureCalculator<TInstrument, TMeasure> : InstrumentMeasureCalculator<TInstrument> where TInstrument : Instrument where TMeasure : Measure, new()
     {
