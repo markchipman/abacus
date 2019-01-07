@@ -11,6 +11,10 @@ namespace Abacus.Pricing.Measures
         {
         }
 
+        public Measure()
+        {
+        }
+
         public static TSelf Instance = new TSelf();
 
         public override string Id { get; } = nameof(TSelf).ToCamelCase();
@@ -18,10 +22,6 @@ namespace Abacus.Pricing.Measures
 
     public abstract class Measure : Enumeration<string>
     {
-        static Measure()
-        {
-        }
-
         public Measure()
         {
         }
