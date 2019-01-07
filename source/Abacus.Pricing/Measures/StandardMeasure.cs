@@ -12,7 +12,7 @@ namespace Abacus.Pricing.Measures
 
     public sealed class StandardMeasure
     {
-        public static readonly PresentValue PresentValue = new PresentValue();
-        public static readonly ForecaseValue ForecaseValue = new ForecaseValue();
+        public static readonly PresentValue PresentValue = PresentValue.Instance;
+        public static readonly ForecaseValue ForecaseValue = ForecaseValue.Instance;
     }
 }
