@@ -11,10 +11,11 @@ namespace Abacus.UnitTests
         public void Test1()
         {
             var valuationDate = DateTime.UtcNow;
+            var marketData = new MarketData();
             var instrument = new FixedCouponBond();
             var measuresCalculator = new FixedCouponBondMeasuresCalculator(null);
 
-            measuresCalculator.CalculateMeasures(valuationDate, instrument, StandardMeasure.PresentValue);
+            measuresCalculator.CalculateMeasures(valuationDate, marketData, instrument, StandardMeasure.PresentValue);
 
             Assert.True(true);
         }

@@ -1,12 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using Abacus.Pricing.Models;
 
 namespace Abacus.Pricing.Measures
 {
+    public class MarketData
+    {
+        public T GetMarketData<T>()
+        {
+            return default(T);
+        }
+    }
+
     public abstract class InstrumentMeasuresCalculator<TInstrument> where TInstrument : Instrument
     {
+        public InstrumentMeasuresCalculator(params InstrumentMeasureCalculator<TInstrument>[] measureCalculators)
+        {
+            if (measureCalculators == null)
+            {
+                throw new ArgumentNullException(nameof(measureCalculators));
+            }
+
+            MeasureCalculators = new Dictionary<Measure, InstrumentMeasureCalculator<TInstrument>>(measureCalculators.ToDictionary(x => x.Measure));
+        }
+
         public InstrumentMeasuresCalculator(IDictionary<Measure, InstrumentMeasureCalculator<TInstrument>> measureCalculators)
         {
             if (measureCalculators == null)
@@ -14,7 +33,7 @@ namespace Abacus.Pricing.Measures
                 throw new ArgumentNullException(nameof(measureCalculators));
             }
 
-            MeasureCalculators = new ReadOnlyDictionary<Measure, InstrumentMeasureCalculator<TInstrument>>(measureCalculators);
+            MeasureCalculators = new Dictionary<Measure, InstrumentMeasureCalculator<TInstrument>>(measureCalculators);
         }
 
         public Type InstrumentType => typeof(TInstrument);
@@ -23,6 +42,6 @@ namespace Abacus.Pricing.Measures
 
         protected IReadOnlyDictionary<Measure, InstrumentMeasureCalculator<TInstrument>> MeasureCalculators { get; }
 
-        public abstract object CalculateMeasures(DateTime valuationDate, TInstrument instrument, params Measure[] measures);
+        public abstract object CalculateMeasures(DateTime valuationDate, MarketData marketData, TInstrument instrument, params Measure[] measures);
     }
 }

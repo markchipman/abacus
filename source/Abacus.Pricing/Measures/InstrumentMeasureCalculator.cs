@@ -3,17 +3,15 @@ using Abacus.Pricing.Models;
 
 namespace Abacus.Pricing.Measures
 {
-    public abstract class InstrumentMeasureCalculator<TInstrument, TMeasure> : InstrumentMeasureCalculator<TInstrument> where TInstrument : Instrument where TMeasure : Measure
+    public abstract class InstrumentMeasureCalculator<TInstrument, TMeasure> : InstrumentMeasureCalculator<TInstrument> where TInstrument : Instrument where TMeasure : Measure, new()
     {
-        public override Type MeasureType => typeof(TMeasure);
+        public override Measure Measure => new TMeasure();
     }
 
     public abstract class InstrumentMeasureCalculator<TInstrument> where TInstrument : Instrument
     {
-        public Type InstrumentType => typeof(TInstrument);
+        public abstract Measure Measure { get; }
 
-        public abstract Type MeasureType { get; }
-
-        public abstract object CalculateMeasure(DateTime valuationDate, TInstrument instrument);
+        public abstract object CalculateMeasure(DateTime valuationDate, MarketData marketData, TInstrument instrument);
     }
 }
