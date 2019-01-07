@@ -1,15 +1,15 @@
-using System;
+﻿using System;
 using Abacus.Pricing.Data;
 using Abacus.Pricing.Models;
 using Abacus.Pricing.Pricers;
 
 namespace Abacus.Pricing.Measures.Calculators
 {
-    public class FixedCouponBondPresentValueMeasureCalculator : InstrumentMeasureCalculator<FixedCouponBond, PresentValue>
+    public class FixedCouponBondPresentValueCalculator : MeasureCalculator<FixedCouponBond, PresentValue>
     {
         private readonly FixedCouponBondPricer pricer;
 
-        public FixedCouponBondPresentValueMeasureCalculator(FixedCouponBondPricer pricer)
+        public FixedCouponBondPresentValueCalculator(FixedCouponBondPricer pricer)
         {
             this.pricer = pricer ?? throw new ArgumentNullException(nameof(pricer));
         }

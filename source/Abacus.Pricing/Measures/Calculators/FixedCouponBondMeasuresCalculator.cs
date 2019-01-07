@@ -5,9 +5,9 @@ using Abacus.Pricing.Models;
 
 namespace Abacus.Pricing.Measures.Calculators
 {
-    public class FixedCouponBondMeasuresCalculator : InstrumentMeasuresCalculator<FixedCouponBond>
+    public class FixedCouponBondMeasuresCalculator : MeasuresCalculator<FixedCouponBond>
     {
-        public FixedCouponBondMeasuresCalculator(InstrumentMeasureCalculator<FixedCouponBond, PresentValue> presentValueCalculator)
+        public FixedCouponBondMeasuresCalculator(MeasureCalculator<FixedCouponBond, PresentValue> presentValueCalculator)
             : base(presentValueCalculator)
         {
         }
