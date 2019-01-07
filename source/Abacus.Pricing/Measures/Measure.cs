@@ -1,13 +1,15 @@
 ﻿using System;
+using Abacus.Common.Enums;
+using Abacus.Common.Extensions;
 using Abacus.Pricing.Models;
 
 namespace Abacus.Pricing.Measures
 {
-    public abstract class Measure
+    public abstract class Measure : Enumeration<string>
     {
-    }
-
-    public class PresentValueMeasure : Measure
-    {
+        protected Measure(string id)
+            : base(id)
+        {
+        }
     }
 }

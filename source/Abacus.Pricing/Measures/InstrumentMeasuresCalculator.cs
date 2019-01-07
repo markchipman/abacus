@@ -16,6 +16,7 @@ namespace Abacus.Pricing.Measures
 
             MeasureCalculators = new ReadOnlyDictionary<Measure, InstrumentMeasureCalculator<TInstrument>>(measureCalculators);
         }
+
         public Type InstrumentType => typeof(TInstrument);
 
         public IReadOnlyList<Measure> Measures { get; }

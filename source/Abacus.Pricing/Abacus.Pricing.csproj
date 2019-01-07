@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Abacus.Core\Abacus.Core.csproj" />
+    <ProjectReference Include="..\Abacus.Common\Abacus.Common.csproj" />
   </ItemGroup>
 
 </Project>

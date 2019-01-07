@@ -14,7 +14,7 @@ namespace Abacus.UnitTests
             var instrument = new FixedCouponBond();
             var measuresCalculator = new FixedCouponBondMeasuresCalculator(null);
 
-            measuresCalculator.CalculateMeasures(valuationDate, instrument, new PresentValueMeasure());
+            measuresCalculator.CalculateMeasures(valuationDate, instrument, StandardMeasure.PresentValue);
 
             Assert.True(true);
         }
