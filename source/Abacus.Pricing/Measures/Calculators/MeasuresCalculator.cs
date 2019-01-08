@@ -56,11 +56,6 @@ namespace Abacus.Pricing.Measures.Calculators
                     var result = calculator.CalculateMeasure(valuationDate, marketData, target);
                     yield return result; // TODO result obj
                 }
-                else
-                {
-                    // TODO - add error to result obj/container
-                    throw new ApplicationException("Measure '" + measure + "' is not supported for '" + typeof(TTarget) + "'.");
-                }
             }
         }
     }
