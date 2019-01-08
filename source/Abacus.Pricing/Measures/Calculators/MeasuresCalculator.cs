@@ -9,14 +9,14 @@ namespace Abacus.Pricing.Measures.Calculators
 {
     public abstract class MeasuresCalculator<TTarget>
     {
-        public MeasuresCalculator(params MeasureCalculator<TTarget>[] measureCalculators)
+        public MeasuresCalculator(params MeasureCalculator<TTarget>[] calculators)
         {
-            if (measureCalculators == null)
+            if (calculators == null)
             {
-                throw new ArgumentNullException(nameof(measureCalculators));
+                throw new ArgumentNullException(nameof(calculators));
             }
 
-            MeasureCalculators = new Dictionary<Measure, MeasureCalculator<TTarget>>(measureCalculators.ToDictionary(x => x.Measure));
+            Calculators = new Dictionary<Measure, MeasureCalculator<TTarget>>(calculators.ToDictionary(x => x.Measure));
         }
 
         public MeasuresCalculator(IDictionary<Measure, MeasureCalculator<TTarget>> measureCalculators)
@@ -26,15 +26,42 @@ namespace Abacus.Pricing.Measures.Calculators
                 throw new ArgumentNullException(nameof(measureCalculators));
             }
 
-            MeasureCalculators = new Dictionary<Measure, MeasureCalculator<TTarget>>(measureCalculators);
+            Calculators = new Dictionary<Measure, MeasureCalculator<TTarget>>(measureCalculators);
         }
 
         public Type TargetType => typeof(TTarget);
 
         public IReadOnlyList<Measure> Measures { get; }
 
-        protected IReadOnlyDictionary<Measure, MeasureCalculator<TTarget>> MeasureCalculators { get; }
+        protected IReadOnlyDictionary<Measure, MeasureCalculator<TTarget>> Calculators { get; }
 
-        public abstract object CalculateMeasures(DateTime valuationDate, MarketData marketData, TTarget target, params Measure[] measures);
+        public IEnumerable<object> CalculateMeasures(DateTime valuationDate, MarketData marketData, TTarget target, params Measure[] measures)
+        {
+            if (marketData == null)
+            {
+                throw new ArgumentNullException(nameof(marketData));
+            }
+            if (target == null)
+            {
+                throw new ArgumentNullException(nameof(target));
+            }
+            if (measures == null)
+            {
+                throw new ArgumentNullException(nameof(measures));
+            }
+            foreach (var measure in measures)
+            {
+                if (Calculators.TryGetValue(measure, out MeasureCalculator<TTarget> calculator))
+                {
+                    var result = calculator.CalculateMeasure(valuationDate, marketData, target);
+                    yield return result; // TODO result obj
+                }
+                else
+                {
+                    // TODO - add error to result obj/container
+                    throw new ApplicationException("Measure '" + measure + "' is not supported for '" + typeof(TTarget) + "'.");
+                }
+            }
+        }
     }
 }

@@ -14,10 +14,10 @@ namespace Abacus.Pricing.Measures.Calculators
             this.pricer = pricer ?? throw new ArgumentNullException(nameof(pricer));
         }
 
-        public override object CalculateMeasure(DateTime valuationDate, MarketData marketData, FixedCouponBond instrument)
+        public override object CalculateMeasure(DateTime valuationDate, MarketData marketData, FixedCouponBond target)
         {
             var discountFactors = marketData.GetMarketData<DiscountFactors>();
-            return pricer.PresentValue(valuationDate, instrument, discountFactors);
+            return pricer.PresentValue(valuationDate, target, discountFactors);
         }
     }
 }

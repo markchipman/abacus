@@ -11,10 +11,5 @@ namespace Abacus.Pricing.Measures.Calculators
             : base(presentValueCalculator)
         {
         }
-
-        public override object CalculateMeasures(DateTime valuationDate, MarketData marketData, FixedCouponBond instrument, params Measure[] measures)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
