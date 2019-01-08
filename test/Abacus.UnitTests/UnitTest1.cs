@@ -3,7 +3,7 @@ using Xunit;
 using Abacus.Pricing.Data;
 using Abacus.Pricing.Measures;
 using Abacus.Pricing.Models;
-using Abacus.Pricing.Measures.Calculators;
+using Abacus.Pricing.Calculators;
 
 namespace Abacus.UnitTests
 {

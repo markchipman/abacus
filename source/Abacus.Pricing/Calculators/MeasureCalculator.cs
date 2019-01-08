@@ -2,7 +2,7 @@
 using Abacus.Pricing.Data;
 using Abacus.Pricing.Models;
 
-namespace Abacus.Pricing.Measures.Calculators
+namespace Abacus.Pricing.Calculators
 {
     public abstract class MeasureCalculator<TTarget, TMeasure> : MeasureCalculator<TTarget> where TMeasure : Measure, new()
     {

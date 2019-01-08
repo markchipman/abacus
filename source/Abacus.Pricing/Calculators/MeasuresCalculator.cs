@@ -5,7 +5,7 @@ using System.Linq;
 using Abacus.Pricing.Data;
 using Abacus.Pricing.Models;
 
-namespace Abacus.Pricing.Measures.Calculators
+namespace Abacus.Pricing.Calculators
 {
     public abstract class MeasuresCalculator<TTarget>
     {

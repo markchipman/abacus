@@ -3,7 +3,7 @@ using Abacus.Pricing.Data;
 using Abacus.Pricing.Models;
 using Abacus.Pricing.Pricers;
 
-namespace Abacus.Pricing.Measures.Calculators
+namespace Abacus.Pricing.Calculators
 {
     public class FixedCouponBondPresentValueCalculator : MeasureCalculator<FixedCouponBond, PresentValue>
     {
