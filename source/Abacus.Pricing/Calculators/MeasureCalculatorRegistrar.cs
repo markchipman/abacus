@@ -1,6 +1,7 @@
-﻿using System;
+﻿using Abacus.Pricing.Measures;
+using System;
 
-namespace Abacus.Pricing.Measures.Calculators
+namespace Abacus.Pricing.Calculators
 {
     public class MeasureCalculatorRegistrar
     {

@@ -1,4 +1,5 @@
-﻿using Abacus.Pricing.Models;
+﻿using Abacus.Pricing.Measures;
+using Abacus.Pricing.Models;
 
 namespace Abacus.Pricing.Calculators
 {

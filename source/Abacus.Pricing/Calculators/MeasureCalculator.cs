@@ -1,7 +1,6 @@
-﻿using System;
-using Abacus.Pricing.Data;
+﻿using Abacus.Pricing.Data;
 using Abacus.Pricing.Measures;
-using Abacus.Pricing.Models;
+using System;
 
 namespace Abacus.Pricing.Calculators
 {
