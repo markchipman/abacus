@@ -4,7 +4,12 @@ namespace Abacus.Pricing.Data
     {
         public T GetMarketData<T>()
         {
-            return default(T);
+            return default;
+        }
+
+        public T GetMarketDataOrDefault<T>(T @default = default)
+        {
+            return default;
         }
     }
 }

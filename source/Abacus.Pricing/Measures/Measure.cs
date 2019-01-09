@@ -1,7 +1,5 @@
-﻿using System;
-using Abacus.Common.Enums;
+﻿using Abacus.Common.Enums;
 using Abacus.Common.Extensions;
-using Abacus.Pricing.Models;
 
 namespace Abacus.Pricing.Measures
 {

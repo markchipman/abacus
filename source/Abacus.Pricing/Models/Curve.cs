@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-
-namespace Abacus.Pricing.Models
+﻿namespace Abacus.Pricing.Models
 {
     public class Curve
     {
