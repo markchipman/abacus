@@ -6,35 +6,16 @@ using System.Linq;
 
 namespace Abacus.Pricing.Calculators
 {
-    public abstract class MeasuresCalculator<TTarget>
+    public class MeasuresCalculator
     {
-        public MeasuresCalculator(params MeasureCalculator<TTarget>[] calculators)
-        {
-            if (calculators == null)
-            {
-                throw new ArgumentNullException(nameof(calculators));
-            }
+        private MeasureCalculatorRegistrar _registry;
 
-            Calculators = new Dictionary<Measure, MeasureCalculator<TTarget>>(calculators.ToDictionary(x => x.Measure));
+        public MeasuresCalculator(MeasureCalculatorRegistrar registry)
+        {
+            _registry = registry ?? throw new ArgumentNullException(nameof(registry));
         }
 
-        public MeasuresCalculator(IDictionary<Measure, MeasureCalculator<TTarget>> measureCalculators)
-        {
-            if (measureCalculators == null)
-            {
-                throw new ArgumentNullException(nameof(measureCalculators));
-            }
-
-            Calculators = new Dictionary<Measure, MeasureCalculator<TTarget>>(measureCalculators);
-        }
-
-        public Type TargetType => typeof(TTarget);
-
-        public IReadOnlyList<Measure> Measures { get; }
-
-        protected IReadOnlyDictionary<Measure, MeasureCalculator<TTarget>> Calculators { get; }
-
-        public IEnumerable<object> CalculateMeasures(DateTime valuationDate, MarketData marketData, TTarget target, params Measure[] measures)
+        public IEnumerable<object> CalculateMeasures<TTarget>(DateTime valuationDate, MarketData marketData, TTarget target, params Measure[] measures)
         {
             if (marketData == null)
             {
@@ -48,13 +29,11 @@ namespace Abacus.Pricing.Calculators
             {
                 throw new ArgumentNullException(nameof(measures));
             }
+
             foreach (var measure in measures)
             {
-                if (Calculators.TryGetValue(measure, out MeasureCalculator<TTarget> calculator))
-                {
-                    var result = calculator.CalculateMeasure(valuationDate, marketData, target);
-                    yield return result; // TODO result obj
-                }
+                var calculator = _registry.Get(target, measure);
+                yield return calculator.CalculateMeasure(valuationDate, marketData, target);
             }
         }
     }

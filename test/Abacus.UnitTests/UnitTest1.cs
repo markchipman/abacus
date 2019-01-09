@@ -14,13 +14,13 @@ namespace Abacus.UnitTests
         {
             var valuationDate = DateTime.UtcNow;
             var marketData = new MarketData();
-            var instrument = new FixedCouponBond();
-            var measuresCalculator = new FixedCouponBondMeasuresCalculator(null);
+            var bond = new FixedCouponBond();
 
             var measureRegistrar = new MeasureCalculatorRegistrar();
             measureRegistrar.Register<FixedCouponBond, PresentValue, FixedCouponBondPresentValueCalculator>();
 
-            measuresCalculator.CalculateMeasures(valuationDate, marketData, instrument, StandardMeasures.PresentValue);
+            var measuresCalculator = new MeasuresCalculator(measureRegistrar);
+            measuresCalculator.CalculateMeasures(valuationDate, marketData, bond, StandardMeasures.PresentValue);
 
             Assert.True(true);
         }

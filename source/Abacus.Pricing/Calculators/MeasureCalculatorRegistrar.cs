@@ -5,7 +5,6 @@ namespace Abacus.Pricing.Calculators
 {
     public class MeasureCalculatorRegistrar
     {
-
         public MeasureCalculatorRegistrar Register<TTarget, TMeasure, TCalculator>() where TMeasure : Measure, new() where TCalculator : MeasureCalculator<TTarget, TMeasure>
         {
             return this;
@@ -29,6 +28,16 @@ namespace Abacus.Pricing.Calculators
             }
 
             return this;
+        }
+
+        public MeasureCalculator<TTarget, TMeasure> Get<TTarget, TMeasure>() where TMeasure : Measure, new()
+        {
+            throw new NotImplementedException();
+        }
+
+        public MeasureCalculator<TTarget, TMeasure> Get<TTarget, TMeasure>(TTarget target, TMeasure measure) where TMeasure : Measure
+        {
+            throw new NotImplementedException();
         }
     }
 }
