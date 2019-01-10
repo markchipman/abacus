@@ -1,4 +1,4 @@
-﻿using Abacus.Pricing.Models;
+﻿using Abacus.Domain.Models;
 using System;
 
 namespace Abacus.Pricing.Pricers

@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <LangVersion>8</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" Version="3.0.0-preview-18579-0056" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Abacus.Core\Abacus.Core.csproj" />
+    <ProjectReference Include="..\Abacus.Domain\Abacus.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

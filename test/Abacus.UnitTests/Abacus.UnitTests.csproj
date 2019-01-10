@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
-    <LangVersion>7.3</LangVersion>
+    <LangVersion>8</LangVersion>
 
     <IsPackable>false</IsPackable>
   </PropertyGroup>
@@ -11,12 +11,6 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.8.0" />
     <PackageReference Include="xunit" Version="2.3.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.3.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\source\Abacus.Common\Abacus.Common.csproj" />
-    <ProjectReference Include="..\..\source\Abacus.Core\Abacus.Core.csproj" />
-    <ProjectReference Include="..\..\source\Abacus.Pricing\Abacus.Pricing.csproj" />
   </ItemGroup>
 
 </Project>

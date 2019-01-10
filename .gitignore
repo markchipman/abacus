@@ -8,8 +8,6 @@
 .vs/*
 *.suo
 *.user
-*.userosscache
-*.sln.docstates
 
 # OS X artifacts
 .DS_Store

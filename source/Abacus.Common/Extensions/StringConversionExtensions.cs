@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Text.RegularExpressions;
 
-namespace Abacus.Common.Extensions
+namespace System
 {
     public static class StringConversionExtensions
     {

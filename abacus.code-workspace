@@ -10,6 +10,12 @@
         "javascript.preferences.importModuleSpecifier": "relative",
         "vssolution.showMode": "explorer",
         "vssolution.solutionExplorerIcons": "current-theme",
+        "files.exclude": {
+            "**/.vs": true,
+            "**/.DS_Store": true,
+            "**/bin": true,
+            "**/obj": true
+        },
         "json.schemas": [
             {
                 "fileMatch": [

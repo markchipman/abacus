@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <LangVersion>8</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Abacus.Common\Abacus.Common.csproj" />
+    <ProjectReference Include="..\Abacus.Data\Abacus.Data.csproj" />
+    <ProjectReference Include="..\Abacus.Pricing\Abacus.Pricing.csproj" />
+  </ItemGroup>
+
+</Project>
