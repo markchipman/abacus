@@ -1,7 +1,7 @@
-using Abacus.Domain.Models;
 using System;
+using Abacus.Domain;
 
-namespace Abacus.Pricing.Pricers
+namespace Abacus.Pricing
 {
     public class FixedCouponBondPricer
     {

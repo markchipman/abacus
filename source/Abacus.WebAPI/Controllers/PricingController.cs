@@ -1,5 +1,5 @@
 ﻿using Abacus.Core.Resolvable;
-using Abacus.Domain.Models;
+using Abacus.Domain;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Abacus.WebAPI.Controllers

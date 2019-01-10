@@ -1,4 +1,4 @@
-namespace Abacus.Domain.Models
+namespace Abacus.Domain
 {
     public abstract class Security
     {

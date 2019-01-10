@@ -1,7 +1,7 @@
 ﻿using System;
 using Abacus.Data.MarketData;
-using Abacus.Domain.Models;
-using Abacus.Pricing.Pricers;
+using Abacus.Domain;
+using Abacus.Pricing;
 
 namespace Abacus.Measures.Calculators
 {
