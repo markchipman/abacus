@@ -10,6 +10,7 @@
         "javascript.preferences.importModuleSpecifier": "relative",
         "vssolution.showMode": "explorer",
         "vssolution.solutionExplorerIcons": "current-theme",
+        "vssolution.createTemplateFolderQuestion": false,
         "files.exclude": {
             "**/.vs": true,
             "**/.DS_Store": true,
