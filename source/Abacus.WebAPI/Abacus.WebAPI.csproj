@@ -14,8 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Abacus.Core\Abacus.Core.csproj" />
-    <ProjectReference Include="..\Abacus.Domain\Abacus.Domain.csproj" />
+    <ProjectReference Include="..\Abacus\Abacus.csproj" />
   </ItemGroup>
 
 </Project>

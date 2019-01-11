@@ -1,60 +1,60 @@
 {
-    // Use IntelliSense to find out which attributes exist for C# debugging
-    // Use hover for the description of the existing attributes
-    // For further information visit https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "name": "attach coreclr",
-            "type": "coreclr",
-            "request": "attach",
-            "processId": "${command:pickProcess}"
+  // Use IntelliSense to find out which attributes exist for C# debugging
+  // Use hover for the description of the existing attributes
+  // For further information visit https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "attach coreclr",
+      "type": "coreclr",
+      "request": "attach",
+      "processId": "${command:pickProcess}"
+    },
+    {
+      "name": "launch cli",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build debug",
+      "console": "integratedTerminal",
+      // If you have changed target frameworks, make sure to update the program path.
+      "program": "${workspaceFolder}/source/Abacus.CLI/bin/Debug/netcoreapp2.1/Abacus.CLI.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/source/Abacus.CLI",
+      "stopAtEntry": false,
+      "internalConsoleOptions": "openOnSessionStart"
+    },
+    {
+      "name": "launch api",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build debug",
+      "console": "integratedTerminal",
+      // If you have changed target frameworks, make sure to update the program path.
+      "program": "${workspaceFolder}/source/Abacus.API/bin/Debug/netcoreapp2.1/Abacus.API.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/source/Abacus.API",
+      "stopAtEntry": false,
+      "internalConsoleOptions": "openOnSessionStart",
+      "launchBrowser": {
+        "enabled": true,
+        "args": "${auto-detect-url}",
+        "windows": {
+          "command": "cmd.exe",
+          "args": "/C start ${auto-detect-url}"
         },
-        {
-            "name": "launch cli",
-            "type": "coreclr",
-            "request": "launch",
-            "preLaunchTask": "build debug",
-            "console": "integratedTerminal",
-            // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/source/Abacus.CLI/bin/Debug/netcoreapp2.1/Abacus.CLI.dll",
-            "args": [],
-            "cwd": "${workspaceFolder}/source/Abacus.CLI",
-            "stopAtEntry": false,
-            "internalConsoleOptions": "openOnSessionStart"
+        "osx": {
+          "command": "open"
         },
-        {
-            "name": "launch api",
-            "type": "coreclr",
-            "request": "launch",
-            "preLaunchTask": "build debug",
-            "console": "integratedTerminal",
-            // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/source/Abacus.API/bin/Debug/netcoreapp2.1/Abacus.API.dll",
-            "args": [],
-            "cwd": "${workspaceFolder}/source/Abacus.API",
-            "stopAtEntry": false,
-            "internalConsoleOptions": "openOnSessionStart",
-            "launchBrowser": {
-                "enabled": true,
-                "args": "${auto-detect-url}",
-                "windows": {
-                    "command": "cmd.exe",
-                    "args": "/C start ${auto-detect-url}"
-                },
-                "osx": {
-                    "command": "open"
-                },
-                "linux": {
-                    "command": "xdg-open"
-                }
-            },
-            "env": {
-                "ASPNETCORE_ENVIRONMENT": "Development"
-            },
-            "sourceFileMap": {
-                "/Views": "${workspaceFolder}/Views"
-            }
+        "linux": {
+          "command": "xdg-open"
         }
-    ]
+      },
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "sourceFileMap": {
+        "/Views": "${workspaceFolder}/Views"
+      }
+    }
+  ]
 }
