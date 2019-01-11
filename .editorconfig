@@ -151,8 +151,26 @@ https://github.com/MicrosoftDocs/visualstudio-docs/blob/master/docs/ide/editorco
 csharp_preserve_single_line_statements = true
 csharp_preserve_single_line_blocks = true
 
-# Naming: Kinds of symbols
-https://docs.microsoft.com/en-us/visualstudio/ide/editorconfig-naming-conventions?view=vs-2017#kinds-of-symbols
+# Naming
+https://docs.microsoft.com/en-us/visualstudio/ide/editorconfig-naming-conventions
+dotnet_naming_style.pascal_case.capitalization = pascal_case
+
+dotnet_naming_style.underscored_camel_case.capitalization = camel_case
+dotnet_naming_style.underscored_camel_case.required_prefix  = _
+
+dotnet_naming_symbols.public_members.applicable_kinds = property,method,field,event,delegate
+dotnet_naming_symbols.public_members.applicable_accessibilities = public,protected,protected_internal
+
+dotnet_naming_symbols.private_fields.applicable_kinds = field
+dotnet_naming_symbols.private_fields.applicable_accessibilities = private
+
+dotnet_naming_rule.public_members_pascal_case.symbols = public_members
+dotnet_naming_rule.public_members_pascal_case.style = pascal_case
+dotnet_naming_rule.public_members_pascal_case.severity = suggestion
+
+dotnet_naming_rule.private_fields_underscored_camel_case.symbols = private_fields
+dotnet_naming_rule.private_fields_underscored_camel_case.style = underscored_camel_case
+dotnet_naming_rule.private_fields_underscored_camel_case.severity = suggestion
 
 
 # Xml project files
