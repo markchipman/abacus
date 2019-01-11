@@ -1,7 +1,7 @@
 ﻿using System;
-using Abacus.Domain;
+using Abacus.Domain.Core;
 
-namespace Abacus.Pricing
+namespace Abacus.Pricers
 {
     public class PaymentPricer
     {
@@ -11,6 +11,7 @@ namespace Abacus.Pricing
             {
                 throw new ArgumentNullException(nameof(payment));
             }
+
             if (discountFactors == null)
             {
                 throw new ArgumentNullException(nameof(discountFactors));
@@ -20,6 +21,7 @@ namespace Abacus.Pricing
             {
                 return payment.Amount * 0;
             }
+
             if (payment.PaymentDate < valuationDate)
             {
                 return payment.Amount * 0;

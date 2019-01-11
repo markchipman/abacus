@@ -1,4 +1,4 @@
-﻿namespace Abacus.Domain
+﻿namespace Abacus.Domain.Core
 {
     public class YieldConvention
     {

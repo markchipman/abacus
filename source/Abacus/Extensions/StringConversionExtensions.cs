@@ -5,7 +5,7 @@ namespace System
 {
     public static class StringConversionExtensions
     {
-        public static string ToSplitPascalCase(this string @string)
+        public static string SplitPascalCase(this string @string)
         {
             return Regex.Replace(Regex.Replace(@string, @"(\P{Ll})(\P{Ll}\p{Ll})", "$1 $2"), @"(\p{Ll})(\P{Ll})", "$1 $2");
         }
@@ -16,6 +16,7 @@ namespace System
             {
                 return char.ToLowerInvariant(@string[0]) + @string.Substring(1);
             }
+
             return @string;
         }
 
@@ -23,6 +24,10 @@ namespace System
         {
             return CultureInfo.InvariantCulture.TextInfo.ToTitleCase(@string);
         }
+
+        public static string ReplaceSpaceWith(this string @string, string delimiter)
+        {
+            return @string?.Replace(" ", delimiter);
+        }
     }
 }
-

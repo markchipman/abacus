@@ -1,6 +1,6 @@
 using System;
 
-namespace Abacus.Common.Enums
+namespace Abacus.Enums
 {
     public abstract class Enumeration<TId> : IEquatable<Enumeration<TId>>
     {

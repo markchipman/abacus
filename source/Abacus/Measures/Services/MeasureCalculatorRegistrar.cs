@@ -1,8 +1,9 @@
 ﻿using System;
+using Abacus.Measures.Calculators;
 
 namespace Abacus.Measures.Services
 {
-    public class MeasureCalculatorRegistrar
+    public class MeasureCalculatorRegistrar : MeasureCalculatorRegistry
     {
         public MeasureCalculatorRegistrar Register<TTarget, TMeasure, TCalculator>() where TMeasure : Measure, new() where TCalculator : MeasureCalculator<TTarget, TMeasure>
         {
@@ -27,16 +28,6 @@ namespace Abacus.Measures.Services
             }
 
             return this;
-        }
-
-        public MeasureCalculator<TTarget, TMeasure> Get<TTarget, TMeasure>() where TMeasure : Measure, new()
-        {
-            throw new NotImplementedException();
-        }
-
-        public MeasureCalculator<TTarget, TMeasure> Get<TTarget, TMeasure>(TTarget target, TMeasure measure) where TMeasure : Measure
-        {
-            throw new NotImplementedException();
         }
     }
 }

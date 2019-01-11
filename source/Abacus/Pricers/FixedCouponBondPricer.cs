@@ -1,11 +1,12 @@
 using System;
-using Abacus.Domain;
+using Abacus.Domain.Core;
+using Abacus.Domain.Instruments;
 
-namespace Abacus.Pricing
+namespace Abacus.Pricers
 {
     public class FixedCouponBondPricer
     {
-        private readonly PaymentPricer paymentPricer = null;
+        private readonly PaymentPricer paymentPricer;
 
         public FixedCouponBondPricer(PaymentPricer paymentPricer)
         {
@@ -18,6 +19,7 @@ namespace Abacus.Pricing
             {
                 throw new ArgumentNullException(nameof(bond));
             }
+
             if (discountFactors == null)
             {
                 throw new ArgumentNullException(nameof(discountFactors));
@@ -37,6 +39,7 @@ namespace Abacus.Pricing
             {
                 throw new ArgumentNullException(nameof(bond));
             }
+
             if (discountFactors == null)
             {
                 throw new ArgumentNullException(nameof(discountFactors));
@@ -53,6 +56,7 @@ namespace Abacus.Pricing
             {
                 throw new ArgumentNullException(nameof(bond));
             }
+
             if (discountFactors == null)
             {
                 throw new ArgumentNullException(nameof(discountFactors));

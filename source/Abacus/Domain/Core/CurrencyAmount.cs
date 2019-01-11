@@ -1,6 +1,6 @@
 using System;
 
-namespace Abacus.Domain
+namespace Abacus.Domain.Core
 {
     public class CurrencyAmount
     {
@@ -25,14 +25,17 @@ namespace Abacus.Domain
             {
                 return second;
             }
+
             if (second == null)
             {
                 return first;
             }
+
             if (first.Currency != second.Currency)
             {
                 throw new InvalidOperationException("Cannot add two ammounts of different currencies. First: '" + first + "', Second: '" + second + "'.");
             }
+
             return new CurrencyAmount(first.Value + second.Value, first.Currency);
         }
 
@@ -42,14 +45,17 @@ namespace Abacus.Domain
             {
                 return second;
             }
+
             if (second == null)
             {
                 return first;
             }
+
             if (first.Currency != second.Currency)
             {
                 throw new InvalidOperationException("Cannot add two ammounts of different currencies. First: '" + first + "', Second: '" + second + "'.");
             }
+
             return new CurrencyAmount(first.Value - second.Value, first.Currency);
         }
 
@@ -59,14 +65,17 @@ namespace Abacus.Domain
             {
                 return second;
             }
+
             if (second == null)
             {
                 return first;
             }
+
             if (first.Currency != second.Currency)
             {
                 throw new InvalidOperationException("Cannot add two ammounts of different currencies. First: '" + first + "', Second: '" + second + "'.");
             }
+
             return new CurrencyAmount(first.Value * second.Value, first.Currency);
         }
 
@@ -76,14 +85,17 @@ namespace Abacus.Domain
             {
                 return second;
             }
+
             if (second == null)
             {
                 return first;
             }
+
             if (first.Currency != second.Currency)
             {
                 throw new InvalidOperationException("Cannot add two ammounts of different currencies. First: '" + first + "', Second: '" + second + "'.");
             }
+
             return new CurrencyAmount(first.Value / second.Value, first.Currency);
         }
 
@@ -93,6 +105,7 @@ namespace Abacus.Domain
             {
                 throw new ArgumentNullException(nameof(first));
             }
+
             return new CurrencyAmount(first.Value + amount, first.Currency);
         }
 
@@ -102,6 +115,7 @@ namespace Abacus.Domain
             {
                 throw new ArgumentNullException(nameof(first));
             }
+
             return new CurrencyAmount(first.Value - amount, first.Currency);
         }
 
@@ -111,6 +125,7 @@ namespace Abacus.Domain
             {
                 throw new ArgumentNullException(nameof(first));
             }
+
             return new CurrencyAmount(first.Value * amount, first.Currency);
         }
 
@@ -120,6 +135,7 @@ namespace Abacus.Domain
             {
                 throw new ArgumentNullException(nameof(first));
             }
+
             return new CurrencyAmount(first.Value / amount, first.Currency);
         }
     }

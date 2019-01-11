@@ -1,6 +1,6 @@
 using Abacus.Data.ReferenceData;
 
-namespace Abacus.Core.Resolvable
+namespace Abacus.Resolvable
 {
     public interface IResolvable<T>
     {

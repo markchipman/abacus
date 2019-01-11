@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Abacus.Domain
+namespace Abacus.Domain.Core
 {
     public class PaymentPeriod : Period
     {

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Abacus.Data.MarketData;
-using Abacus.Domain;
+using Abacus.Domain.Core;
+using Abacus.Domain.Instruments;
 using Abacus.Measures;
 using Abacus.Measures.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -12,22 +14,24 @@ namespace Abacus.WebAPI.Controllers
     [ApiController]
     public class CalculationController : ControllerBase
     {
-        [HttpGet("price")]
-        public IActionResult GetPrice()
+        [HttpGet("measures")]
+        public IActionResult CalculateMeasures()
         {
             Instrument instrument = new FixedCouponBond();
             var valuationDate = DateTime.Today;
             var measures = new[] { StandardMeasures.PresentValue };
 
-            var marketData = new MarketData();
-            var calculatorRegistry = new MeasureCalculatorRegistrar();
+            var calculatorRegistry = new MeasureCalculatorRegistry();
             var calculator = new MeasuresCalculator(calculatorRegistry);
 
-            var calculationContext = new CalculationContext(valuationDate, marketData, calculator, measures);
+            var calculationContext = new CalculationContext(valuationDate, calculator, measures);
 
             instrument.ProvideContext(calculationContext);
 
-            var results = calculationContext.Calculate();
+            var marketDataRequirements = calculationContext.MarketDataRequirements().ToList();
+            var marketData = new MarketData(); // using marketDataRequirements somehow
+
+            var results = calculationContext.Calculate(marketData).ToList();
 
             return Ok();
         }
@@ -35,31 +39,40 @@ namespace Abacus.WebAPI.Controllers
 
     public class CalculationContext : IAcceptContext<Instrument>
     {
-        private readonly DateTime valuationDate;
-        private readonly IMarketData marketData;
+        private readonly IList<Func<IMarketData, object>> calculations = new List<Func<IMarketData, object>>();
         private readonly MeasuresCalculator calculator;
+
+        private readonly IList<Func<object>> marketDataRequirements = new List<Func<object>>();
         private readonly Measure[] measures;
+        private readonly DateTime valuationDate;
 
-        private readonly IList<Func<object>> calculations = new List<Func<object>>();
-
-        public CalculationContext(DateTime valuationDate, IMarketData marketData, MeasuresCalculator calculator, params Measure[] measures)
+        public CalculationContext(DateTime valuationDate, MeasuresCalculator calculator, params Measure[] measures)
         {
             this.valuationDate = valuationDate;
-            this.marketData = marketData ?? throw new ArgumentNullException(nameof(marketData));
             this.calculator = calculator ?? throw new ArgumentNullException(nameof(calculator));
             this.measures = measures ?? throw new ArgumentNullException(nameof(measures));
         }
 
         public void AcceptContext<T>(T target) where T : Instrument
         {
-            calculations.Add(() => calculator.CalculateMeasures(valuationDate, marketData, target, measures));
+            marketDataRequirements.Add(() => calculator.MarketDataRequirements(valuationDate, target, measures));
+            calculations.Add(marketData => calculator.CalculateMeasures(valuationDate, marketData, target, measures));
         }
 
-        public IEnumerable<object> Calculate()
+        public IEnumerable<object> MarketDataRequirements()
+        {
+            foreach (var marketDataRequirement in marketDataRequirements)
+            {
+                var result = marketDataRequirement();
+                yield return result;
+            }
+        }
+
+        public IEnumerable<object> Calculate(IMarketData marketData)
         {
             foreach (var calculation in calculations)
             {
-                var result = calculation();
+                var result = calculation(marketData);
                 yield return result;
             }
         }
