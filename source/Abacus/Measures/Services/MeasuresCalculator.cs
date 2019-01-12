@@ -10,7 +10,12 @@ namespace Abacus.Measures.Services
 
         public MeasuresCalculator(MeasureCalculationRegistry registry)
         {
-            _registry = registry ?? throw new ArgumentNullException(nameof(registry));
+            if (registry == null)
+            {
+                throw new ArgumentNullException(nameof(registry));
+            }
+
+            _registry = registry;
         }
 
         public IEnumerable<object> MarketDataRequirements<TTarget>(DateTime valuationDate, TTarget target, params MeasureType[] measures)

@@ -10,7 +10,12 @@ namespace Abacus.Pricers
 
         public FixedCouponBondPricer(PaymentPricer paymentPricer)
         {
-            _paymentPricer = paymentPricer ?? throw new ArgumentNullException(nameof(paymentPricer));
+            if (paymentPricer == null)
+            {
+                throw new ArgumentNullException(nameof(paymentPricer));
+            }
+
+            _paymentPricer = paymentPricer;
         }
 
         public CurrencyAmount PresentValue(DateTime valuationDate, FixedCouponBond bond, DiscountFactors discountFactors)

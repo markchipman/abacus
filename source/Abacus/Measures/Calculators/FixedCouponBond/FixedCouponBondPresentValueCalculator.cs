@@ -10,14 +10,14 @@ namespace Abacus.Measures.Calculators
     {
         private readonly FixedCouponBondPricer _pricer;
 
-        public FixedCouponBondPresentValueCalculator(FixedCouponBondPricer _pricer)
+        public FixedCouponBondPresentValueCalculator(FixedCouponBondPricer pricer)
         {
-            if (_pricer == null)
+            if (pricer == null)
             {
-                throw new ArgumentNullException(nameof(_pricer));
+                throw new ArgumentNullException(nameof(pricer));
             }
 
-            this._pricer = _pricer;
+            _pricer = pricer;
         }
 
         public override object MarketDataRequirements(DateTime valuationDate, FixedCouponBond target)
