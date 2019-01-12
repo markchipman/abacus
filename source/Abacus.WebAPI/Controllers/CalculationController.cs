@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using Abacus.Data.MarketData;
 using Abacus.Domain.Core;
@@ -9,7 +8,6 @@ using Abacus.Measures;
 using Abacus.Measures.Calculation;
 using Abacus.Measures.Calculators;
 using Abacus.Measures.Services;
-using Abacus.Pricers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Abacus.WebAPI.Controllers
@@ -27,8 +25,8 @@ namespace Abacus.WebAPI.Controllers
             var valuationDate = DateTime.Now;
             var measures = new MeasureType[] { StandardMeasures.PresentValue };
 
-            var calculatorRegistrar = new MeasureCalculationRegistrar(new ServiceDictionary());
-            calculatorRegistrar.RegisterCalculator(StandardMeasures.PresentValue, new FixedCouponBondPresentValueCalculator(new FixedCouponBondPricer(new PaymentPricer())));
+            var calculatorRegistrar = new MeasureCalculationRegistrar();
+            calculatorRegistrar.RegisterCalculator(StandardMeasures.PresentValue, new FixedCouponBondPresentValueCalculator());
 
             var calculator = new MeasuresCalculator(calculatorRegistrar);
 
@@ -43,13 +41,4 @@ namespace Abacus.WebAPI.Controllers
             return Ok();
         }
     }
-
-    public class ServiceDictionary : Dictionary<Type, object>, IServiceProvider
-    {
-        public object GetService(Type serviceType)
-        {
-            return this[serviceType];
-        }
-    }
-
 }

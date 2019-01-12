@@ -8,7 +8,7 @@
             Result = result;
         }
 
-        MeasureType MeasureType { get; }
+        public MeasureType MeasureType { get; }
 
         public object Result { get; }
     }

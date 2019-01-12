@@ -4,7 +4,7 @@ using Abacus.Measures.Calculators;
 
 namespace Abacus.Measures.Services
 {
-    public class MeasureCalculationRegistry
+    public class MeasureCalculationRegistry : IMeasureCalculationRegistry
     {
         protected IDictionary<Tuple<Type, MeasureType>, Func<object>> Registrations = new Dictionary<Tuple<Type, MeasureType>, Func<object>>();
 

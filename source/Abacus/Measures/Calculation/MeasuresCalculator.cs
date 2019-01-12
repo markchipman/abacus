@@ -6,7 +6,7 @@ using Abacus.Measures.Services;
 namespace Abacus.Measures.Calculation
 {
 
-    public class MeasuresCalculator
+    public class MeasuresCalculator : IMeasuresCalculator
     {
         private readonly MeasureCalculationRegistry _registry;
 

@@ -1,15 +1,14 @@
-﻿using Abacus.Context;
-using Abacus.Domain.Core;
+﻿using Abacus.Domain.Core;
 
 namespace Abacus.Engine
 {
-    public class InstrumentCalculationContextProvider : IAcceptContext<Instrument>
+    public class InstrumentCalculationContextProvider : IInstrumentCalculationContextProvider
     {
         public void AcceptContext<TTarget>(TTarget context) where TTarget : Instrument
         {
             Context = new InstrumentCalculationContext<TTarget>(context);
         }
 
-        public InstrumentCalculationContext Context { get; private set; }
+        public ICalculationContext Context { get; private set; }
     }
 }

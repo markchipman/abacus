@@ -1,11 +1,17 @@
 ﻿using System;
 using Abacus.Measures.Calculators;
+using Abacus.Services;
 
 namespace Abacus.Measures.Services
 {
-    public class MeasureCalculationRegistrar : MeasureCalculationRegistry
+    public class MeasureCalculationRegistrar : MeasureCalculationRegistry, IMeasureCalculationRegistrar
     {
         private readonly IServiceProvider _serviceProvider;
+
+        public MeasureCalculationRegistrar()
+            : this(ServiceDictionary.Empty)
+        {
+        }
 
         public MeasureCalculationRegistrar(IServiceProvider serviceProvider)
         {

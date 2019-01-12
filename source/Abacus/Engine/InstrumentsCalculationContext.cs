@@ -9,12 +9,13 @@ using Abacus.Measures.Calculation;
 
 namespace Abacus.Engine
 {
-    public class InstrumentsCalculationContext : ReadOnlyCollection<InstrumentCalculationContext>
+    public class InstrumentsCalculationContext : ReadOnlyCollection<ICalculationContext>
     {
         public InstrumentsCalculationContext(IEnumerable<Instrument> instruments)
             : base(CreateCalculationContexts(instruments).ToList())
         {
         }
+
 
         public IEnumerable<MarketDataRequirement> GetRequirements(MeasuresCalculator calculator, DateTime valuationDate, params MeasureType[] measures)
         {
@@ -62,22 +63,22 @@ namespace Abacus.Engine
             }
         }
 
-        public static IReadOnlyList<InstrumentCalculationContext> CreateCalculationContexts(IEnumerable<Instrument> instruments)
+        public static IReadOnlyList<ICalculationContext> CreateCalculationContexts(IEnumerable<Instrument> instruments)
         {
             if (instruments == null)
             {
                 throw new ArgumentNullException(nameof(instruments));
             }
 
-            var instrumentContexts = new List<InstrumentCalculationContext>();
+            var calculationContexts = new List<ICalculationContext>();
             foreach (var instrument in instruments)
             {
                 var contextProvider = new InstrumentCalculationContextProvider();
                 instrument.ProvideContext(contextProvider);
-                var instrumentContext = contextProvider.Context;
-                instrumentContexts.Add(instrumentContext);
+                var instrumentCalculationContext = contextProvider.Context;
+                calculationContexts.Add(instrumentCalculationContext);
             }
-            return instrumentContexts;
+            return calculationContexts;
         }
     }
 }

@@ -7,11 +7,16 @@ using Abacus.Pricers;
 
 namespace Abacus.Measures.Calculators
 {
-    public class FixedCouponBondPresentValueCalculator : MeasureCalculator<FixedCouponBond>
+    public class FixedCouponBondPresentValueCalculator : MeasureCalculator<FixedCouponBond>, IFixedCouponBondPresentValueCalculator
     {
-        private readonly FixedCouponBondPricer _pricer;
+        private readonly IFixedCouponBondPricer _pricer;
 
-        public FixedCouponBondPresentValueCalculator(FixedCouponBondPricer pricer)
+        public FixedCouponBondPresentValueCalculator()
+            : this(FixedCouponBondPricer.Instance)
+        {
+        }
+
+        public FixedCouponBondPresentValueCalculator(IFixedCouponBondPricer pricer)
         {
             if (pricer == null)
             {

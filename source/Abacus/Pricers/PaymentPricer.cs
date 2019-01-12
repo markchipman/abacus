@@ -3,8 +3,14 @@ using Abacus.Domain.Core;
 
 namespace Abacus.Pricers
 {
-    public class PaymentPricer
+    public class PaymentPricer : IPaymentPricer
     {
+        public static readonly IPaymentPricer Instance = new PaymentPricer();
+
+        static PaymentPricer()
+        {
+        }
+
         public CurrencyAmount PresentValuePayment(DateTime valuationDate, Payment payment, DiscountFactors discountFactors)
         {
             if (payment == null)

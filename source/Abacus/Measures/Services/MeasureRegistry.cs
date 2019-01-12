@@ -3,20 +3,8 @@ using System.Collections.Generic;
 
 namespace Abacus.Measures.Services
 {
-    public class MeasureRegistrar : MeasureRegistry
-    {
-        public MeasureRegistrar RegisterMeasure<TTarget, TMeasure>() where TMeasure : MeasureType, new()
-        {
-            return this;
-        }
 
-        public MeasureRegistrar RegisterCalculator<TTarget, TMeasure>(TTarget target, TMeasure measure) where TMeasure : MeasureType, new()
-        {
-            return RegisterMeasure<TTarget, TMeasure>();
-        }
-    }
-
-    public class MeasureRegistry
+    public class MeasureRegistry : IMeasureRegistry
     {
         public IReadOnlyList<MeasureType> AllMeasures { get; }
 

@@ -4,11 +4,22 @@ using Abacus.Domain.Instruments;
 
 namespace Abacus.Pricers
 {
-    public class FixedCouponBondPricer
+    public class FixedCouponBondPricer : IFixedCouponBondPricer
     {
-        private readonly PaymentPricer _paymentPricer;
+        public static readonly IFixedCouponBondPricer Instance = new FixedCouponBondPricer();
 
-        public FixedCouponBondPricer(PaymentPricer paymentPricer)
+        private readonly IPaymentPricer _paymentPricer;
+
+        static FixedCouponBondPricer()
+        {
+        }
+
+        public FixedCouponBondPricer()
+            : this(PaymentPricer.Instance)
+        {
+        }
+
+        public FixedCouponBondPricer(IPaymentPricer paymentPricer)
         {
             if (paymentPricer == null)
             {
