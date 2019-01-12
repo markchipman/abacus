@@ -4,7 +4,8 @@ namespace Abacus.Measures.Services
 {
     public interface IMeasureCalculationRegistrar
     {
-        MeasureCalculationRegistrar RegisterCalculator<TTarget, TCalculator>(MeasureType measure) where TCalculator : MeasureCalculator<TTarget>;
-        MeasureCalculationRegistrar RegisterCalculator<TTarget>(MeasureType measure, MeasureCalculator<TTarget> calculator);
+        MeasureCalculationRegistrar RegisterInstance<TTarget>(MeasureType measure, IMeasureCalculator<TTarget> calculator);
+        MeasureCalculationRegistrar RegisterDefaultInstance<TTarget, TCalculator>(MeasureType measure) where TCalculator : IMeasureCalculator<TTarget>, new();
+        MeasureCalculationRegistrar RegisterType<TTarget, TCalculator>(MeasureType measure) where TCalculator : IMeasureCalculator<TTarget>;
     }
 }

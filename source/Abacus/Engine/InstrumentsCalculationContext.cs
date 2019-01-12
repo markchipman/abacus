@@ -9,7 +9,7 @@ using Abacus.Measures.Calculation;
 
 namespace Abacus.Engine
 {
-    public class InstrumentsCalculationContext : ReadOnlyCollection<ICalculationContext>
+    public class InstrumentsCalculationContext : ReadOnlyCollection<ICalculationContext>, ICalculationContext
     {
         public InstrumentsCalculationContext(IEnumerable<Instrument> instruments)
             : base(CreateCalculationContexts(instruments).ToList())
@@ -27,9 +27,9 @@ namespace Abacus.Engine
                 throw new ArgumentNullException(nameof(measures));
             }
 
-            foreach (var instrumentContext in this)
+            foreach (var calculationContext in this)
             {
-                var requirements = instrumentContext.GetRequirements(calculator, valuationDate, measures);
+                var requirements = calculationContext.GetRequirements(calculator, valuationDate, measures);
                 foreach (var requirement in requirements)
                 {
                     yield return requirement;
@@ -52,9 +52,9 @@ namespace Abacus.Engine
                 throw new ArgumentNullException(nameof(measures));
             }
 
-            foreach (var instrumentContext in this)
+            foreach (var calculationContext in this)
             {
-                var measureResults = instrumentContext.CalculateMeasures(calculator, valuationDate, marketData, measures);
+                var measureResults = calculationContext.CalculateMeasures(calculator, valuationDate, marketData, measures);
                 foreach (var measureResult in measureResults)
                 {
                     yield return measureResult;

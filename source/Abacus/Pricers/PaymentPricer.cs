@@ -17,7 +17,6 @@ namespace Abacus.Pricers
             {
                 throw new ArgumentNullException(nameof(payment));
             }
-
             if (discountFactors == null)
             {
                 throw new ArgumentNullException(nameof(discountFactors));
@@ -27,7 +26,6 @@ namespace Abacus.Pricers
             {
                 return payment.Amount * 0;
             }
-
             if (payment.PaymentDate < valuationDate)
             {
                 return payment.Amount * 0;
@@ -37,6 +35,25 @@ namespace Abacus.Pricers
             var pvPayment = payment.Amount * discountFactor;
 
             return pvPayment;
+        }
+
+        public CurrencyAmount FutureValuePayment(DateTime valuationDate, Payment payment)
+        {
+            if (payment == null)
+            {
+                throw new ArgumentNullException(nameof(payment));
+            }
+
+            if (payment.ExDate <= valuationDate)
+            {
+                return payment.Amount * 0;
+            }
+            if (payment.PaymentDate < valuationDate)
+            {
+                return payment.Amount * 0;
+            }
+
+            return payment.Amount;
         }
     }
 }

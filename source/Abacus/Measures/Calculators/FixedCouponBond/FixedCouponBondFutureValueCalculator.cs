@@ -1,28 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using Abacus.Data.MarketData;
-using Abacus.Domain.Core;
 using Abacus.Domain.Instruments;
 using Abacus.Pricers;
 
 namespace Abacus.Measures.Calculators
 {
-    public class FixedCouponBondPresentValueCalculator : MeasureCalculator<FixedCouponBond>, IFixedCouponBondPresentValueCalculator
+    public class FixedCouponBondFutureValueCalculator : MeasureCalculator<FixedCouponBond>, IFixedCouponBondFutureValueCalculator
     {
-        public static readonly IFixedCouponBondPresentValueCalculator Instance = new FixedCouponBondPresentValueCalculator();
+        public static readonly IFixedCouponBondFutureValueCalculator Instance = new FixedCouponBondFutureValueCalculator();
 
         private readonly IFixedCouponBondPricer _pricer;
 
-        static FixedCouponBondPresentValueCalculator()
+        static FixedCouponBondFutureValueCalculator()
         {
         }
 
-        public FixedCouponBondPresentValueCalculator()
+        public FixedCouponBondFutureValueCalculator()
             : this(FixedCouponBondPricer.Instance)
         {
         }
 
-        public FixedCouponBondPresentValueCalculator(IFixedCouponBondPricer pricer)
+        public FixedCouponBondFutureValueCalculator(IFixedCouponBondPricer pricer)
         {
             if (pricer == null)
             {
@@ -53,10 +52,9 @@ namespace Abacus.Measures.Calculators
                 throw new ArgumentNullException(nameof(target));
             }
 
-            var discountFactors = marketData.GetMarketDataOrDefault<DiscountFactors>(null, new DiscountFactors(valuationDate, new DayCountConvention(), new Curve()));
-            var result = _pricer.PresentValue(valuationDate, target, discountFactors);
+            var result = _pricer.FutureValue(valuationDate, target);
 
-            return new MeasureResult(StandardMeasures.PresentValue, result);
+            return new MeasureResult(StandardMeasures.FutureValue, result);
         }
     }
 }

@@ -9,7 +9,7 @@ namespace Abacus.Measures.Services
         private readonly IServiceProvider _serviceProvider;
 
         public MeasureCalculationRegistrar()
-            : this(ServiceDictionary.Empty)
+            : this(EmptyServiceProvider.Instance)
         {
         }
 
@@ -23,7 +23,12 @@ namespace Abacus.Measures.Services
             _serviceProvider = serviceProvider;
         }
 
-        public MeasureCalculationRegistrar RegisterCalculator<TTarget>(MeasureType measure, MeasureCalculator<TTarget> calculator)
+        public MeasureCalculationRegistrar RegisterDefaultInstance<TTarget, TCalculator>(MeasureType measure) where TCalculator : IMeasureCalculator<TTarget>, new()
+        {
+            return RegisterInstance(measure, new TCalculator());
+        }
+
+        public MeasureCalculationRegistrar RegisterInstance<TTarget>(MeasureType measure, IMeasureCalculator<TTarget> calculator)
         {
             if (measure == null)
             {
@@ -43,7 +48,8 @@ namespace Abacus.Measures.Services
             return this;
         }
 
-        public MeasureCalculationRegistrar RegisterCalculator<TTarget, TCalculator>(MeasureType measure) where TCalculator : MeasureCalculator<TTarget>
+
+        public MeasureCalculationRegistrar RegisterType<TTarget, TCalculator>(MeasureType measure) where TCalculator : IMeasureCalculator<TTarget>
         {
             if (measure == null)
             {
