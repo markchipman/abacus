@@ -9,7 +9,7 @@ using Abacus.Measures.Calculators;
 using Abacus.Measures.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Abacus.WebAPI.Controllers
+namespace Abacus.WebApi.Controllers
 {
     [Route("api/calculate")]
     [ApiController]
@@ -44,7 +44,7 @@ namespace Abacus.WebAPI.Controllers
             var results = calculationContext.CalculateMeasures(calculator, valuationDate, marketData, measures).ToList();
 
             // TODO
-            return Ok();
+            return Ok(results);
         }
     }
 }

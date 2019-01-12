@@ -1,6 +1,6 @@
 using System;
 
-namespace Abacus.CLI
+namespace Abacus.Cli
 {
     internal class Program
     {
