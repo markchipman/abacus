@@ -4,6 +4,13 @@ namespace Abacus.Domain.Core
 {
     public class PaymentPeriod : Period
     {
+        public PaymentPeriod(DateTime startDate, DateTime endDate, DateTime paymentDate, CurrencyAmount notional)
+            : base(startDate, endDate)
+        {
+            PaymentDate = paymentDate;
+            Notional = notional;
+        }
+
         public DateTime PaymentDate { get; }
 
         public DateTime? ExDate { get; }

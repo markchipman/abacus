@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using Abacus.Data.MarketData;
+using Abacus.Measures.Services;
 
-namespace Abacus.Measures.Services
+namespace Abacus.Measures.Calculation
 {
+
     public class MeasuresCalculator
     {
         private readonly MeasureCalculationRegistry _registry;
@@ -18,7 +20,7 @@ namespace Abacus.Measures.Services
             _registry = registry;
         }
 
-        public IEnumerable<object> MarketDataRequirements<TTarget>(DateTime valuationDate, TTarget target, params MeasureType[] measures)
+        public IEnumerable<MarketDataRequirement> GetRequirements<TTarget>(DateTime valuationDate, TTarget target, params MeasureType[] measures)
         {
             if (target == null)
             {
@@ -33,11 +35,15 @@ namespace Abacus.Measures.Services
             foreach (var measure in measures)
             {
                 var calculator = _registry.GetCalculator(target, measure);
-                yield return calculator.MarketDataRequirements(valuationDate, target);
+                var requirements = calculator.GetRequirements(valuationDate, target);
+                foreach (var requirement in requirements)
+                {
+                    yield return requirement;
+                }
             }
         }
 
-        public IEnumerable<object> CalculateMeasures<TTarget>(DateTime valuationDate, IMarketData marketData, TTarget target, params MeasureType[] measures)
+        public IEnumerable<MeasureResult> CalculateMeasures<TTarget>(DateTime valuationDate, IMarketData marketData, TTarget target, params MeasureType[] measures)
         {
             if (marketData == null)
             {

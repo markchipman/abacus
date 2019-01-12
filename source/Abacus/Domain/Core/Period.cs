@@ -4,6 +4,13 @@ namespace Abacus.Domain.Core
 {
     public class Period
     {
+        public Period(DateTime startDate, DateTime endDate)
+        {
+            StartDate = startDate;
+            EndDate = endDate;
+            // TODO - rest of props
+        }
+
         public DateTime UnadjustedStartDate { get; }
 
         public DateTime UnadjustedEndDate { get; }

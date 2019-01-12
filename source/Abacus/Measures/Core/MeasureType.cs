@@ -10,6 +10,7 @@ namespace Abacus.Measures
         static MeasureType()
         {
         }
+
         public MeasureType()
             : this(typeof(TSelf).Name.SplitPascalCase().ReplaceSpaceWith("-").ToLowerInvariant())
         {

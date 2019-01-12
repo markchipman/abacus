@@ -6,12 +6,12 @@ namespace Abacus.Domain.Core
     {
         public decimal CountDays(DateTime startDate, DateTime endDate)
         {
-            throw new NotImplementedException();
+            return 360m;
         }
 
         public decimal CountYears(DateTime startDate, DateTime endDate)
         {
-            throw new NotImplementedException();
+            return 1m;
         }
     }
 }

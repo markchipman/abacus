@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Abacus.Data.MarketData;
 using Abacus.Domain.Core;
 using Abacus.Domain.Instruments;
@@ -6,7 +7,7 @@ using Abacus.Pricers;
 
 namespace Abacus.Measures.Calculators
 {
-    public class FixedCouponBondPresentValueCalculator : MeasureCalculator<FixedCouponBond, PresentValue>
+    public class FixedCouponBondPresentValueCalculator : MeasureCalculator<FixedCouponBond>
     {
         private readonly FixedCouponBondPricer _pricer;
 
@@ -20,20 +21,21 @@ namespace Abacus.Measures.Calculators
             _pricer = pricer;
         }
 
-        public override object MarketDataRequirements(DateTime valuationDate, FixedCouponBond target)
+        public override IEnumerable<MarketDataRequirement> GetRequirements(DateTime valuationDate, FixedCouponBond target)
         {
-            throw new NotImplementedException();
+            yield return new MarketDataRequirement();
         }
 
-        public override object CalculateMeasure(DateTime valuationDate, IMarketData marketData, FixedCouponBond target)
+        public override MeasureResult CalculateMeasure(DateTime valuationDate, IMarketData marketData, FixedCouponBond target)
         {
             if (marketData == null)
             {
                 throw new ArgumentNullException(nameof(marketData));
             }
 
-            var discountFactors = marketData.GetMarketData<DiscountFactors>(null);
-            return _pricer.PresentValue(valuationDate, target, discountFactors);
+            var discountFactors = marketData.GetMarketDataOrDefault<DiscountFactors>(null, new DiscountFactors(valuationDate, new DayCountConvention(), new Curve()));
+            var result = _pricer.PresentValue(valuationDate, target, discountFactors);
+            return new MeasureResult(StandardMeasures.PresentValue, result);
         }
     }
 }

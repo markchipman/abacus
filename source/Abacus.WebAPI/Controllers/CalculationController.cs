@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Abacus.Context;
 using Abacus.Data.MarketData;
 using Abacus.Domain.Core;
 using Abacus.Domain.Instruments;
+using Abacus.Engine;
 using Abacus.Measures;
+using Abacus.Measures.Calculation;
+using Abacus.Measures.Calculators;
 using Abacus.Measures.Services;
+using Abacus.Pricers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Abacus.WebAPI.Controllers
@@ -18,102 +21,35 @@ namespace Abacus.WebAPI.Controllers
         [HttpGet("measures")]
         public IActionResult CalculateMeasures()
         {
-            Instrument instrument = new FixedCouponBond();
-            var valuationDate = DateTime.Today;
-            var measures = new[] { StandardMeasures.PresentValue };
+            var instrument1 = new FixedCouponBond(new Counterparty(), new CurrencyAmount(1000000, new Currency("USD")), new Rate(0.025m, Frequency.Annually), new ScheduleInfo(DateTime.Today, DateTime.Today.AddYears(1)));
+            var instruments = new Instrument[] { instrument1 };
 
-            var calculatorRegistry = new MeasureCalculationRegistry();
-            var calculator = new MeasuresCalculator(calculatorRegistry);
+            var valuationDate = DateTime.Now;
+            var measures = new MeasureType[] { StandardMeasures.PresentValue };
 
-            var calculationContext = new CalculationContext(calculator);
+            var calculatorRegistrar = new MeasureCalculationRegistrar(new ServiceDictionary());
+            calculatorRegistrar.RegisterCalculator(StandardMeasures.PresentValue, new FixedCouponBondPresentValueCalculator(new FixedCouponBondPricer(new PaymentPricer())));
 
-            instrument.ProvideContext(calculationContext);
+            var calculator = new MeasuresCalculator(calculatorRegistrar);
 
-            var marketDataRequirements = calculationContext.MarketDataRequirements(valuationDate, measures).ToList();
             var marketData = new MarketData(); // created using market data requirements
 
-            var results = calculationContext.Calculate(valuationDate, marketData, measures).ToList();
+            var calculationContext = new InstrumentsCalculationContext(instruments);
+
+            var requirements = calculationContext.GetRequirements(calculator, valuationDate, measures).ToList();
+            var results = calculationContext.CalculateMeasures(calculator, valuationDate, marketData, measures).ToList();
+
 
             return Ok();
         }
     }
 
-    public class CalculationContext : IAcceptContext<Instrument>
+    public class ServiceDictionary : Dictionary<Type, object>, IServiceProvider
     {
-        private readonly IList<CalculationItem> _calculationItems = new List<CalculationItem>();
-        private readonly MeasuresCalculator _calculator;
-
-        public CalculationContext(MeasuresCalculator calculator)
+        public object GetService(Type serviceType)
         {
-            if (calculator == null)
-            {
-                throw new ArgumentNullException(nameof(calculator));
-            }
-
-            _calculator = calculator;
-        }
-
-        public void AcceptContext<TTarget>(TTarget target) where TTarget : Instrument
-        {
-            var calculationItem = new InstrumentCalculationItem<TTarget>(target, _calculator);
-            _calculationItems.Add(calculationItem);
-        }
-
-        public IEnumerable<object> MarketDataRequirements(DateTime valuationDate, params MeasureType[] measures)
-        {
-            foreach (var calculationItem in _calculationItems)
-            {
-                var result = calculationItem.MarketDataRequirements(valuationDate, measures);
-                yield return result;
-            }
-        }
-
-        public IEnumerable<object> Calculate(DateTime valuationDate, IMarketData marketData, params MeasureType[] measures)
-        {
-            foreach (var calculationItem in _calculationItems)
-            {
-                var result = calculationItem.Calculate(valuationDate, marketData, measures);
-                yield return result;
-            }
+            return this[serviceType];
         }
     }
 
-    public class InstrumentCalculationItem<TTarget> : CalculationItem
-    {
-        private readonly TTarget _target;
-        private readonly MeasuresCalculator _calculator;
-
-        public InstrumentCalculationItem(TTarget target, MeasuresCalculator calculator)
-        {
-            if (target == null)
-            {
-                throw new ArgumentNullException(nameof(target));
-            }
-            if (calculator == null)
-            {
-                throw new ArgumentNullException(nameof(calculator));
-            }
-
-            _target = target;
-            _calculator = calculator;
-        }
-
-        public override object MarketDataRequirements(DateTime valuationDate, params MeasureType[] measures)
-        {
-            return _calculator.MarketDataRequirements(valuationDate, _target, measures);
-        }
-
-
-        public override object Calculate(DateTime valuationDate, IMarketData marketData, params MeasureType[] measures)
-        {
-            return _calculator.CalculateMeasures(valuationDate, marketData, _target, measures);
-        }
-    }
-
-    public abstract class CalculationItem
-    {
-        public abstract object MarketDataRequirements(DateTime valuationDate, params MeasureType[] measures);
-
-        public abstract object Calculate(DateTime valuationDate, IMarketData marketData, params MeasureType[] measures);
-    }
 }

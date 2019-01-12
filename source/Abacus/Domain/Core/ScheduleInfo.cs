@@ -4,6 +4,14 @@ namespace Abacus.Domain.Core
 {
     public class ScheduleInfo
     {
+        public ScheduleInfo(DateTime startDate, DateTime endDate)
+        {
+            StartDate = startDate;
+            EndDate = endDate;
+
+            // TODO - rest of props
+        }
+
         public DateTime UnadjustedStartDate { get; }
 
         public DateTime UnadjustedEndDate { get; }
@@ -17,5 +25,8 @@ namespace Abacus.Domain.Core
         public DateTime EndDate { get; }
 
         public Frequency Frequency { get; }
+
+        public DateTime? ExDate { get; }
+
     }
 }

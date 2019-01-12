@@ -1,17 +1,15 @@
-﻿using System;
-
-namespace Abacus.Data.MarketData
+﻿namespace Abacus.Data.MarketData
 {
     public class MarketData : IMarketData
     {
         public T GetMarketData<T>(IMarketDataId<T> id)
         {
-            throw new NotImplementedException();
+            return default;
         }
 
         public T GetMarketDataOrDefault<T>(IMarketDataId<T> id, T @default = default)
         {
-            throw new NotImplementedException();
+            return @default;
         }
     }
 }

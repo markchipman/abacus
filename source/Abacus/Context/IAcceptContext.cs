@@ -2,6 +2,6 @@
 {
     public interface IAcceptContext<in TBase>
     {
-        void AcceptContext<T>(T target) where T : TBase;
+        void AcceptContext<T>(T context) where T : TBase;
     }
 }

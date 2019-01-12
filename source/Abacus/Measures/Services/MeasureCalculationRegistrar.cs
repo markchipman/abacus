@@ -5,27 +5,50 @@ namespace Abacus.Measures.Services
 {
     public class MeasureCalculationRegistrar : MeasureCalculationRegistry
     {
-        public MeasureCalculationRegistrar RegisterCalculator<TTarget, TMeasure, TCalculator>() where TMeasure : MeasureType, new() where TCalculator : MeasureCalculator<TTarget, TMeasure>
+        private readonly IServiceProvider _serviceProvider;
+
+        public MeasureCalculationRegistrar(IServiceProvider serviceProvider)
         {
+            if (serviceProvider == null)
+            {
+                throw new ArgumentNullException(nameof(serviceProvider));
+            }
+
+            _serviceProvider = serviceProvider;
+        }
+
+        public MeasureCalculationRegistrar RegisterCalculator<TTarget>(MeasureType measure, MeasureCalculator<TTarget> calculator)
+        {
+            if (measure == null)
+            {
+                throw new ArgumentNullException(nameof(measure));
+            }
+            if (measure.GetType() == typeof(MeasureType))
+            {
+                throw new ArgumentException("Invalid MeasureType: " + measure.GetType());
+            }
+            if (calculator == null)
+            {
+                throw new ArgumentNullException(nameof(calculator));
+            }
+
+            Registrations.Add(new Tuple<Type, MeasureType>(typeof(TTarget), measure), () => calculator);
+
             return this;
         }
 
-        public MeasureCalculationRegistrar RegisterCalculator<TTarget, TMeasure, TCalculator>(TCalculator instance) where TMeasure : MeasureType, new() where TCalculator : MeasureCalculator<TTarget, TMeasure>
+        public MeasureCalculationRegistrar RegisterCalculator<TTarget, TCalculator>(MeasureType measure) where TCalculator : MeasureCalculator<TTarget>
         {
-            if (instance == null)
+            if (measure == null)
             {
-                throw new ArgumentNullException(nameof(instance));
+                throw new ArgumentNullException(nameof(measure));
+            }
+            if (measure.GetType() == typeof(MeasureType))
+            {
+                throw new ArgumentException("Invalid MeasureType: " + measure.GetType());
             }
 
-            return this;
-        }
-
-        public MeasureCalculationRegistrar RegisterCalculator<TTarget, TMeasure, TCalculator>(Func<TCalculator> factory) where TMeasure : MeasureType, new() where TCalculator : MeasureCalculator<TTarget, TMeasure>
-        {
-            if (factory == null)
-            {
-                throw new ArgumentNullException(nameof(factory));
-            }
+            Registrations.Add(new Tuple<Type, MeasureType>(typeof(TTarget), measure), () => _serviceProvider.GetService(typeof(TCalculator)));
 
             return this;
         }
