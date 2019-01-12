@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Abacus.Data.MarketData;
-using Abacus.Domain.Core;
-using Abacus.Domain.Instruments;
+using Abacus.Domain;
 using Abacus.Engine;
 using Abacus.Measures;
 using Abacus.Measures.Calculation;

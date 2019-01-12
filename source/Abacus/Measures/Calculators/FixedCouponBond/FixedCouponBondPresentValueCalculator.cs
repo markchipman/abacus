@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Abacus.Data.MarketData;
-using Abacus.Domain.Core;
-using Abacus.Domain.Instruments;
+using Abacus.Domain;
 using Abacus.Pricers;
 
 namespace Abacus.Measures.Calculators

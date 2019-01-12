@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Abacus.Data.MarketData;
-using Abacus.Domain.Core;
+using Abacus.Domain;
 using Abacus.Measures;
 using Abacus.Measures.Calculation;
 

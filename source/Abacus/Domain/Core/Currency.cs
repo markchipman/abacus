@@ -1,6 +1,6 @@
 using Abacus.Enums;
 
-namespace Abacus.Domain.Core
+namespace Abacus.Domain
 {
     public class Currency : Enumeration<string>
     {

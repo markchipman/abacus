@@ -1,6 +1,6 @@
 using Abacus.Context;
 
-namespace Abacus.Domain.Core
+namespace Abacus.Domain
 {
     public abstract class Instrument : IProvideContext<Instrument>
     {

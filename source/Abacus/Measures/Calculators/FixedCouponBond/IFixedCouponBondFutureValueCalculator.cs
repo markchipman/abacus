@@ -1,4 +1,4 @@
-﻿using Abacus.Domain.Instruments;
+﻿using Abacus.Domain;
 
 namespace Abacus.Measures.Calculators
 {

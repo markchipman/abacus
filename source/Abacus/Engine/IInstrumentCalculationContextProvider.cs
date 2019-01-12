@@ -1,4 +1,4 @@
-﻿using Abacus.Domain.Core;
+﻿using Abacus.Domain;
 
 namespace Abacus.Engine
 {

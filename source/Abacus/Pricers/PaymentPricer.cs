@@ -1,5 +1,5 @@
 ﻿using System;
-using Abacus.Domain.Core;
+using Abacus.Domain;
 
 namespace Abacus.Pricers
 {

@@ -1,8 +1,7 @@
 using System.Collections.Generic;
 using Abacus.Context;
-using Abacus.Domain.Core;
 
-namespace Abacus.Domain.Instruments
+namespace Abacus.Domain
 {
     public sealed class FixedCouponBond : Instrument
     {

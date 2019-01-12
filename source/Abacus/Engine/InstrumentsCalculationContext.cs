@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Abacus.Data.MarketData;
-using Abacus.Domain.Core;
+using Abacus.Domain;
 using Abacus.Measures;
 using Abacus.Measures.Calculation;
 
