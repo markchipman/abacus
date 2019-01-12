@@ -6,14 +6,14 @@ namespace Abacus.Measures.Services
 {
     public class MeasuresCalculator
     {
-        private readonly MeasureCalculatorRegistry _registry;
+        private readonly MeasureCalculationRegistry _registry;
 
-        public MeasuresCalculator(MeasureCalculatorRegistry registry)
+        public MeasuresCalculator(MeasureCalculationRegistry registry)
         {
             _registry = registry ?? throw new ArgumentNullException(nameof(registry));
         }
 
-        public IEnumerable<object> MarketDataRequirements<TTarget>(DateTime valuationDate, TTarget target, params Measure[] measures)
+        public IEnumerable<object> MarketDataRequirements<TTarget>(DateTime valuationDate, TTarget target, params MeasureType[] measures)
         {
             if (target == null)
             {
@@ -27,12 +27,12 @@ namespace Abacus.Measures.Services
 
             foreach (var measure in measures)
             {
-                var calculator = _registry.Get(target, measure);
+                var calculator = _registry.GetCalculator(target, measure);
                 yield return calculator.MarketDataRequirements(valuationDate, target);
             }
         }
 
-        public IEnumerable<object> CalculateMeasures<TTarget>(DateTime valuationDate, IMarketData marketData, TTarget target, params Measure[] measures)
+        public IEnumerable<object> CalculateMeasures<TTarget>(DateTime valuationDate, IMarketData marketData, TTarget target, params MeasureType[] measures)
         {
             if (marketData == null)
             {
@@ -51,7 +51,7 @@ namespace Abacus.Measures.Services
 
             foreach (var measure in measures)
             {
-                var calculator = _registry.Get(target, measure);
+                var calculator = _registry.GetCalculator(target, measure);
                 yield return calculator.CalculateMeasure(valuationDate, marketData, target);
             }
         }

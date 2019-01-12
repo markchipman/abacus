@@ -6,11 +6,11 @@ namespace Abacus.Pricers
 {
     public class FixedCouponBondPricer
     {
-        private readonly PaymentPricer paymentPricer;
+        private readonly PaymentPricer _paymentPricer;
 
         public FixedCouponBondPricer(PaymentPricer paymentPricer)
         {
-            this.paymentPricer = paymentPricer ?? throw new ArgumentNullException(nameof(paymentPricer));
+            _paymentPricer = paymentPricer ?? throw new ArgumentNullException(nameof(paymentPricer));
         }
 
         public CurrencyAmount PresentValue(DateTime valuationDate, FixedCouponBond bond, DiscountFactors discountFactors)
@@ -45,7 +45,7 @@ namespace Abacus.Pricers
                 throw new ArgumentNullException(nameof(discountFactors));
             }
 
-            var pvNominalPayment = paymentPricer.PresentValuePayment(valuationDate, bond.NominalPayment, discountFactors);
+            var pvNominalPayment = _paymentPricer.PresentValuePayment(valuationDate, bond.NominalPayment, discountFactors);
 
             return pvNominalPayment;
         }
@@ -66,7 +66,7 @@ namespace Abacus.Pricers
 
             foreach (var period in bond.CouponSchedule)
             {
-                var pvCouponPayment = paymentPricer.PresentValuePayment(valuationDate, period.GetPayment(), discountFactors);
+                var pvCouponPayment = _paymentPricer.PresentValuePayment(valuationDate, period.GetPayment(), discountFactors);
                 pvCouponPayments += pvCouponPayment;
             }
 

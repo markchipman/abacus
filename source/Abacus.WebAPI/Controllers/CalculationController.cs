@@ -21,7 +21,7 @@ namespace Abacus.WebAPI.Controllers
             var valuationDate = DateTime.Today;
             var measures = new[] { StandardMeasures.PresentValue };
 
-            var calculatorRegistry = new MeasureCalculatorRegistry();
+            var calculatorRegistry = new MeasureCalculationRegistry();
             var calculator = new MeasuresCalculator(calculatorRegistry);
 
             var calculationContext = new CalculationContext(valuationDate, calculator, measures);
@@ -29,7 +29,7 @@ namespace Abacus.WebAPI.Controllers
             instrument.ProvideContext(calculationContext);
 
             var marketDataRequirements = calculationContext.MarketDataRequirements().ToList();
-            var marketData = new MarketData(); // using marketDataRequirements somehow
+            var marketData = new MarketData(); // created using market data requirements
 
             var results = calculationContext.Calculate(marketData).ToList();
 
@@ -39,29 +39,29 @@ namespace Abacus.WebAPI.Controllers
 
     public class CalculationContext : IAcceptContext<Instrument>
     {
-        private readonly IList<Func<IMarketData, object>> calculations = new List<Func<IMarketData, object>>();
-        private readonly MeasuresCalculator calculator;
+        private readonly IList<Func<IMarketData, object>> _calculations = new List<Func<IMarketData, object>>();
+        private readonly MeasuresCalculator _calculator;
 
-        private readonly IList<Func<object>> marketDataRequirements = new List<Func<object>>();
-        private readonly Measure[] measures;
-        private readonly DateTime valuationDate;
+        private readonly IList<Func<object>> _marketDataRequirements = new List<Func<object>>();
+        private readonly MeasureType[] _measures;
+        private readonly DateTime _valuationDate;
 
-        public CalculationContext(DateTime valuationDate, MeasuresCalculator calculator, params Measure[] measures)
+        public CalculationContext(DateTime valuationDate, MeasuresCalculator calculator, params MeasureType[] measures)
         {
-            this.valuationDate = valuationDate;
-            this.calculator = calculator ?? throw new ArgumentNullException(nameof(calculator));
-            this.measures = measures ?? throw new ArgumentNullException(nameof(measures));
+            _valuationDate = valuationDate;
+            _calculator = calculator ?? throw new ArgumentNullException(nameof(calculator));
+            _measures = measures ?? throw new ArgumentNullException(nameof(measures));
         }
 
         public void AcceptContext<T>(T target) where T : Instrument
         {
-            marketDataRequirements.Add(() => calculator.MarketDataRequirements(valuationDate, target, measures));
-            calculations.Add(marketData => calculator.CalculateMeasures(valuationDate, marketData, target, measures));
+            _marketDataRequirements.Add(() => _calculator.MarketDataRequirements(_valuationDate, target, _measures));
+            _calculations.Add(marketData => _calculator.CalculateMeasures(_valuationDate, marketData, target, _measures));
         }
 
         public IEnumerable<object> MarketDataRequirements()
         {
-            foreach (var marketDataRequirement in marketDataRequirements)
+            foreach (var marketDataRequirement in _marketDataRequirements)
             {
                 var result = marketDataRequirement();
                 yield return result;
@@ -70,7 +70,7 @@ namespace Abacus.WebAPI.Controllers
 
         public IEnumerable<object> Calculate(IMarketData marketData)
         {
-            foreach (var calculation in calculations)
+            foreach (var calculation in _calculations)
             {
                 var result = calculation(marketData);
                 yield return result;

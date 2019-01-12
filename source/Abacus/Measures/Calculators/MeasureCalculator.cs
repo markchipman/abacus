@@ -3,7 +3,7 @@ using Abacus.Data.MarketData;
 
 namespace Abacus.Measures.Calculators
 {
-    public abstract class MeasureCalculator<TTarget, TMeasure> : MeasureCalculator<TTarget> where TMeasure : Measure
+    public abstract class MeasureCalculator<TTarget, TMeasure> : MeasureCalculator<TTarget> where TMeasure : MeasureType
     {
     }
 

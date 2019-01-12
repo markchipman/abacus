@@ -8,7 +8,7 @@ namespace Abacus.Measures.Calculators
 {
     public class FixedCouponBondPresentValueCalculator : MeasureCalculator<FixedCouponBond, PresentValue>
     {
-        private readonly FixedCouponBondPricer pricer;
+        private readonly FixedCouponBondPricer _pricer;
 
         public FixedCouponBondPresentValueCalculator(FixedCouponBondPricer _pricer)
         {
@@ -17,7 +17,7 @@ namespace Abacus.Measures.Calculators
                 throw new ArgumentNullException(nameof(_pricer));
             }
 
-            this.pricer = _pricer;
+            this._pricer = _pricer;
         }
 
         public override object MarketDataRequirements(DateTime valuationDate, FixedCouponBond target)
@@ -33,7 +33,7 @@ namespace Abacus.Measures.Calculators
             }
 
             var discountFactors = marketData.GetMarketData<DiscountFactors>(null);
-            return pricer.PresentValue(valuationDate, target, discountFactors);
+            return _pricer.PresentValue(valuationDate, target, discountFactors);
         }
     }
 }
