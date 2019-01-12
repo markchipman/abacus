@@ -2,7 +2,7 @@
 
 :construction_worker: **work in progress** :construction:
 
-Abacus will be a cross platform collection/framework of reusable libraries and apis and applications for financial risk and pricing.
+Abacus will be a cross platform framework of reusable libraries and apis and applications for financial risk and pricing.
 
 Written using modern development practices in C#8 on [dotnetcore](https://dotnet.microsoft.com/download).
 
