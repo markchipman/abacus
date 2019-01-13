@@ -11,12 +11,12 @@ namespace Abacus.Measures
         {
         }
 
-        public MeasureType()
+        protected MeasureType()
             : this(typeof(TSelf).Name.SplitPascalCase().ReplaceSpaceWith("-").ToLowerInvariant())
         {
         }
 
-        public MeasureType(string id)
+        protected MeasureType(string id)
             : base(typeof(TSelf).Name.SplitPascalCase().ReplaceSpaceWith("-").ToLowerInvariant())
         {
         }

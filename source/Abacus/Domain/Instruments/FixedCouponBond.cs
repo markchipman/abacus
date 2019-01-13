@@ -5,7 +5,6 @@ namespace Abacus.Domain
     public sealed class FixedCouponBond : InstrumentWithSchedule<RatePaymentPeriod>
     {
         public FixedCouponBond(Counterparty issuer, CurrencyAmount notional, Rate fixedRate, ScheduleInfo scheduleInfo)
-            : base(scheduleInfo)
         {
             if (issuer == null)
             {
@@ -19,9 +18,17 @@ namespace Abacus.Domain
             {
                 throw new System.ArgumentNullException(nameof(fixedRate));
             }
+            if (scheduleInfo == null)
+            {
+                throw new System.ArgumentNullException(nameof(scheduleInfo));
+            }
+
             Issuer = issuer;
             Notional = notional;
             FixedRate = fixedRate;
+            ScheduleInfo = scheduleInfo;
+            NominalPayment = new Payment(ScheduleInfo.StartDate, Notional);
+            Schedule = new RatePaymentSchedule(RatePaymentSchedule.ExpandFixedRateSchedule(ScheduleInfo, Notional, FixedRate));
         }
 
         public Counterparty Issuer { get; }
@@ -29,6 +36,12 @@ namespace Abacus.Domain
         public CurrencyAmount Notional { get; }
 
         public Rate FixedRate { get; }
+
+        public ScheduleInfo ScheduleInfo { get; }
+
+        public Payment NominalPayment { get; }
+
+        public override Schedule<RatePaymentPeriod> Schedule { get; }
 
         public override void ProvideContext(IAcceptContext<Instrument> target)
         {

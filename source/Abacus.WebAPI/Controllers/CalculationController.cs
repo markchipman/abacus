@@ -29,8 +29,8 @@ namespace Abacus.WebApi.Controllers
             var valuationDate = DateTime.Now;
             var instruments = new Instrument[]
             {
-                new FixedCouponBond(new Counterparty(), new CurrencyAmount(500000, new Currency("GBP")), new Rate(0.011m, Frequency.Quarterly), new ScheduleInfo(DateTime.Today.Date, DateTime.Today.Date.AddYears(10))),
-                new FixedCouponBond(new Counterparty(), new CurrencyAmount(1000000, new Currency("USD")), new Rate(0.025m, Frequency.Annually), new ScheduleInfo(DateTime.Today.Date, DateTime.Today.Date.AddYears(1)))
+                new FixedCouponBond(new Counterparty(), new CurrencyAmount(500000, new Currency("GBP")), new Rate(0.011m, Frequency.Quarterly), new ScheduleInfo(DateTime.Today.Date, DateTime.Today.Date.AddYears(10), Frequency.Annually)),
+                new FixedCouponBond(new Counterparty(), new CurrencyAmount(1000000, new Currency("USD")), new Rate(0.025m, Frequency.Annually), new ScheduleInfo(DateTime.Today.Date, DateTime.Today.Date.AddYears(1), Frequency.Annually))
             };
             var measures = new MeasureType[]
             {

@@ -1,35 +1,32 @@
-﻿using System;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
 namespace Abacus.Domain
 {
-    public class Schedule<TPeriod> : ReadOnlyCollection<TPeriod>
+    public abstract class Schedule<TPeriod> : IReadOnlyList<TPeriod> where TPeriod : Period
     {
-        public static readonly Schedule<TPeriod> Empty = new Schedule<TPeriod>();
-
-        static Schedule()
+        protected Schedule()
         {
         }
 
-        public Schedule()
-            : base(new List<TPeriod>())
+        protected Schedule(IEnumerable<TPeriod> periods)
         {
-        }
-
-        public Schedule(IList<TPeriod> list)
-            : base(list)
-        {
-        }
-
-        public static Schedule<TPeriod> From(ScheduleInfo scheduleInfo)
-        {
-            if (scheduleInfo == null)
+            if (periods == null)
             {
-                throw new ArgumentNullException(nameof(scheduleInfo));
+                throw new System.ArgumentNullException(nameof(periods));
             }
 
-            return Empty;
+            Periods.AddRange(periods);
         }
+
+        protected List<TPeriod> Periods { get; } = new List<TPeriod>();
+
+        public TPeriod this[int index] => Periods[index];
+
+        public int Count => Periods.Count;
+
+        public IEnumerator<TPeriod> GetEnumerator() => Periods.GetEnumerator();
+
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 }

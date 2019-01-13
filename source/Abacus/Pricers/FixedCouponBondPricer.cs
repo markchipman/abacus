@@ -41,9 +41,12 @@ namespace Abacus.Pricers
 
             var pvTotal = bond.Notional * 0;
 
-            foreach (var period in bond.Schedule)
+            var pvNominalPayment = _paymentPricer.PresentValue(bond.NominalPayment, valuationDate, discountFactors);
+            pvTotal += pvNominalPayment;
+
+            foreach (var couponPeriod in bond.Schedule)
             {
-                var pvPayment = _paymentPricer.PresentValue(period.GetPayment(), valuationDate, discountFactors);
+                var pvPayment = _paymentPricer.PresentValue(couponPeriod.GetPayment(), valuationDate, discountFactors);
                 pvTotal += pvPayment;
             }
 
@@ -59,9 +62,12 @@ namespace Abacus.Pricers
 
             var fvTotal = bond.Notional * 0;
 
-            foreach (var period in bond.Schedule)
+            var fvNominalPayment = _paymentPricer.FutureValue(bond.NominalPayment, valuationDate);
+            fvTotal += fvNominalPayment;
+
+            foreach (var couponPeriod in bond.Schedule)
             {
-                var fvPayment = _paymentPricer.FutureValue(period.GetPayment(), valuationDate);
+                var fvPayment = _paymentPricer.FutureValue(couponPeriod.GetPayment(), valuationDate);
                 fvTotal += fvPayment;
             }
 

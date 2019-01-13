@@ -4,7 +4,7 @@ namespace Abacus.Domain
 {
     public abstract class Period
     {
-        public Period(DateTime startDate, DateTime endDate)
+        protected Period(DateTime startDate, DateTime endDate)
         {
             StartDate = startDate;
             EndDate = endDate;
