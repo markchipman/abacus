@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace Abacus.Domain
@@ -19,6 +20,16 @@ namespace Abacus.Domain
         public Schedule(IList<TPeriod> list)
             : base(list)
         {
+        }
+
+        public static Schedule<TPeriod> From(ScheduleInfo scheduleInfo)
+        {
+            if (scheduleInfo == null)
+            {
+                throw new ArgumentNullException(nameof(scheduleInfo));
+            }
+
+            return Empty;
         }
     }
 }

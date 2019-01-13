@@ -10,7 +10,7 @@
             }
 
             ScheduleInfo = scheduleInfo;
-            Schedule = scheduleInfo.ExpandSchedule<TPeriod>();
+            Schedule = scheduleInfo.ExpandToSchedule<TPeriod>();
         }
 
         public InstrumentWithSchedule(ScheduleInfo scheduleInfo, Schedule<TPeriod> schedule)

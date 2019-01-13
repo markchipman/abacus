@@ -28,9 +28,9 @@ namespace Abacus.Domain
 
         public DateTime? ExDate { get; }
 
-        public Schedule<TPeriod> ExpandSchedule<TPeriod>()
+        public Schedule<TPeriod> ExpandToSchedule<TPeriod>()
         {
-            return Schedule<TPeriod>.Empty; // TODO
+            return Schedule<TPeriod>.From(this);
         }
     }
 }
