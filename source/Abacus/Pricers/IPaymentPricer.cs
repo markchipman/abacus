@@ -3,9 +3,11 @@ using Abacus.Domain;
 
 namespace Abacus.Pricers
 {
+
     public interface IPaymentPricer
     {
-        CurrencyAmount PresentValuePayment(DateTime valuationDate, Payment payment, DiscountFactors discountFactors);
-        CurrencyAmount FutureValuePayment(DateTime valuationDate, Payment payment);
+        CurrencyAmount PresentValue(Payment payment, DateTime valuationDate, DiscountFactors discountFactors);
+
+        CurrencyAmount FutureValue(Payment payment, DateTime valuationDate);
     }
 }

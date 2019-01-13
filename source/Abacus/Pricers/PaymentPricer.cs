@@ -11,7 +11,7 @@ namespace Abacus.Pricers
         {
         }
 
-        public CurrencyAmount PresentValuePayment(DateTime valuationDate, Payment payment, DiscountFactors discountFactors)
+        public CurrencyAmount PresentValue(Payment payment, DateTime valuationDate, DiscountFactors discountFactors)
         {
             if (payment == null)
             {
@@ -37,7 +37,7 @@ namespace Abacus.Pricers
             return pvPayment;
         }
 
-        public CurrencyAmount FutureValuePayment(DateTime valuationDate, Payment payment)
+        public CurrencyAmount FutureValue(Payment payment, DateTime valuationDate)
         {
             if (payment == null)
             {

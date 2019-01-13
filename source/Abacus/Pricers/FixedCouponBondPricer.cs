@@ -28,7 +28,7 @@ namespace Abacus.Pricers
             _paymentPricer = paymentPricer;
         }
 
-        public CurrencyAmount PresentValue(DateTime valuationDate, FixedCouponBond bond, DiscountFactors discountFactors)
+        public CurrencyAmount PresentValue(FixedCouponBond bond, DateTime valuationDate, DiscountFactors discountFactors)
         {
             if (bond == null)
             {
@@ -39,93 +39,33 @@ namespace Abacus.Pricers
                 throw new ArgumentNullException(nameof(discountFactors));
             }
 
-            var pvNominal = PresentValueNominalPayment(valuationDate, bond, discountFactors);
-            var pvCoupons = PresentValueCouponPayments(valuationDate, bond, discountFactors);
+            var pvTotal = bond.Notional * 0;
 
-            var pvTotal = pvNominal + pvCoupons;
+            foreach (var period in bond.Schedule)
+            {
+                var pvPayment = _paymentPricer.PresentValue(period.GetPayment(), valuationDate, discountFactors);
+                pvTotal += pvPayment;
+            }
 
             return pvTotal;
         }
 
-        public CurrencyAmount PresentValueNominalPayment(DateTime valuationDate, FixedCouponBond bond, DiscountFactors discountFactors)
-        {
-            if (bond == null)
-            {
-                throw new ArgumentNullException(nameof(bond));
-            }
-            if (discountFactors == null)
-            {
-                throw new ArgumentNullException(nameof(discountFactors));
-            }
-
-            var pvNominalPayment = _paymentPricer.PresentValuePayment(valuationDate, bond.NominalPayment, discountFactors);
-
-            return pvNominalPayment;
-        }
-
-        public CurrencyAmount PresentValueCouponPayments(DateTime valuationDate, FixedCouponBond bond, DiscountFactors discountFactors)
-        {
-            if (bond == null)
-            {
-                throw new ArgumentNullException(nameof(bond));
-            }
-            if (discountFactors == null)
-            {
-                throw new ArgumentNullException(nameof(discountFactors));
-            }
-
-            var pvCouponPayments = bond.Notional * 0;
-
-            foreach (var period in bond.CouponSchedule)
-            {
-                var pvCouponPayment = _paymentPricer.PresentValuePayment(valuationDate, period.GetPayment(), discountFactors);
-                pvCouponPayments += pvCouponPayment;
-            }
-
-            return pvCouponPayments;
-        }
-
-        public CurrencyAmount FutureValue(DateTime valuationDate, FixedCouponBond bond)
+        public CurrencyAmount FutureValue(FixedCouponBond bond, DateTime valuationDate)
         {
             if (bond == null)
             {
                 throw new ArgumentNullException(nameof(bond));
             }
 
-            var fvNominal = FutureValueNominalPayment(valuationDate, bond);
-            var fvCoupons = FutureValueCouponPayments(valuationDate, bond);
+            var fvTotal = bond.Notional * 0;
 
-            var fvTotal = fvNominal + fvCoupons;
+            foreach (var period in bond.Schedule)
+            {
+                var fvPayment = _paymentPricer.FutureValue(period.GetPayment(), valuationDate);
+                fvTotal += fvPayment;
+            }
 
             return fvTotal;
-        }
-
-        public CurrencyAmount FutureValueNominalPayment(DateTime valuationDate, FixedCouponBond bond)
-        {
-            if (bond == null)
-            {
-                throw new ArgumentNullException(nameof(bond));
-            }
-
-            return bond.NominalPayment.Amount;
-        }
-
-        public CurrencyAmount FutureValueCouponPayments(DateTime valuationDate, FixedCouponBond bond)
-        {
-            if (bond == null)
-            {
-                throw new ArgumentNullException(nameof(bond));
-            }
-
-            var fvCouponPayments = bond.Notional * 0;
-
-            foreach (var period in bond.CouponSchedule)
-            {
-                var fvCouponPayment = _paymentPricer.FutureValuePayment(valuationDate, period.GetPayment());
-                fvCouponPayments += fvCouponPayment;
-            }
-
-            return fvCouponPayments;
         }
     }
 }

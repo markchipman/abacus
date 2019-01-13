@@ -2,7 +2,7 @@ using System;
 
 namespace Abacus.Domain
 {
-    public class Period
+    public abstract class Period
     {
         public Period(DateTime startDate, DateTime endDate)
         {

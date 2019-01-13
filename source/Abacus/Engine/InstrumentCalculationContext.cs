@@ -32,7 +32,7 @@ namespace Abacus.Engine
                 throw new ArgumentNullException(nameof(measures));
             }
 
-            return calculator.GetRequirements(valuationDate, Instrument, measures);
+            return calculator.GetRequirements(Instrument, valuationDate, measures);
         }
 
         public override IEnumerable<MeasureResult> CalculateMeasures(MeasuresCalculator calculator, DateTime valuationDate, IMarketData marketData, params MeasureType[] measures)
@@ -50,7 +50,7 @@ namespace Abacus.Engine
                 throw new ArgumentNullException(nameof(measures));
             }
 
-            return calculator.CalculateMeasures(valuationDate, marketData, Instrument, measures);
+            return calculator.CalculateMeasures(Instrument, valuationDate, marketData, measures);
         }
     }
 }

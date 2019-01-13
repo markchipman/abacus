@@ -20,7 +20,7 @@ namespace Abacus.Measures.Calculation
             _registry = registry;
         }
 
-        public IEnumerable<MarketDataRequirement> GetRequirements<TTarget>(DateTime valuationDate, TTarget target, params MeasureType[] measures)
+        public IEnumerable<MarketDataRequirement> GetRequirements<TTarget>(TTarget target, DateTime valuationDate, params MeasureType[] measures)
         {
             if (target == null)
             {
@@ -35,7 +35,7 @@ namespace Abacus.Measures.Calculation
             foreach (var measure in measures)
             {
                 var calculator = _registry.GetCalculator(target, measure);
-                var requirements = calculator.GetRequirements(valuationDate, target);
+                var requirements = calculator.GetRequirements(target, valuationDate);
                 foreach (var requirement in requirements)
                 {
                     yield return requirement;
@@ -43,18 +43,16 @@ namespace Abacus.Measures.Calculation
             }
         }
 
-        public IEnumerable<MeasureResult> CalculateMeasures<TTarget>(DateTime valuationDate, IMarketData marketData, TTarget target, params MeasureType[] measures)
+        public IEnumerable<MeasureResult> CalculateMeasures<TTarget>(TTarget target, DateTime valuationDate, IMarketData marketData, params MeasureType[] measures)
         {
-            if (marketData == null)
-            {
-                throw new ArgumentNullException(nameof(marketData));
-            }
-
             if (target == null)
             {
                 throw new ArgumentNullException(nameof(target));
             }
-
+            if (marketData == null)
+            {
+                throw new ArgumentNullException(nameof(marketData));
+            }
             if (measures == null)
             {
                 throw new ArgumentNullException(nameof(measures));
@@ -63,7 +61,7 @@ namespace Abacus.Measures.Calculation
             foreach (var measure in measures)
             {
                 var calculator = _registry.GetCalculator(target, measure);
-                yield return calculator.CalculateMeasure(valuationDate, marketData, target);
+                yield return calculator.CalculateMeasure(target, valuationDate, marketData);
             }
         }
     }

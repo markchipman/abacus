@@ -28,5 +28,10 @@ namespace Abacus.Domain
 
         public DateTime? ExDate { get; }
 
+        public Schedule<TPeriod> Generate<TPeriod>()
+        {
+            return Schedule<TPeriod>.Generate(this);
+        }
+
     }
 }
