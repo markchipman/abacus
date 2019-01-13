@@ -10,7 +10,7 @@ namespace Abacus.Measures.Services
 
         public IMeasureCalculator<TTarget> GetCalculator<TTarget, TMeasure>(TTarget target, TMeasure measure) where TMeasure : MeasureType
         {
-            if (Registrations.TryGetValue(new Tuple<Type, MeasureType>(typeof(TTarget), measure), out var registration))
+            if (Registrations.TryGetValue(Tuple.Create<Type, MeasureType>(typeof(TTarget), measure), out var registration))
             {
                 var instance = registration();
                 switch (instance)

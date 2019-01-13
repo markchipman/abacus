@@ -69,7 +69,7 @@ namespace Abacus.WebApi.Common
                 NullValueHandling = settings.NullValueHandling,
                 ObjectCreationHandling = settings.ObjectCreationHandling,
                 PreserveReferencesHandling = settings.PreserveReferencesHandling,
-                ReferenceResolver = settings.ReferenceResolver,
+                ReferenceResolverProvider = settings.ReferenceResolverProvider,
                 ReferenceLoopHandling = settings.ReferenceLoopHandling,
                 StringEscapeHandling = settings.StringEscapeHandling,
                 TraceWriter = settings.TraceWriter,

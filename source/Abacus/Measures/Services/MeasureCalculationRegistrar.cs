@@ -43,7 +43,7 @@ namespace Abacus.Measures.Services
                 throw new ArgumentNullException(nameof(calculator));
             }
 
-            Registrations.Add(new Tuple<Type, MeasureType>(typeof(TTarget), measure), () => calculator);
+            Registrations.Add(Tuple.Create(typeof(TTarget), measure), () => calculator);
 
             return this;
         }
@@ -60,7 +60,7 @@ namespace Abacus.Measures.Services
                 throw new ArgumentException("Invalid MeasureType: " + measure.GetType());
             }
 
-            Registrations.Add(new Tuple<Type, MeasureType>(typeof(TTarget), measure), () => _serviceProvider.GetService(typeof(TCalculator)));
+            Registrations.Add(Tuple.Create(typeof(TTarget), measure), () => _serviceProvider.GetService(typeof(TCalculator)));
 
             return this;
         }

@@ -27,7 +27,7 @@ namespace Abacus.Domain
             Notional = notional;
             FixedRate = fixedRate;
             ScheduleInfo = scheduleInfo;
-            NominalPayment = new Payment(ScheduleInfo.StartDate, Notional);
+            NominalPayment = new Payment(ScheduleInfo.StartDate, ScheduleInfo.StartDate, Notional); // TODO payment dates
             Schedule = RatePaymentSchedule.GenerateFixedRateSchedule(ScheduleInfo, Notional, FixedRate);
         }
 
