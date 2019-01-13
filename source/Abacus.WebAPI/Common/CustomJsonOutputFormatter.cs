@@ -9,44 +9,38 @@ namespace Abacus.WebApi.Common
 {
     public class AbacusJsonOutputFormatter : JsonOutputFormatter
     {
-        public AbacusJsonOutputFormatter(JsonSerializerSettings defaultSerializerSettings)
-               : base(defaultSerializerSettings, ArrayPool<char>.Shared)
+        private readonly JsonSerializerSettings _prettySerializerSettings;
+
+        public AbacusJsonOutputFormatter(JsonSerializerSettings serializerSettings)
+               : this(serializerSettings, ArrayPool<char>.Shared)
         {
         }
 
-        public AbacusJsonOutputFormatter(JsonSerializerSettings defaultSerializerSettings, ArrayPool<char> charPool)
-            : base(defaultSerializerSettings, charPool)
+        public AbacusJsonOutputFormatter(JsonSerializerSettings serializerSettings, ArrayPool<char> charPool)
+            : base(serializerSettings, charPool)
         {
+            _prettySerializerSettings = (serializerSettings ?? new JsonSerializerSettings()).DeepCopy();
+            _prettySerializerSettings.Formatting = Formatting.Indented;
         }
 
         public override async Task WriteResponseBodyAsync(OutputFormatterWriteContext context, Encoding selectedEncoding)
         {
             if (context.HttpContext.Request.Query.TryGetValue("pretty", out var values))
             {
-                var response = context.HttpContext.Response;
-                using (var writer = context.WriterFactory(response.Body, selectedEncoding))
+                if (!values.Contains("false") && values.Contains("true"))
                 {
-                    var customSerializer = base.CreateJsonSerializer();
-
-                    if (!values.Contains("false") && values.Contains("true"))
+                    var response = context.HttpContext.Response;
+                    using (var writer = context.WriterFactory(response.Body, selectedEncoding))
                     {
-                        customSerializer.Formatting = Formatting.Indented;
-
+                        var prettySerializer = JsonSerializer.Create(_prettySerializerSettings);
+                        prettySerializer.Serialize(writer, context.Object);
+                        await writer.FlushAsync();
                     }
-                    else if (values.Contains("false"))
-                    {
-                        customSerializer.Formatting = Formatting.None;
-                    }
-
-                    customSerializer.Serialize(writer, context.Object);
-
-                    await writer.FlushAsync();
+                    return;
                 }
             }
-            else
-            {
-                await base.WriteResponseBodyAsync(context, selectedEncoding);
-            }
+
+            await base.WriteResponseBodyAsync(context, selectedEncoding);
         }
     }
 }

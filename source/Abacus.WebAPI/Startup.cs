@@ -37,6 +37,7 @@ namespace Abacus.WebApi
                     DateTimeZoneHandling = DateTimeZoneHandling.Utc,
                     DefaultValueHandling = DefaultValueHandling.Include,
                     FloatFormatHandling = FloatFormatHandling.DefaultValue,
+                    Formatting = Formatting.None
                 }));
             }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
