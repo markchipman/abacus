@@ -20,10 +20,5 @@ namespace Abacus.Domain
             : base(list)
         {
         }
-
-        public static Schedule<TPeriod> Generate(ScheduleInfo scheduleInfo)
-        {
-            return Empty; // TODO
-        }
     }
 }
