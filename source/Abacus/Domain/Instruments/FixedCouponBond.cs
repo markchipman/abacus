@@ -28,7 +28,7 @@ namespace Abacus.Domain
             FixedRate = fixedRate;
             ScheduleInfo = scheduleInfo;
             NominalPayment = new Payment(ScheduleInfo.StartDate, Notional);
-            Schedule = new RatePaymentSchedule(RatePaymentSchedule.ExpandFixedRateSchedule(ScheduleInfo, Notional, FixedRate));
+            Schedule = RatePaymentSchedule.GenerateFixedRateSchedule(ScheduleInfo, Notional, FixedRate);
         }
 
         public Counterparty Issuer { get; }

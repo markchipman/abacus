@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
 namespace Abacus.Domain
 {
@@ -10,7 +9,7 @@ namespace Abacus.Domain
         {
         }
 
-        public static IReadOnlyList<RatePaymentPeriod> ExpandFixedRateSchedule(ScheduleInfo scheduleInfo, CurrencyAmount notional, Rate rate)
+        public static Schedule<RatePaymentPeriod> GenerateFixedRateSchedule(ScheduleInfo scheduleInfo, CurrencyAmount notional, Rate rate)
         {
             if (scheduleInfo == null)
             {
@@ -26,7 +25,7 @@ namespace Abacus.Domain
                 new RatePaymentPeriod(scheduleInfo.StartDate, scheduleInfo.EndDate, scheduleInfo.EndDate, notional, rate)
             };
 
-            return new ReadOnlyCollection<RatePaymentPeriod>(periods);
+            return new RatePaymentSchedule(periods);
         }
     }
 }
