@@ -6,9 +6,9 @@ using Abacus.Pricers;
 
 namespace Abacus.Measures.Calculators
 {
-    public class FixedCouponBondPresentValueCalculator : MeasureCalculator<FixedCouponBond>, IFixedCouponBondPresentValueCalculator
+    public class FixedCouponBondPresentValueCalculator : IPresentValueCalculator<FixedCouponBond>
     {
-        public static readonly IFixedCouponBondPresentValueCalculator Instance = new FixedCouponBondPresentValueCalculator();
+        public static readonly IPresentValueCalculator<FixedCouponBond> Instance = new FixedCouponBondPresentValueCalculator();
 
         private readonly IFixedCouponBondPricer _pricer;
 
@@ -31,7 +31,7 @@ namespace Abacus.Measures.Calculators
             _pricer = pricer;
         }
 
-        public override IEnumerable<MarketDataRequirement> GetRequirements(FixedCouponBond target, DateTime valuationDate)
+        public IEnumerable<MarketDataRequirement> GetRequirements(FixedCouponBond target, DateTime valuationDate)
         {
             if (target == null)
             {
@@ -41,7 +41,7 @@ namespace Abacus.Measures.Calculators
             yield return new MarketDataRequirement();
         }
 
-        public override MeasureResult CalculateMeasure(FixedCouponBond target, DateTime valuationDate, IMarketData marketData)
+        public MeasureResult CalculateMeasure(FixedCouponBond target, DateTime valuationDate, IMarketData marketData)
         {
             if (target == null)
             {
