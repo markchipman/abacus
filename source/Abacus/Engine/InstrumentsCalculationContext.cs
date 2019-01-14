@@ -72,9 +72,7 @@ namespace Abacus.Engine
             var calculationContexts = new List<ICalculationContext>();
             foreach (var instrument in instruments)
             {
-                var contextProvider = new InstrumentCalculationContextProvider();
-                instrument.ProvideContext(contextProvider);
-                var instrumentCalculationContext = contextProvider.Context;
+                var instrumentCalculationContext = instrument.ToCalculationContext();
                 calculationContexts.Add(instrumentCalculationContext);
             }
             return calculationContexts;

@@ -2,6 +2,6 @@
 {
     public interface IProvideContext<out TBase>
     {
-        void ProvideContext(IAcceptContext<TBase> context);
+        void ProvideContext(IAcceptContext<TBase> target);
     }
 }
