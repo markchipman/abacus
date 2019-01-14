@@ -10,8 +10,8 @@ It uses idea, bits, and pieces of various existing open source pricing libraries
 
 ---
 
-:information_source: NOTE: this project is a learning exercise with hopes of becomming more.
+**NOTE:** this project is a learning exercise with hopes of becomming more.
 
 ---
 
-:heavy_exclamation_mark: [LICENSE](https://github.com/ckarcz/abacus/blob/master/LICENSE) :heavy_exclamation_mark:
+[ [LICENSE](https://github.com/ckarcz/abacus/blob/master/LICENSE) ]
