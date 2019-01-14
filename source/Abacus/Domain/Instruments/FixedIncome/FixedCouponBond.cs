@@ -1,4 +1,5 @@
 using Abacus.Context;
+using Abacus.Debugging;
 
 namespace Abacus.Domain
 {
@@ -46,6 +47,11 @@ namespace Abacus.Domain
         public override void ProvideContext(IAcceptContext<Instrument> target)
         {
             target?.AcceptContext(this);
+        }
+
+        public override string ToString()
+        {
+            return ScheduleInfo.StartDate.DebugToStringDateRange(ScheduleInfo.EndDate) + " " + Notional + " @ " + FixedRate + "/" + ScheduleInfo.Frequency + " " + nameof(FixedCouponBond) + " issued by " + Issuer;
         }
     }
 }

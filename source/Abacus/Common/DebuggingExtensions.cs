@@ -14,5 +14,33 @@ namespace Abacus.Debugging
         {
             return date.ToString(DebuggingConstants.ToStringDateFormat);
         }
+
+        public static string DebugToStringDateRange(this DateTime startDate, DateTime endDate)
+        {
+            var totalDays = (endDate - startDate).TotalDays;
+
+            if (totalDays % 365 < 30)
+            {
+                var years = Math.Round(totalDays / 365);
+                return "~" + years + "Y";
+            }
+            else if (totalDays >= 28)
+            {
+                var months = startDate.MonthsApart(endDate);
+                return "~" + months + "M";
+            }
+            else
+            {
+                var days = (endDate - startDate).Days;
+                return "~" + days + "D";
+            }
+        }
+
+        // TODO - move elsewhere
+        public static int MonthsApart(this DateTime startDate, DateTime endDate)
+        {
+            var monthsApart = (12 * (startDate.Year - endDate.Year)) + (startDate.Month - endDate.Month);
+            return Math.Abs(monthsApart);
+        }
     }
 }
