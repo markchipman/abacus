@@ -1,13 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using Abacus.Enums;
 
 namespace Abacus.Domain
 {
-    public abstract class Frequency
+    public abstract class Frequency : Enumeration<string>
     {
+        protected Frequency(string id)
+            : base(id)
+        {
+        }
+
         public abstract DateTime NextEventDate(DateTime date);
 
-        public virtual IEnumerable<Tuple<DateTime, DateTime>> GenerateTimePeriods(DateTime startDate, DateTime endDate)
+        public virtual IEnumerable<Tuple<DateTime, DateTime>> GenerateTimePeriods(DateTime startDate, DateTime endDate, bool endOnNextStartDate = false)
         {
             if (startDate > endDate)
             {
@@ -17,11 +23,17 @@ namespace Abacus.Domain
             var periodStartDate = startDate;
             do
             {
-                var periodEndDate = new DateTime(Math.Min(NextEventDate(periodStartDate).Ticks, endDate.Ticks));
+                var nextEventDate = NextEventDate(periodStartDate);
+                var periodEndDate = nextEventDate;
+                if (!endOnNextStartDate)
+                {
+                    periodEndDate = periodEndDate.AddDays(-1);
+                }
+                periodEndDate = new DateTime(Math.Min(periodEndDate.Ticks, endDate.Ticks));
+
                 yield return Tuple.Create(periodStartDate, periodEndDate);
 
-                // next
-                periodStartDate = periodEndDate;
+                periodStartDate = nextEventDate;
             }
             while (periodStartDate < endDate);
         }

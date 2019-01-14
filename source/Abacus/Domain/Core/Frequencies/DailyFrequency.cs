@@ -10,6 +10,11 @@ namespace Abacus.Domain
         {
         }
 
+        public DailyFrequency()
+            : base("D")
+        {
+        }
+
         public override DateTime NextEventDate(DateTime date)
         {
             return date.AddDays(1);

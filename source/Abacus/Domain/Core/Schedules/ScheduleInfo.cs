@@ -1,25 +1,25 @@
 ﻿using System;
+using Abacus.Debugging;
 
 namespace Abacus.Domain
 {
     public class ScheduleInfo
     {
-        public ScheduleInfo(DateTime startDate, DateTime endDate, RollConvention rollConvention, DayCountConvention dayCountConvention, Frequency frequency, DateTime? exDate = null)
+        public ScheduleInfo(DateTime startDate, DateTime endDate, Frequency frequency, RollConvention rollConvention = null, DateTime? exDate = null)
         {
+            if (frequency == null)
+            {
+                throw new ArgumentNullException(nameof(frequency));
+            }
             if (rollConvention == null)
             {
-                throw new ArgumentNullException(nameof(rollConvention));
-            }
-            if (dayCountConvention == null)
-            {
-                throw new ArgumentNullException(nameof(dayCountConvention));
+                rollConvention = NoneRollConvention.Instance;
             }
 
             StartDate = startDate;
             EndDate = endDate;
-            RollConvention = rollConvention;
-            DayCountConvention = dayCountConvention;
             Frequency = frequency;
+            RollConvention = rollConvention;
             ExDate = exDate;
             AdjustedStartDate = rollConvention.Adjust(StartDate);
             AdjustedEndDate = rollConvention.Adjust(EndDate);
@@ -33,12 +33,15 @@ namespace Abacus.Domain
 
         public DateTime AdjustedEndDate { get; }
 
-        public RollConvention RollConvention { get; }
-
-        public DayCountConvention DayCountConvention { get; }
-
         public Frequency Frequency { get; }
 
+        public RollConvention RollConvention { get; }
+
         public DateTime? ExDate { get; }
+
+        public override string ToString()
+        {
+            return AdjustedStartDate.DebugToString() + "->" + AdjustedEndDate.DebugToString() + " Freq:" + Frequency + " RC:" + RollConvention + " Ex:" + ExDate.DebugToString("NONE");
+        }
     }
 }

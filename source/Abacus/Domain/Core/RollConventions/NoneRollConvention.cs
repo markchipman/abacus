@@ -10,6 +10,11 @@ namespace Abacus.Domain
         {
         }
 
+        public NoneRollConvention()
+            : base("NONE")
+        {
+        }
+
         public override DateTime Adjust(DateTime date)
         {
             return date;

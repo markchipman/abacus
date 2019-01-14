@@ -1,4 +1,5 @@
 using System;
+using Abacus.Debugging;
 
 namespace Abacus.Domain
 {
@@ -19,5 +20,10 @@ namespace Abacus.Domain
         public DateTime AdjustedStartDate { get; }
 
         public DateTime AdjustedEndDate { get; }
+
+        public override string ToString()
+        {
+            return AdjustedStartDate.DebugToString() + "->" + AdjustedEndDate.DebugToString();
+        }
     }
 }

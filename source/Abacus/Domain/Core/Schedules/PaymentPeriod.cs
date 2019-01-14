@@ -1,4 +1,5 @@
 ﻿using System;
+using Abacus.Debugging;
 
 namespace Abacus.Domain
 {
@@ -20,6 +21,14 @@ namespace Abacus.Domain
 
         public CurrencyAmount Notional { get; }
 
-        public virtual Payment Payment => new Payment(PaymentDate, AdjustedPaymentDate, Notional, ExDate);
+        public virtual Payment AsPayment()
+        {
+            return new Payment(PaymentDate, AdjustedPaymentDate, Notional, ExDate);
+        }
+
+        public override string ToString()
+        {
+            return base.ToString() + ": " + Notional + " on " + PaymentDate.DebugToString() + " Ex:" + ExDate.DebugToString("NONE");
+        }
     }
 }

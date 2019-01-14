@@ -25,11 +25,8 @@ namespace Abacus.Measures
     public abstract class MeasureType : Enumeration<string>
     {
         protected MeasureType(string id)
+            : base(id)
         {
-            Id = id;
         }
-
-        public override string Id { get; }
-
     }
 }

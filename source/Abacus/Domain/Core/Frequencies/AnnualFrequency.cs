@@ -10,6 +10,11 @@ namespace Abacus.Domain
         {
         }
 
+        public AnnuallyFrequency()
+            : base("A")
+        {
+        }
+
         public override DateTime NextEventDate(DateTime date)
         {
             return date.AddYears(1);

@@ -12,6 +12,14 @@ namespace Abacus.Domain
 
         public Rate Rate { get; }
 
-        public override Payment Payment => new Payment(PaymentDate, AdjustedPaymentDate, Notional * Rate.Amount, ExDate);
+        public override Payment AsPayment()
+        {
+            return new Payment(PaymentDate, AdjustedPaymentDate, Notional * Rate.Amount, ExDate);
+        }
+
+        public override string ToString()
+        {
+            return base.ToString() + " @ " + Rate;
+        }
     }
 }

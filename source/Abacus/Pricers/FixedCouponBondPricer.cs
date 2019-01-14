@@ -46,7 +46,7 @@ namespace Abacus.Pricers
 
             foreach (var couponPeriod in bond.Schedule)
             {
-                var pvPayment = _paymentPricer.PresentValue(couponPeriod.Payment, valuationDate, discountFactors);
+                var pvPayment = _paymentPricer.PresentValue(couponPeriod.AsPayment(), valuationDate, discountFactors);
                 pvTotal += pvPayment;
             }
 
@@ -67,7 +67,7 @@ namespace Abacus.Pricers
 
             foreach (var couponPeriod in bond.Schedule)
             {
-                var fvPayment = _paymentPricer.FutureValue(couponPeriod.Payment, valuationDate);
+                var fvPayment = _paymentPricer.FutureValue(couponPeriod.AsPayment(), valuationDate);
                 fvTotal += fvPayment;
             }
 

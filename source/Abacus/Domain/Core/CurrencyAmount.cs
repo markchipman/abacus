@@ -2,7 +2,7 @@ using System;
 
 namespace Abacus.Domain
 {
-    public class CurrencyAmount
+    public class CurrencyAmount : IEquatable<CurrencyAmount>
     {
         public CurrencyAmount(decimal value, Currency currency)
         {
@@ -13,6 +13,46 @@ namespace Abacus.Domain
         public decimal Value { get; }
 
         public Currency Currency { get; }
+
+        public bool Equals(CurrencyAmount other)
+        {
+            if (other is null)
+            {
+                return false;
+            }
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            return Value == other.Value && Equals(Currency, other.Currency);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is null)
+            {
+                return false;
+            }
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((CurrencyAmount)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return (Value.GetHashCode() * 397) ^ (Currency != null ? Currency.GetHashCode() : 0);
+            }
+        }
 
         public override string ToString()
         {
@@ -25,7 +65,6 @@ namespace Abacus.Domain
             {
                 return second;
             }
-
             if (second == null)
             {
                 return first;
@@ -45,7 +84,6 @@ namespace Abacus.Domain
             {
                 return second;
             }
-
             if (second == null)
             {
                 return first;
@@ -65,7 +103,6 @@ namespace Abacus.Domain
             {
                 return second;
             }
-
             if (second == null)
             {
                 return first;
@@ -85,7 +122,6 @@ namespace Abacus.Domain
             {
                 return second;
             }
-
             if (second == null)
             {
                 return first;

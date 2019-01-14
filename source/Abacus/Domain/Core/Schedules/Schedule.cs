@@ -28,5 +28,10 @@ namespace Abacus.Domain
         public IEnumerator<TPeriod> GetEnumerator() => Periods.GetEnumerator();
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
+        public override string ToString()
+        {
+            return Count + " " + typeof(TPeriod).Name + "(s)";
+        }
     }
 }

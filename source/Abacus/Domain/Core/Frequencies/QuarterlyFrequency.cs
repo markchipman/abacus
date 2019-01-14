@@ -10,6 +10,11 @@ namespace Abacus.Domain
         {
         }
 
+        public QuarterlyFrequency()
+            : base("Q")
+        {
+        }
+
         public override DateTime NextEventDate(DateTime date)
         {
             return date.AddMonths(3);

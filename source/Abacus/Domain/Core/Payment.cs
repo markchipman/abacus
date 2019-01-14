@@ -1,4 +1,5 @@
 using System;
+using Abacus.Debugging;
 
 namespace Abacus.Domain
 {
@@ -19,5 +20,10 @@ namespace Abacus.Domain
         public DateTime? ExDate { get; }
 
         public CurrencyAmount Amount { get; }
+
+        public override string ToString()
+        {
+            return Amount + " on " + AdjustedPaymentDate.DebugToString() + " Ex:" + ExDate.DebugToString("NONE");
+        }
     }
 }
