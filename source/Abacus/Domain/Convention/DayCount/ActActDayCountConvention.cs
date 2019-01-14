@@ -2,14 +2,8 @@
 
 namespace Abacus.Domain
 {
-    public class ActActDayCountConvention : DayCountConvention
+    public class ActActDayCountConvention : DayCountConvention<ActActDayCountConvention>
     {
-        public static readonly DayCountConvention Instance = new ActActDayCountConvention();
-
-        static ActActDayCountConvention()
-        {
-        }
-
         public ActActDayCountConvention()
             : base("ACT/ACT")
         {

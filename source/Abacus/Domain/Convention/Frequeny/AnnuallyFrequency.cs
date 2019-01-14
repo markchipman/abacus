@@ -2,14 +2,8 @@
 
 namespace Abacus.Domain
 {
-    public class AnnuallyFrequency : Frequency
+    public class AnnuallyFrequency : Frequency<AnnuallyFrequency>
     {
-        public static readonly AnnuallyFrequency Instance = new AnnuallyFrequency();
-
-        static AnnuallyFrequency()
-        {
-        }
-
         public AnnuallyFrequency()
             : base("A")
         {

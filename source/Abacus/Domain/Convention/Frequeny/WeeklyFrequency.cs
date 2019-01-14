@@ -2,14 +2,8 @@
 
 namespace Abacus.Domain
 {
-    public class WeeklyFrequency : Frequency
+    public class WeeklyFrequency : Frequency<WeeklyFrequency>
     {
-        public static readonly WeeklyFrequency Instance = new WeeklyFrequency();
-
-        static WeeklyFrequency()
-        {
-        }
-
         public WeeklyFrequency()
             : base("W")
         {

@@ -4,6 +4,16 @@ using Abacus.Enums;
 
 namespace Abacus.Domain
 {
+    public abstract class Frequency<TSelf> : Frequency where TSelf : Frequency<TSelf>, new()
+    {
+        public static readonly TSelf Instance = new TSelf();
+
+        protected Frequency(string id)
+            : base(id)
+        {
+        }
+    }
+
     public abstract class Frequency : Enumeration<string>
     {
         protected Frequency(string id)

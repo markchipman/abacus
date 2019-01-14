@@ -7,10 +7,6 @@ namespace Abacus.Measures
     {
         public static TSelf Instance = new TSelf();
 
-        static MeasureType()
-        {
-        }
-
         protected MeasureType()
             : this(typeof(TSelf).Name.SplitPascalCase().ReplaceSpaceWith("-").ToLowerInvariant())
         {
