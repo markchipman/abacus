@@ -1,4 +1,4 @@
-# abacus
+# [abacus](https://github.com/ckarcz/abacus)
 
 :construction_worker: **work in progress** :construction:
 
