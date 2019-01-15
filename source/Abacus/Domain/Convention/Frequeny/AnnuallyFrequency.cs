@@ -4,14 +4,6 @@ namespace Abacus.Domain
 {
     public class AnnuallyFrequency : Frequency<AnnuallyFrequency>
     {
-        public AnnuallyFrequency()
-            : base("A")
-        {
-        }
-
-        public override DateTime NextEventDate(DateTime date)
-        {
-            return date.AddYears(1);
-        }
+        public AnnuallyFrequency() : base("A", TimeDuration.InYears(1)) { }
     }
 }

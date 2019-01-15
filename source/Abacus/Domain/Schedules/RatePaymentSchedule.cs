@@ -22,11 +22,12 @@ namespace Abacus.Domain
             }
 
             var periods = new List<RatePaymentPeriod>();
-            var periodDateItems = scheduleInfo.Frequency.GenerateTimePeriods(scheduleInfo.StartDate, scheduleInfo.EndDate).ToList();
-            foreach (var periodDateItem in periodDateItems)
+
+            var timePeriods = scheduleInfo.Frequency.GenerateTimePeriods(scheduleInfo.StartDate, scheduleInfo.EndDate).ToList();
+            foreach (var timePeriod in timePeriods)
             {
-                var periodStartDate = periodDateItem.Item1;
-                var periodEndDate = periodDateItem.Item2;
+                var periodStartDate = timePeriod.Start;
+                var periodEndDate = timePeriod.End;
                 var periodAdjustedStartDate = scheduleInfo.RollConvention.Adjust(periodStartDate);
                 var periodAdjustedEndDate = scheduleInfo.RollConvention.Adjust(periodEndDate);
 

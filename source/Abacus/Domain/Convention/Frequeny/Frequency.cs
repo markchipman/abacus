@@ -8,22 +8,38 @@ namespace Abacus.Domain
     {
         public static readonly TSelf Instance = new TSelf();
 
-        protected Frequency(string id)
-            : base(id)
+        protected Frequency(string id, TimeDuration periodDuration)
+            : base(id, periodDuration)
         {
         }
     }
 
     public abstract class Frequency : Enumeration<string>
     {
-        protected Frequency(string id)
+        protected Frequency(string id, TimeDuration periodDuration)
             : base(id)
         {
+            if (periodDuration is null)
+            {
+                throw new ArgumentNullException(nameof(periodDuration));
+            }
+
+            PeriodDuration = periodDuration;
         }
 
-        public abstract DateTime NextEventDate(DateTime date);
+        public TimeDuration PeriodDuration { get; }
 
-        public virtual IEnumerable<Tuple<DateTime, DateTime>> GenerateTimePeriods(DateTime startDate, DateTime endDate, bool endOnNextStartDate = false)
+        public virtual DateTime NextEventDate(DateTime date)
+        {
+            return date.AddYears(PeriodDuration.Years)
+                       .AddMonths(PeriodDuration.Months)
+                       .AddDays(PeriodDuration.Days)
+                       .AddHours(PeriodDuration.Hours)
+                       .AddSeconds(PeriodDuration.Seconds)
+                       .AddMilliseconds(PeriodDuration.Milliseconds);
+        }
+
+        public virtual IEnumerable<TimePeriod> GenerateTimePeriods(DateTime startDate, DateTime endDate, bool endOnNextStartDate = false)
         {
             if (startDate > endDate)
             {
@@ -40,8 +56,7 @@ namespace Abacus.Domain
                     periodEndDate = periodEndDate.AddDays(-1);
                 }
                 periodEndDate = new DateTime(Math.Min(periodEndDate.Ticks, endDate.Ticks));
-
-                yield return Tuple.Create(periodStartDate, periodEndDate);
+                yield return new TimePeriod(periodStartDate, periodEndDate);
 
                 periodStartDate = nextEventDate;
             }
