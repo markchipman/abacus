@@ -3,27 +3,6 @@ using System.Collections.Generic;
 
 namespace Abacus.Enums
 {
-    public abstract class Enumeration<TId, TName> : Enumeration<TId>
-    {
-        protected Enumeration(TId id, TName name)
-            : base(id)
-        {
-            if (name == default)
-            {
-                throw new ArgumentNullException(nameof(name));
-            }
-
-            Name = name;
-        }
-
-        public TName Name { get; }
-
-        public override string ToString()
-        {
-            return base.ToString() + " (" + Name + ")";
-        }
-    }
-
     public abstract class Enumeration<TId> : IEquatable<Enumeration<TId>>
     {
         protected Enumeration(TId id)
