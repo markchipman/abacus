@@ -4,24 +4,24 @@ namespace Abacus.Domain
 {
     public class DiscountFactors
     {
-        private readonly Curve _curve;
+        private readonly Curve _discountRates;
         private readonly DayCountConvention _dayCountConvention;
         private readonly DateTime _valuationDate;
 
-        public DiscountFactors(DateTime valuationDate, DayCountConvention dayCountConvention, Curve curve)
+        public DiscountFactors(DateTime valuationDate, DayCountConvention dayCountConvention, Curve discountRates)
         {
             if (dayCountConvention == null)
             {
                 throw new ArgumentNullException(nameof(dayCountConvention));
             }
-            if (curve == null)
+            if (discountRates == null)
             {
-                throw new ArgumentNullException(nameof(curve));
+                throw new ArgumentNullException(nameof(discountRates));
             }
 
             _valuationDate = valuationDate;
             _dayCountConvention = dayCountConvention;
-            _curve = curve;
+            _discountRates = discountRates;
         }
 
         public decimal GetDiscountFactor(DateTime date)
@@ -33,7 +33,8 @@ namespace Abacus.Domain
 
         public decimal GetDiscountFactor(decimal days)
         {
-            var discountFactor = _curve.Y(days);
+            var r = _discountRates.Y(days);
+            var discountFactor = 1m / (1m + r);
             return discountFactor;
         }
     }

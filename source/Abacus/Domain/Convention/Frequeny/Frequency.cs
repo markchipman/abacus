@@ -23,6 +23,10 @@ namespace Abacus.Domain
             {
                 throw new ArgumentNullException(nameof(periodDuration));
             }
+            if (periodDuration is null)
+            {
+                throw new ArgumentNullException(nameof(periodDuration));
+            }
 
             PeriodDuration = periodDuration;
         }
@@ -33,6 +37,7 @@ namespace Abacus.Domain
         {
             return date.AddYears(PeriodDuration.Years)
                        .AddMonths(PeriodDuration.Months)
+                       .AddDays(PeriodDuration.Weeks * 7)
                        .AddDays(PeriodDuration.Days)
                        .AddHours(PeriodDuration.Hours)
                        .AddSeconds(PeriodDuration.Seconds)
@@ -47,14 +52,21 @@ namespace Abacus.Domain
             }
 
             var periodStartDate = startDate;
+
             do
             {
                 var nextEventDate = NextEventDate(periodStartDate);
+                if (nextEventDate == periodStartDate)
+                {
+                    yield break;
+                }
+
                 var periodEndDate = nextEventDate;
                 if (!endOnNextStartDate)
                 {
                     periodEndDate = periodEndDate.AddDays(-1);
                 }
+
                 periodEndDate = new DateTime(Math.Min(periodEndDate.Ticks, endDate.Ticks));
                 yield return new TimePeriod(periodStartDate, periodEndDate);
 

@@ -82,7 +82,7 @@ namespace Abacus.Domain
 
         public override string ToString()
         {
-            return Years + "Y " + Months + "M " + Weeks + "W " + Days + "D " + Hours + "h " + Minutes + "m " + Seconds + "s " + Milliseconds + "ms";
+            return Years + "y " + Months + "m " + Weeks + "w " + Days + "d " + Hours + "hr " + Minutes + "min " + Seconds + "sec " + Milliseconds + "ms";
         }
 
         public static TimeDuration InYears(int amount) => new TimeDuration(years: amount);

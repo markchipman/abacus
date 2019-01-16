@@ -3,7 +3,7 @@
     public sealed class MonthlyFrequency : Frequency<MonthlyFrequency>
     {
         public MonthlyFrequency()
-            : base("M", TimeDuration.InDays(1))
+            : base("M", TimeDuration.InMonths(1))
         {
         }
     }
