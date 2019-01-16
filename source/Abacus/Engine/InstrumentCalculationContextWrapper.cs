@@ -4,7 +4,7 @@ namespace Abacus.Engine
 {
     public static class CalculationContextExtensions
     {
-        public static CalculationContext ToCalculationContext<TInstrument>(this TInstrument instrument) where TInstrument : Instrument
+        public static ICalculationContext ToCalculationContext<TInstrument>(this TInstrument instrument) where TInstrument : Instrument
         {
             var contextWrapper = new InstrumentCalculationContextWrapper();
             instrument.ProvideContext(contextWrapper);
@@ -12,9 +12,9 @@ namespace Abacus.Engine
         }
     }
 
-    public class InstrumentCalculationContextWrapper : ContextWrapper<Instrument, CalculationContext>
+    public class InstrumentCalculationContextWrapper : ContextWrapper<Instrument, ICalculationContext>
     {
-        protected override CalculationContext WrapContext<TContext>(TContext inputContext)
+        protected override ICalculationContext WrapContext<TContext>(TContext inputContext)
         {
             return new InstrumentCalculationContext<TContext>(inputContext);
         }

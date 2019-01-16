@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Abacus.Services
 {
-    public class EmptyServiceProvider : IServiceProvider
+    public sealed class EmptyServiceProvider : IServiceProvider
     {
         public static readonly IServiceProvider Instance = new EmptyServiceProvider();
 

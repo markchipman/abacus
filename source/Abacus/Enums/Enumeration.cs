@@ -31,7 +31,7 @@ namespace Abacus.Enums
             return EqualityComparer<TId>.Default.Equals(Id, other.Id);
         }
 
-        public override bool Equals(object obj)
+        public sealed override bool Equals(object obj)
         {
             if (obj is null)
             {
@@ -49,12 +49,12 @@ namespace Abacus.Enums
             return Equals((Enumeration<TId>)obj);
         }
 
-        public override int GetHashCode()
+        public sealed override int GetHashCode()
         {
             return EqualityComparer<TId>.Default.GetHashCode(Id);
         }
 
-        public override string ToString()
+        public sealed override string ToString()
         {
             return Id?.ToString() ?? "NULL-ID";
         }

@@ -7,7 +7,7 @@ using Abacus.Measures.Calculation;
 
 namespace Abacus.Engine
 {
-    public class InstrumentCalculationContext<TTarget> : CalculationContext where TTarget : Instrument
+    public class InstrumentCalculationContext<TTarget> : ICalculationContext where TTarget : Instrument
     {
         public InstrumentCalculationContext(TTarget instrument)
         {
@@ -21,7 +21,7 @@ namespace Abacus.Engine
 
         public TTarget Instrument { get; }
 
-        public override IEnumerable<MarketDataRequirement> GetRequirements(MeasuresCalculator calculator, DateTime valuationDate, params MeasureType[] measures)
+        public IEnumerable<MarketDataRequirement> GetRequirements(MeasuresCalculator calculator, DateTime valuationDate, params MeasureType[] measures)
         {
             if (calculator == null)
             {
@@ -35,7 +35,7 @@ namespace Abacus.Engine
             return calculator.GetRequirements(Instrument, valuationDate, measures);
         }
 
-        public override IEnumerable<MeasureResult> CalculateMeasures(MeasuresCalculator calculator, DateTime valuationDate, IMarketData marketData, params MeasureType[] measures)
+        public IEnumerable<MeasureResult> CalculateMeasures(MeasuresCalculator calculator, DateTime valuationDate, IMarketData marketData, params MeasureType[] measures)
         {
             if (calculator == null)
             {

@@ -17,16 +17,5 @@ namespace Abacus.Measures.Services
         {
             return GetMeasuresForTarget<TTarget>();
         }
-
-        // TODO - create an InstrumentType enumeration
-        //public IReadOnlyList<TTarget> GetTargetTypesForMeasureType<TMeasure>()
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public IReadOnlyList<TTarget> GetTargetTypesForMeasureType<TMeasure>(TTarget target)
-        //{
-        //    return GetMeasuresForTarget<TTarget>();
-        //}
     }
 }
