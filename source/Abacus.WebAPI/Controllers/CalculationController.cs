@@ -29,10 +29,10 @@ namespace Abacus.WebApi.Controllers
             var valuationDate = DateTime.Now;
             var instruments = new Instrument[]
             {
-                new FixedCouponBond(Counterparty.DummyCounterparty, new CurrencyAmount(1_000_000m, new Currency("GBP")), new Rate(0.0010m, AnnualFrequency.Instance), new ScheduleInfo(new DateTime(2019, 01, 01), new DateTime(2019, 01, 01).AddYears(1), AnnualFrequency.Instance, IMMRollConvention.Instance)),
-                new FixedCouponBond(Counterparty.DummyCounterparty, new CurrencyAmount(20_000_000m, new Currency("GBP")), new Rate(0.0020m, AnnualFrequency.Instance), new ScheduleInfo(new DateTime(2019, 01, 01), new DateTime(2019, 01, 01).AddYears(2), SemiAnnualFrequency.Instance)),
-                new FixedCouponBond(Counterparty.DummyCounterparty, new CurrencyAmount(500_000_000m, new Currency("GBP")), new Rate(0.0025m, AnnualFrequency.Instance), new ScheduleInfo(new DateTime(2019, 01, 01), new DateTime(2019, 01, 01).AddYears(12), QuarterlyFrequency.Instance)),
-                new FixedCouponBond(Counterparty.DummyCounterparty, new CurrencyAmount(1_000_000_000m, new Currency("GBP")), new Rate(0.0002m, AnnualFrequency.Instance), new ScheduleInfo(new DateTime(2019, 01, 01), new DateTime(2019, 01, 01).AddMonths(6), MonthlyFrequency.Instance))
+                new FixedCouponBond(Counterparty.DummyCounterparty, new CurrencyAmount(1_000_000m, new Currency("GBP")), new Rate(0.00_10m, AnnualFrequency.Instance), new ScheduleInfo(new DateTime(2019, 01, 01), new DateTime(2019, 01, 01).AddYears(1), AnnualFrequency.Instance, IMMRollConvention.Instance)),
+                new FixedCouponBond(Counterparty.DummyCounterparty, new CurrencyAmount(20_000_000m, new Currency("GBP")), new Rate(0.00_20m, AnnualFrequency.Instance), new ScheduleInfo(new DateTime(2019, 01, 01), new DateTime(2019, 01, 01).AddYears(2), SemiAnnualFrequency.Instance)),
+                new FixedCouponBond(Counterparty.DummyCounterparty, new CurrencyAmount(500_000_000m, new Currency("GBP")), new Rate(0.00_25m, AnnualFrequency.Instance), new ScheduleInfo(new DateTime(2019, 01, 01), new DateTime(2019, 01, 01).AddYears(12), QuarterlyFrequency.Instance)),
+                new FixedCouponBond(Counterparty.DummyCounterparty, new CurrencyAmount(1_000_000_000m, new Currency("GBP")), new Rate(0.00_02m, AnnualFrequency.Instance), new ScheduleInfo(new DateTime(2019, 01, 01), new DateTime(2019, 01, 01).AddMonths(6), MonthlyFrequency.Instance))
             };
             var measures = new MeasureType[]
             {

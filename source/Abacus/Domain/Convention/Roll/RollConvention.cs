@@ -32,6 +32,6 @@ namespace Abacus.Domain
         /// </summary>
         /// <param name="date"></param>
         /// <returns></returns>
-        public abstract DateTime Roll(DateTime date);
+        public abstract DateTime Roll(DateTime date); // TODO - use calendar
     }
 }
