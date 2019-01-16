@@ -1,9 +1,10 @@
-﻿using System;
-
-namespace Abacus.Domain
+﻿namespace Abacus.Domain
 {
     public class QuarterlyFrequency : Frequency<QuarterlyFrequency>
     {
-        public QuarterlyFrequency() : base("Q", TimeDuration.InMonths(3)) { }
+        public QuarterlyFrequency()
+            : base("Q", TimeDuration.InMonths(3))
+        {
+        }
     }
 }

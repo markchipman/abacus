@@ -1,9 +1,10 @@
-﻿using System;
-
-namespace Abacus.Domain
+﻿namespace Abacus.Domain
 {
     public class MonthlyFrequency : Frequency<MonthlyFrequency>
     {
-        public MonthlyFrequency() : base("M", TimeDuration.InDays(1)) { }
+        public MonthlyFrequency()
+            : base("M", TimeDuration.InDays(1))
+        {
+        }
     }
 }

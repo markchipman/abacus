@@ -1,9 +1,10 @@
-﻿using System;
-
-namespace Abacus.Domain
+﻿namespace Abacus.Domain
 {
     public class AnnuallyFrequency : Frequency<AnnuallyFrequency>
     {
-        public AnnuallyFrequency() : base("A", TimeDuration.InYears(1)) { }
+        public AnnuallyFrequency()
+            : base("A", TimeDuration.InYears(1))
+        {
+        }
     }
 }
