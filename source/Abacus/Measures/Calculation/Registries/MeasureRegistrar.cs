@@ -7,7 +7,7 @@
             return this;
         }
 
-        public MeasureRegistrar RegisterCalculator<TTarget, TMeasure>(TTarget target, TMeasure measure) where TMeasure : MeasureType, new()
+        public MeasureRegistrar RegisterCalculator<TTarget, TMeasure>(TTarget target, TMeasure measureType) where TMeasure : MeasureType, new()
         {
             return RegisterMeasure<TTarget, TMeasure>();
         }

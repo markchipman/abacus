@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace Abacus.Enums
 {
+
     public abstract class Enumeration<TId> : IEquatable<Enumeration<TId>>
     {
         protected Enumeration(TId id)

@@ -12,7 +12,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "api/calculate/measures",
+      "launchUrl": "api/calculate/measureTypes",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
@@ -20,7 +20,7 @@
     "Kestrel": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "api/calculate/measures?pretty=true",
+      "launchUrl": "api/calculate/measureTypes?pretty=true",
       "applicationUrl": "https://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"

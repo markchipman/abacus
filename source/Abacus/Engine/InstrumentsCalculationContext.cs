@@ -16,20 +16,20 @@ namespace Abacus.Engine
         {
         }
 
-        public IEnumerable<MarketDataRequirement> GetRequirements(MeasuresCalculator calculator, DateTime valuationDate, params MeasureType[] measures)
+        public IEnumerable<MarketDataRequirement> GetRequirements(IMeasuresCalculator calculator, DateTime valuationDate, params MeasureType[] measureTypes)
         {
             if (calculator == null)
             {
                 throw new ArgumentNullException(nameof(calculator));
             }
-            if (measures == null)
+            if (measureTypes == null)
             {
-                throw new ArgumentNullException(nameof(measures));
+                throw new ArgumentNullException(nameof(measureTypes));
             }
 
             foreach (var calculationContext in this)
             {
-                var requirements = calculationContext.GetRequirements(calculator, valuationDate, measures);
+                var requirements = calculationContext.GetRequirements(calculator, valuationDate, measureTypes);
                 foreach (var requirement in requirements)
                 {
                     yield return requirement;
@@ -37,7 +37,7 @@ namespace Abacus.Engine
             }
         }
 
-        public IEnumerable<MeasureResult> CalculateMeasures(MeasuresCalculator calculator, DateTime valuationDate, IMarketData marketData, params MeasureType[] measures)
+        public IEnumerable<MeasureResult> CalculateMeasures(IMeasuresCalculator calculator, DateTime valuationDate, IMarketData marketData, params MeasureType[] measureTypes)
         {
             if (calculator == null)
             {
@@ -47,14 +47,14 @@ namespace Abacus.Engine
             {
                 throw new ArgumentNullException(nameof(marketData));
             }
-            if (measures == null)
+            if (measureTypes == null)
             {
-                throw new ArgumentNullException(nameof(measures));
+                throw new ArgumentNullException(nameof(measureTypes));
             }
 
             foreach (var calculationContext in this)
             {
-                var measureResults = calculationContext.CalculateMeasures(calculator, valuationDate, marketData, measures);
+                var measureResults = calculationContext.CalculateMeasures(calculator, valuationDate, marketData, measureTypes);
                 foreach (var measureResult in measureResults)
                 {
                     yield return measureResult;

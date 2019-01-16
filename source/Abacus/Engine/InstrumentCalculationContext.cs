@@ -21,21 +21,21 @@ namespace Abacus.Engine
 
         public TTarget Instrument { get; }
 
-        public IEnumerable<MarketDataRequirement> GetRequirements(MeasuresCalculator calculator, DateTime valuationDate, params MeasureType[] measures)
+        public IEnumerable<MarketDataRequirement> GetRequirements(IMeasuresCalculator calculator, DateTime valuationDate, params MeasureType[] measureTypes)
         {
             if (calculator == null)
             {
                 throw new ArgumentNullException(nameof(calculator));
             }
-            if (measures == null)
+            if (measureTypes == null)
             {
-                throw new ArgumentNullException(nameof(measures));
+                throw new ArgumentNullException(nameof(measureTypes));
             }
 
-            return calculator.GetRequirements(Instrument, valuationDate, measures);
+            return calculator.GetRequirements(Instrument, valuationDate, measureTypes);
         }
 
-        public IEnumerable<MeasureResult> CalculateMeasures(MeasuresCalculator calculator, DateTime valuationDate, IMarketData marketData, params MeasureType[] measures)
+        public IEnumerable<MeasureResult> CalculateMeasures(IMeasuresCalculator calculator, DateTime valuationDate, IMarketData marketData, params MeasureType[] measureTypes)
         {
             if (calculator == null)
             {
@@ -45,12 +45,12 @@ namespace Abacus.Engine
             {
                 throw new ArgumentNullException(nameof(marketData));
             }
-            if (measures == null)
+            if (measureTypes == null)
             {
-                throw new ArgumentNullException(nameof(measures));
+                throw new ArgumentNullException(nameof(measureTypes));
             }
 
-            return calculator.CalculateMeasures(Instrument, valuationDate, marketData, measures);
+            return calculator.CalculateMeasures(Instrument, valuationDate, marketData, measureTypes);
         }
     }
 }

@@ -8,40 +8,40 @@ namespace Abacus.Domain
     {
         public static readonly TSelf Instance = new TSelf();
 
-        protected Frequency(string id, TimeDuration periodDuration)
-            : base(id, periodDuration)
+        protected Frequency(string id, TimeDuration duration)
+            : base(id, duration)
         {
         }
     }
 
     public abstract class Frequency : Enumeration<string>
     {
-        protected Frequency(string id, TimeDuration periodDuration)
+        protected Frequency(string id, TimeDuration duration)
             : base(id)
         {
-            if (periodDuration is null)
+            if (duration is null)
             {
-                throw new ArgumentNullException(nameof(periodDuration));
+                throw new ArgumentNullException(nameof(duration));
             }
-            if (periodDuration is null)
+            if (duration is null)
             {
-                throw new ArgumentNullException(nameof(periodDuration));
+                throw new ArgumentNullException(nameof(duration));
             }
 
-            PeriodDuration = periodDuration;
+            Duration = duration;
         }
 
-        public TimeDuration PeriodDuration { get; }
+        public TimeDuration Duration { get; }
 
         public DateTime NextEventDate(DateTime date)
         {
-            return date.AddYears(PeriodDuration.Years)
-                       .AddMonths(PeriodDuration.Months)
-                       .AddDays(PeriodDuration.Weeks * 7)
-                       .AddDays(PeriodDuration.Days)
-                       .AddHours(PeriodDuration.Hours)
-                       .AddSeconds(PeriodDuration.Seconds)
-                       .AddMilliseconds(PeriodDuration.Milliseconds);
+            return date.AddYears(Duration.Years)
+                       .AddMonths(Duration.Months)
+                       .AddDays(Duration.Weeks * 7)
+                       .AddDays(Duration.Days)
+                       .AddHours(Duration.Hours)
+                       .AddSeconds(Duration.Seconds)
+                       .AddMilliseconds(Duration.Milliseconds);
         }
 
         public IEnumerable<TimePeriod> GenerateTimePeriods(DateTime startDate, DateTime endDate, bool endOnNextStartDate = false)

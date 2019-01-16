@@ -20,22 +20,28 @@ namespace Abacus.Measures.Calculation
             _registry = registry;
         }
 
-        public IEnumerable<MarketDataRequirement> GetRequirements<TTarget>(TTarget target, DateTime valuationDate, params MeasureType[] measures)
+        public IEnumerable<MarketDataRequirement> GetRequirements<TTarget>(TTarget target, DateTime valuationDate, params MeasureType[] measureTypes)
         {
             if (target == null)
             {
                 throw new ArgumentNullException(nameof(target));
             }
 
-            if (measures == null)
+            if (measureTypes == null)
             {
-                throw new ArgumentNullException(nameof(measures));
+                throw new ArgumentNullException(nameof(measureTypes));
             }
 
-            foreach (var measure in measures)
+            foreach (var measure in measureTypes)
             {
                 var calculator = _registry.GetCalculator(target, measure);
-                var requirements = calculator.GetRequirements(target, valuationDate);
+
+                var requirements = calculator?.GetRequirements(target, valuationDate);
+                if (requirements is null)
+                {
+                    continue;
+                }
+
                 foreach (var requirement in requirements)
                 {
                     yield return requirement;
@@ -43,7 +49,7 @@ namespace Abacus.Measures.Calculation
             }
         }
 
-        public IEnumerable<MeasureResult> CalculateMeasures<TTarget>(TTarget target, DateTime valuationDate, IMarketData marketData, params MeasureType[] measures)
+        public IEnumerable<MeasureResult> CalculateMeasures<TTarget>(TTarget target, DateTime valuationDate, IMarketData marketData, params MeasureType[] measureTypes)
         {
             if (target == null)
             {
@@ -53,15 +59,22 @@ namespace Abacus.Measures.Calculation
             {
                 throw new ArgumentNullException(nameof(marketData));
             }
-            if (measures == null)
+            if (measureTypes == null)
             {
-                throw new ArgumentNullException(nameof(measures));
+                throw new ArgumentNullException(nameof(measureTypes));
             }
 
-            foreach (var measure in measures)
+            foreach (var measureType in measureTypes)
             {
-                var calculator = _registry.GetCalculator(target, measure);
-                yield return calculator.CalculateMeasure(target, valuationDate, marketData);
+                var calculator = _registry.GetCalculator(target, measureType);
+
+                var measureResult = calculator?.CalculateMeasure(target, valuationDate, marketData);
+                if (measureResult is null)
+                {
+                    continue;
+                }
+
+                yield return measureResult;
             }
         }
     }

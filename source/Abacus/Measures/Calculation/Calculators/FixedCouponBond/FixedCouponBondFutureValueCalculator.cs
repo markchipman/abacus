@@ -6,9 +6,9 @@ using Abacus.Pricers;
 
 namespace Abacus.Measures.Calculators
 {
-    public class FixedCouponBondFutureValueCalculator : IFutureValueCalculator<FixedCouponBond>
+    public class FixedCouponBondFutureValueCalculator : IMeasureCalculator<FixedCouponBond>
     {
-        public static readonly IFutureValueCalculator<FixedCouponBond> Instance = new FixedCouponBondFutureValueCalculator();
+        public static readonly IMeasureCalculator<FixedCouponBond> Instance = new FixedCouponBondFutureValueCalculator();
 
         private readonly IFixedCouponBondPricer _pricer;
 

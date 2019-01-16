@@ -11,5 +11,10 @@
         public MeasureType MeasureType { get; }
 
         public object Result { get; }
+
+        public override string ToString()
+        {
+            return MeasureType + ": " + Result;
+        }
     }
 }
