@@ -29,7 +29,7 @@ namespace Abacus.Domain
 
         public TimeDuration PeriodDuration { get; }
 
-        public virtual DateTime NextEventDate(DateTime date)
+        public DateTime NextEventDate(DateTime date)
         {
             return date.AddYears(PeriodDuration.Years)
                        .AddMonths(PeriodDuration.Months)
@@ -39,7 +39,7 @@ namespace Abacus.Domain
                        .AddMilliseconds(PeriodDuration.Milliseconds);
         }
 
-        public virtual IEnumerable<TimePeriod> GenerateTimePeriods(DateTime startDate, DateTime endDate, bool endOnNextStartDate = false)
+        public IEnumerable<TimePeriod> GenerateTimePeriods(DateTime startDate, DateTime endDate, bool endOnNextStartDate = false)
         {
             if (startDate > endDate)
             {

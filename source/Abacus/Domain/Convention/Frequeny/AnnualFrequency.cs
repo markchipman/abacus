@@ -1,8 +1,8 @@
 ﻿namespace Abacus.Domain
 {
-    public class AnnuallyFrequency : Frequency<AnnuallyFrequency>
+    public sealed class AnnualFrequency : Frequency<AnnualFrequency>
     {
-        public AnnuallyFrequency()
+        public AnnualFrequency()
             : base("A", TimeDuration.InYears(1))
         {
         }

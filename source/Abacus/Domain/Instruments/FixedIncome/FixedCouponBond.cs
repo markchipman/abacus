@@ -42,14 +42,14 @@ namespace Abacus.Domain
 
         public Payment NominalPayment { get; }
 
-        public override Schedule<RatePaymentPeriod> Schedule { get; }
+        public sealed override Schedule<RatePaymentPeriod> Schedule { get; }
 
-        public override void ProvideContext(IAcceptContext<Instrument> target)
+        public sealed override void ProvideContext(IAcceptContext<Instrument> target)
         {
             target?.AcceptContext(this);
         }
 
-        public override string ToString()
+        public sealed override string ToString()
         {
             return ScheduleInfo.StartDate.DebugToStringDateRange(ScheduleInfo.EndDate) + " " + Notional + " @ " + FixedRate + "/" + ScheduleInfo.Frequency + " " + nameof(FixedCouponBond) + " issued by " + Issuer;
         }
