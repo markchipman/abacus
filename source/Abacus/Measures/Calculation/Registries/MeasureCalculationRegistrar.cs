@@ -23,36 +23,36 @@ namespace Abacus.Measures.Services
             _serviceProvider = serviceProvider;
         }
 
-        public MeasureCalculationRegistrar RegisterDefaultInstance<TTarget, TCalculator>(MeasureType measureType) where TCalculator : IMeasureCalculator<TTarget>, new()
+        public MeasureCalculationRegistrar RegisterDefaultInstance<TTarget, TCalculator>(Measure measure) where TCalculator : IMeasureCalculator<TTarget>, new()
         {
-            return RegisterInstance(measureType, new TCalculator());
+            return RegisterInstance(measure, new TCalculator());
         }
 
-        public MeasureCalculationRegistrar RegisterInstance<TTarget>(MeasureType measureType, IMeasureCalculator<TTarget> calculator)
+        public MeasureCalculationRegistrar RegisterInstance<TTarget>(Measure measure, IMeasureCalculator<TTarget> calculator)
         {
-            if (measureType == null)
+            if (measure == null)
             {
-                throw new ArgumentNullException(nameof(measureType));
+                throw new ArgumentNullException(nameof(measure));
             }
             if (calculator == null)
             {
                 throw new ArgumentNullException(nameof(calculator));
             }
 
-            Registrations.Add(Tuple.Create(measureType, typeof(IMeasureCalculator<TTarget>)), () => calculator);
+            Registrations.Add(Tuple.Create(measure, typeof(IMeasureCalculator<TTarget>)), () => calculator);
 
             return this;
         }
 
 
-        public MeasureCalculationRegistrar RegisterType<TTarget, TCalculator>(MeasureType measureType) where TCalculator : IMeasureCalculator<TTarget>
+        public MeasureCalculationRegistrar RegisterType<TTarget, TCalculator>(Measure measure) where TCalculator : IMeasureCalculator<TTarget>
         {
-            if (measureType == null)
+            if (measure == null)
             {
-                throw new ArgumentNullException(nameof(measureType));
+                throw new ArgumentNullException(nameof(measure));
             }
 
-            Registrations.Add(Tuple.Create(measureType, typeof(TCalculator)), () => _serviceProvider.GetService(typeof(TCalculator)));
+            Registrations.Add(Tuple.Create(measure, typeof(TCalculator)), () => _serviceProvider.GetService(typeof(TCalculator)));
 
             return this;
         }

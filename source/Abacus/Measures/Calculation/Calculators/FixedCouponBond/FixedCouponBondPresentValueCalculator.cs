@@ -52,10 +52,10 @@ namespace Abacus.Measures.Calculators
                 throw new ArgumentNullException(nameof(marketData));
             }
 
-            var discountFactors = marketData.GetMarketDataOrDefault(null, new DiscountFactors(valuationDate, ActActDayCountConvention.Instance, new ZeroSlopeCurve(0.02m)));
+            var discountFactors = marketData.GetMarketDataOrDefault(null, new DiscountFactors(valuationDate, StandardDayCount._30E_360, new ZeroSlopeCurve(0.02m)));
             var result = _pricer.PresentValue(target, valuationDate, discountFactors);
 
-            return new MeasureResult(StandardMeasures.PresentValue, result);
+            return new MeasureResult(StandardMeasure.PresentValue, result);
         }
     }
 }

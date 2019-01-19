@@ -23,9 +23,9 @@ namespace Abacus.WebApi.Controllers
             var serviceCollection = new ServiceCollection();
             serviceCollection.AddTransient(typeof(PricingModelAsMeasureResult<>), typeof(PricingModelAsMeasureResult<>));
             var calculatorRegistrar = new MeasureCalculationRegistrar()
-                .RegisterInstance(StandardMeasures.PricingModel, PricingModelAsMeasureResult<FixedCouponBond>.Instance)
-                .RegisterInstance(StandardMeasures.PresentValue, FixedCouponBondPresentValueCalculator.Instance)
-                .RegisterInstance(StandardMeasures.FutureValue, FixedCouponBondFutureValueCalculator.Instance);
+                .RegisterInstance(StandardMeasure.PricingModel, PricingModelAsMeasureResult<FixedCouponBond>.Instance)
+                .RegisterInstance(StandardMeasure.PresentValue, FixedCouponBondPresentValueCalculator.Instance)
+                .RegisterInstance(StandardMeasure.FutureValue, FixedCouponBondFutureValueCalculator.Instance);
             var calculator = new MeasuresCalculator(calculatorRegistrar);
             var marketData = new MarketData(); // created using market data requirements
 
@@ -34,16 +34,16 @@ namespace Abacus.WebApi.Controllers
             var valuationDate = DateTime.Now;
             var instruments = new Instrument[]
             {
-                new FixedCouponBond(Counterparty.DummyCounterparty, new CurrencyAmount(1_000_000m, new Currency("GBP")), new Rate(0.00_1m, AnnualFrequency.Instance), new ScheduleInfo(tradeStartDate, tradeStartDate.AddYears(2), MonthlyFrequency.Instance, IMMRollConvention.Instance)),
-                new FixedCouponBond(Counterparty.DummyCounterparty, new CurrencyAmount(20_000_000m, new Currency("GBP")), new Rate(0.00_2m, AnnualFrequency.Instance), new ScheduleInfo(tradeStartDate, tradeStartDate.AddYears(5), QuarterlyFrequency.Instance)),
-                new FixedCouponBond(Counterparty.DummyCounterparty, new CurrencyAmount(500_000_000m, new Currency("GBP")), new Rate(0.00_25m, AnnualFrequency.Instance), new ScheduleInfo(tradeStartDate, tradeStartDate.AddYears(10), SemiAnnualFrequency.Instance)),
-                new FixedCouponBond(Counterparty.DummyCounterparty, new CurrencyAmount(1_000_000_000m, new Currency("GBP")), new Rate(0.00_02m, AnnualFrequency.Instance), new ScheduleInfo(valuationDate, valuationDate.AddMonths(6), WeeklyFrequency.Instance))
+                new FixedCouponBond(Counterparty.DummyCounterparty, new CurrencyAmount(1_000_000m, new Currency("GBP")), new Rate(0.00_1m, Frequency_Annual.Instance), new ScheduleInfo(tradeStartDate, tradeStartDate.AddYears(2), Frequency_Monthly.Instance, RollConvention_IMM.Instance)),
+                new FixedCouponBond(Counterparty.DummyCounterparty, new CurrencyAmount(20_000_000m, new Currency("GBP")), new Rate(0.00_2m, Frequency_Annual.Instance), new ScheduleInfo(tradeStartDate, tradeStartDate.AddYears(5), Frequency_Quarterly.Instance)),
+                new FixedCouponBond(Counterparty.DummyCounterparty, new CurrencyAmount(500_000_000m, new Currency("GBP")), new Rate(0.00_25m, Frequency_Annual.Instance), new ScheduleInfo(tradeStartDate, tradeStartDate.AddYears(10), Frequency_SemiAnnual.Instance)),
+                new FixedCouponBond(Counterparty.DummyCounterparty, new CurrencyAmount(1_000_000_000m, new Currency("GBP")), new Rate(0.00_02m, Frequency_Annual.Instance), new ScheduleInfo(valuationDate, valuationDate.AddMonths(6), Frequency_Weekly.Instance))
             };
-            var measureTypes = new MeasureType[]
+            var measureTypes = new Measure[]
             {
-                StandardMeasures.PricingModel,
-                StandardMeasures.PresentValue,
-                StandardMeasures.FutureValue
+                StandardMeasure.PricingModel,
+                StandardMeasure.PresentValue,
+                StandardMeasure.FutureValue
             };
 
             // done in engine, called by service/controller:

@@ -26,8 +26,7 @@ namespace Abacus.Domain
 
         public decimal GetDiscountFactor(DateTime date)
         {
-            var countDays = _dayCountConvention.CountDays(_valuationDate, date);
-            var discountFactor = GetDiscountFactor(countDays);
+            var discountFactor = GetDiscountFactor(1);
             return discountFactor;
         }
 

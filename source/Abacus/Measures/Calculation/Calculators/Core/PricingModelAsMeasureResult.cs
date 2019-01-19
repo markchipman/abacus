@@ -35,7 +35,7 @@ namespace Abacus.Measures.Calculators
                 throw new ArgumentNullException(nameof(marketData));
             }
 
-            return new MeasureResult(StandardMeasures.PricingModel, target);
+            return new MeasureResult(StandardMeasure.PricingModel, target);
         }
     }
 }

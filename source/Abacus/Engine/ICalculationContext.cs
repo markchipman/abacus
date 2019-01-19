@@ -8,8 +8,8 @@ namespace Abacus.Engine
 {
     public interface ICalculationContext
     {
-        IEnumerable<MarketDataRequirement> GetRequirements(IMeasuresCalculator calculator, DateTime valuationDate, params MeasureType[] measureTypes);
+        IEnumerable<MarketDataRequirement> GetRequirements(IMeasuresCalculator calculator, DateTime valuationDate, params Measure[] measureTypes);
 
-        IEnumerable<MeasureResult> CalculateMeasures(IMeasuresCalculator calculator, DateTime valuationDate, IMarketData marketData, params MeasureType[] measureTypes);
+        IEnumerable<MeasureResult> CalculateMeasures(IMeasuresCalculator calculator, DateTime valuationDate, IMarketData marketData, params Measure[] measureTypes);
     }
 }

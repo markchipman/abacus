@@ -4,10 +4,10 @@ namespace Abacus.Measures.Services
 {
     public interface IMeasureRegistry
     {
-        IReadOnlyList<MeasureType> AllmeasureTypes { get; }
+        IReadOnlyList<Measure> AllmeasureTypes { get; }
 
-        IReadOnlyList<MeasureType> GetmeasureTypesForTarget<TTarget>();
+        IReadOnlyList<Measure> GetmeasureTypesForTarget<TTarget>();
 
-        IReadOnlyList<MeasureType> GetmeasureTypesForTarget<TTarget>(TTarget target);
+        IReadOnlyList<Measure> GetmeasureTypesForTarget<TTarget>(TTarget target);
     }
 }

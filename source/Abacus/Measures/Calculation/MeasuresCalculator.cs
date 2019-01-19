@@ -20,7 +20,7 @@ namespace Abacus.Measures.Calculation
             _registry = registry;
         }
 
-        public IEnumerable<MarketDataRequirement> GetRequirements<TTarget>(TTarget target, DateTime valuationDate, params MeasureType[] measureTypes)
+        public IEnumerable<MarketDataRequirement> GetRequirements<TTarget>(TTarget target, DateTime valuationDate, params Measure[] measureTypes)
         {
             if (target == null)
             {
@@ -49,7 +49,7 @@ namespace Abacus.Measures.Calculation
             }
         }
 
-        public IEnumerable<MeasureResult> CalculateMeasures<TTarget>(TTarget target, DateTime valuationDate, IMarketData marketData, params MeasureType[] measureTypes)
+        public IEnumerable<MeasureResult> CalculateMeasures<TTarget>(TTarget target, DateTime valuationDate, IMarketData marketData, params Measure[] measureTypes)
         {
             if (target == null)
             {
@@ -64,9 +64,9 @@ namespace Abacus.Measures.Calculation
                 throw new ArgumentNullException(nameof(measureTypes));
             }
 
-            foreach (var measureType in measureTypes)
+            foreach (var measure in measureTypes)
             {
-                var calculator = _registry.GetCalculator(target, measureType);
+                var calculator = _registry.GetCalculator(target, measure);
 
                 var measureResult = calculator?.CalculateMeasure(target, valuationDate, marketData);
                 if (measureResult is null)

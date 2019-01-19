@@ -16,7 +16,7 @@ namespace Abacus.Engine
         {
         }
 
-        public IEnumerable<MarketDataRequirement> GetRequirements(IMeasuresCalculator calculator, DateTime valuationDate, params MeasureType[] measureTypes)
+        public IEnumerable<MarketDataRequirement> GetRequirements(IMeasuresCalculator calculator, DateTime valuationDate, params Measure[] measureTypes)
         {
             if (calculator == null)
             {
@@ -37,7 +37,7 @@ namespace Abacus.Engine
             }
         }
 
-        public IEnumerable<MeasureResult> CalculateMeasures(IMeasuresCalculator calculator, DateTime valuationDate, IMarketData marketData, params MeasureType[] measureTypes)
+        public IEnumerable<MeasureResult> CalculateMeasures(IMeasuresCalculator calculator, DateTime valuationDate, IMarketData marketData, params Measure[] measureTypes)
         {
             if (calculator == null)
             {

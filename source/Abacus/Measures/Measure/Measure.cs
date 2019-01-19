@@ -3,24 +3,24 @@ using Abacus.Enums;
 
 namespace Abacus.Measures
 {
-    public abstract class MeasureType<TSelf> : MeasureType where TSelf : MeasureType<TSelf>, new()
+    public abstract class Measure<TSelf> : Measure where TSelf : Measure<TSelf>, new()
     {
         public static TSelf Instance = new TSelf();
 
-        protected MeasureType()
+        protected Measure()
             : this(typeof(TSelf).Name.SplitPascalCase().ReplaceSpaceWith("-").ToLowerInvariant())
         {
         }
 
-        protected MeasureType(string id)
+        protected Measure(string id)
             : base(typeof(TSelf).Name.SplitPascalCase().ReplaceSpaceWith("-").ToLowerInvariant())
         {
         }
     }
 
-    public abstract class MeasureType : Enumeration<string>
+    public abstract class Measure : Enumeration<string>
     {
-        protected MeasureType(string id)
+        protected Measure(string id)
             : base(id)
         {
         }

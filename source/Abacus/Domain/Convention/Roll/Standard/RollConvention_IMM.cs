@@ -2,19 +2,19 @@
 
 namespace Abacus.Domain
 {
-    public sealed class IMMRollConvention : RollConvention<IMMRollConvention>
+    public sealed class RollConvention_IMM : RollConvention<RollConvention_IMM>
     {
         /// <summary>
         /// International Money Market roll convention.
         /// 
         /// Rolls dates to 3rd Wednesday of the current month.
         /// </summary>
-        public IMMRollConvention()
+        public RollConvention_IMM()
             : base("IMM")
         {
         }
 
-        public sealed override DateTime Roll(DateTime date)
+        public override DateTime Roll(DateTime date)
         {
             var firstOfMonth = new DateTime(date.Year, date.Month, 1);
             var thirdWedOfMonth = firstOfMonth.AddDays(((int)DayOfWeek.Wednesday) - ((int)firstOfMonth.DayOfWeek) + 14);

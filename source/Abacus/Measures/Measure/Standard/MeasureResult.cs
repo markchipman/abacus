@@ -2,19 +2,19 @@
 {
     public class MeasureResult
     {
-        public MeasureResult(MeasureType measureType, object result)
+        public MeasureResult(Measure measure, object result)
         {
-            MeasureType = measureType;
+            Measure = measure;
             Result = result;
         }
 
-        public MeasureType MeasureType { get; }
+        public Measure Measure { get; }
 
         public object Result { get; }
 
         public override string ToString()
         {
-            return MeasureType + ": " + Result;
+            return Measure + ": " + Result;
         }
     }
 }

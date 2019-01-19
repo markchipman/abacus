@@ -6,8 +6,8 @@ namespace Abacus.Measures.Calculation
 {
     public interface IMeasuresCalculator
     {
-        IEnumerable<MarketDataRequirement> GetRequirements<TTarget>(TTarget target, DateTime valuationDate, params MeasureType[] measureTypes);
+        IEnumerable<MarketDataRequirement> GetRequirements<TTarget>(TTarget target, DateTime valuationDate, params Measure[] measureTypes);
 
-        IEnumerable<MeasureResult> CalculateMeasures<TTarget>(TTarget target, DateTime valuationDate, IMarketData marketData, params MeasureType[] measureTypes);
+        IEnumerable<MeasureResult> CalculateMeasures<TTarget>(TTarget target, DateTime valuationDate, IMarketData marketData, params Measure[] measureTypes);
     }
 }

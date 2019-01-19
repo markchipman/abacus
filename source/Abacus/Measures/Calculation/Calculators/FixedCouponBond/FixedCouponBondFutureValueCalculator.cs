@@ -54,7 +54,7 @@ namespace Abacus.Measures.Calculators
 
             var result = _pricer.FutureValue(target, valuationDate);
 
-            return new MeasureResult(StandardMeasures.FutureValue, result);
+            return new MeasureResult(StandardMeasure.FutureValue, result);
         }
     }
 }

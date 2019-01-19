@@ -1,0 +1,47 @@
+﻿using System;
+
+namespace Abacus.Domain
+{
+    public sealed class DayCountConvention_30U_360 : DayCountConvention<DayCountConvention_30U_360>
+    {
+        public DayCountConvention_30U_360()
+            : base("30U/360") // US30/60
+        {
+        }
+
+        public override decimal YearFraction(DateTime startDate, DateTime endDate, DateTime paymentDate)
+        {
+            var y1 = startDate.Year;
+            var m1 = startDate.Month;
+            var d1 = startDate.Day;
+
+            var y2 = endDate.Year;
+            var m2 = endDate.Month;
+            var d2 = endDate.Day;
+
+            if (startDate.IsLastDayOfFebruary())
+            {
+                d1 = 30;
+                if (endDate.IsLastDayOfFebruary())
+                {
+                    d2 = 30;
+                }
+            }
+            if (d1 == 31)
+            {
+                d1 = 30;
+            }
+            if (d2 == 31 && d1 == 30)
+            {
+                d2 = 30;
+            }
+
+            var numerator = CalculateNumerator30360(y1, m1, d1, y2, m2, d2);
+            var denominator = 360;
+
+            var yearFraction = numerator / denominator;
+
+            return yearFraction;
+        }
+    }
+}

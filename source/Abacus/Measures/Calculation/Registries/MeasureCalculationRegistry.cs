@@ -6,11 +6,11 @@ namespace Abacus.Measures.Services
 {
     public class MeasureCalculationRegistry : IMeasureCalculationRegistry
     {
-        protected IDictionary<Tuple<MeasureType, Type>, Func<object>> Registrations = new Dictionary<Tuple<MeasureType, Type>, Func<object>>();
+        protected IDictionary<Tuple<Measure, Type>, Func<object>> Registrations = new Dictionary<Tuple<Measure, Type>, Func<object>>();
 
-        public IMeasureCalculator<TTarget> GetCalculator<TTarget, TMeasure>(TTarget target, TMeasure measureType) where TMeasure : MeasureType
+        public IMeasureCalculator<TTarget> GetCalculator<TTarget, TMeasure>(TTarget target, TMeasure measure) where TMeasure : Measure
         {
-            if (Registrations.TryGetValue(Tuple.Create<MeasureType, Type>(measureType, typeof(IMeasureCalculator<TTarget>)), out var registration))
+            if (Registrations.TryGetValue(Tuple.Create<Measure, Type>(measure, typeof(IMeasureCalculator<TTarget>)), out var registration))
             {
                 var instance = registration();
                 switch (instance)

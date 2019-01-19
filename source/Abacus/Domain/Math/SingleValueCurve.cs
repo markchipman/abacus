@@ -17,7 +17,7 @@ namespace Abacus.Domain
         }
 
 
-        public sealed override decimal Y(decimal x)
+        public override decimal Y(decimal x)
         {
             return this[0].Y;
         }

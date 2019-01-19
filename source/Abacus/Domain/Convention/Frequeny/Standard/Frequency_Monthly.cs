@@ -1,8 +1,8 @@
 ﻿namespace Abacus.Domain
 {
-    public sealed class MonthlyFrequency : Frequency<MonthlyFrequency>
+    public sealed class Frequency_Monthly : Frequency<Frequency_Monthly>
     {
-        public MonthlyFrequency()
+        public Frequency_Monthly()
             : base("M", TimeDuration.InMonths(1))
         {
         }

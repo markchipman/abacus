@@ -35,12 +35,5 @@ namespace Abacus.Debugging
                 return "~" + days + "D";
             }
         }
-
-        // TODO - move elsewhere
-        public static int MonthsApart(this DateTime startDate, DateTime endDate)
-        {
-            var monthsApart = (12 * (startDate.Year - endDate.Year)) + (startDate.Month - endDate.Month);
-            return Math.Abs(monthsApart);
-        }
     }
 }
