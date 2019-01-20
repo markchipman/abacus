@@ -2,7 +2,7 @@
 
 namespace Abacus.Domain
 {
-    public sealed class DayCountConvention_30EPLUS_360 : DayCountConvention<DayCountConvention_30EPLUS_360>
+    internal sealed class DayCountConvention_30EPLUS_360 : DayCountConvention<DayCountConvention_30EPLUS_360>
     {
         public DayCountConvention_30EPLUS_360()
             : base("30E+/360")

@@ -2,7 +2,7 @@
 
 namespace Abacus.Domain
 {
-    public sealed class DayCountConvention_30E_360 : DayCountConvention<DayCountConvention_30E_360>
+    internal sealed class DayCountConvention_30E_360 : DayCountConvention<DayCountConvention_30E_360>
     {
         public DayCountConvention_30E_360()
             : base("30E/360") // ISMA 30/60, S30/360

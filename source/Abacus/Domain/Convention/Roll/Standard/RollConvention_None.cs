@@ -2,7 +2,7 @@
 
 namespace Abacus.Domain
 {
-    public sealed class RollConvention_None : RollConvention<RollConvention_None>
+    internal sealed class RollConvention_None : RollConvention<RollConvention_None>
     {
         /// <summary>
         /// No roll, roll convention.

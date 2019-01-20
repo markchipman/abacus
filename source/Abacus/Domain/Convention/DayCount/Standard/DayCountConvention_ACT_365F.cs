@@ -2,7 +2,7 @@
 
 namespace Abacus.Domain
 {
-    public sealed class DayCountConvention_ACT_365F : DayCountConvention<DayCountConvention_ACT_365F>
+    internal sealed class DayCountConvention_ACT_365F : DayCountConvention<DayCountConvention_ACT_365F>
     {
         public DayCountConvention_ACT_365F()
             : base("ACT/365F") // ACT/365 Fixed

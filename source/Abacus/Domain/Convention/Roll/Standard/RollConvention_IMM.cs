@@ -2,7 +2,7 @@
 
 namespace Abacus.Domain
 {
-    public sealed class RollConvention_IMM : RollConvention<RollConvention_IMM>
+    internal sealed class RollConvention_IMM : RollConvention<RollConvention_IMM>
     {
         /// <summary>
         /// International Money Market roll convention.

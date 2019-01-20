@@ -2,7 +2,7 @@
 
 namespace Abacus.Domain
 {
-    public sealed class RollConvention_EOM : RollConvention<RollConvention_EOM>
+    internal sealed class RollConvention_EOM : RollConvention<RollConvention_EOM>
     {
         /// <summary>
         /// End of month roll convention.
