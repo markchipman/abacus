@@ -2,13 +2,8 @@
 
 namespace Abacus.Domain
 {
-    internal sealed class DayCountConvention_ACT_360 : DayCountConvention<DayCountConvention_ACT_360>
+    internal sealed class DayCountConvention_ACT_360 : DayCountConvention
     {
-        public DayCountConvention_ACT_360()
-            : base("ACT/360")
-        {
-        }
-
         public override decimal YearFraction(DateTime startDate, DateTime endDate, DateTime paymentDate)
         {
             var numerator = (endDate - startDate).Days;

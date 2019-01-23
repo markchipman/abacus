@@ -13,7 +13,7 @@ namespace Abacus.Domain
             }
             if (rollConvention == null)
             {
-                rollConvention = RollConvention_None.Instance;
+                rollConvention = StandardRollConvention._None;
             }
 
             StartDate = startDate;

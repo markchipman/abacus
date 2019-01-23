@@ -2,13 +2,8 @@
 
 namespace Abacus.Domain
 {
-    internal sealed class DayCountConvention_30U_360 : DayCountConvention<DayCountConvention_30U_360>
+    internal sealed class DayCountConvention_30U_360 : DayCountConvention
     {
-        public DayCountConvention_30U_360()
-            : base("30U/360") // US30/60
-        {
-        }
-
         public override decimal YearFraction(DateTime startDate, DateTime endDate, DateTime paymentDate)
         {
             var y1 = startDate.Year;
@@ -36,7 +31,7 @@ namespace Abacus.Domain
                 d2 = 30;
             }
 
-            var numerator = CalculateNumerator30360(y1, m1, d1, y2, m2, d2);
+            var numerator = Days30360(y1, m1, d1, y2, m2, d2);
             var denominator = 360;
 
             var yearFraction = numerator / denominator;

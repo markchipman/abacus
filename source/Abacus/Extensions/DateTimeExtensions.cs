@@ -2,6 +2,11 @@
 {
     public static class DateTimeExtensions
     {
+        public static DateTime AddWeeks(this DateTime date, int weeks)
+        {
+            return date.AddDays(weeks * 7);
+        }
+
         public static int MonthsApart(this DateTime startDate, DateTime endDate)
         {
             var monthsApart = (12 * (startDate.Year - endDate.Year)) + (startDate.Month - endDate.Month);

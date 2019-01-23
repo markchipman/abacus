@@ -2,8 +2,12 @@
 {
     public static class StandardRollConvention
     {
-        public static readonly RollConvention _None = RollConvention_None.Instance;
-        public static readonly RollConvention _EOM = RollConvention_EOM.Instance;
-        public static readonly RollConvention _IMM = RollConvention_IMM.Instance;
+        static StandardRollConvention()
+        {
+        }
+
+        public static readonly RollConvention _None = new RollConvention_None();
+        public static readonly RollConvention _EOM = new RollConvention_EOM();
+        public static readonly RollConvention _IMM = new RollConvention_IMM();
     }
 }

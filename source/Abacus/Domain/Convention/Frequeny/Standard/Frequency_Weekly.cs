@@ -1,9 +1,9 @@
 ﻿namespace Abacus.Domain
 {
-    internal sealed class Frequency_Weekly : Frequency<Frequency_Weekly>
+    internal sealed class Frequency_Weekly : Frequency
     {
         public Frequency_Weekly()
-            : base("W", TimeDuration.InWeeks(1))
+            : base(TimeDuration.InWeeks(1))
         {
         }
     }

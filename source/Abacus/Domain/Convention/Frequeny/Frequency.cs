@@ -4,25 +4,10 @@ using Abacus.Enums;
 
 namespace Abacus.Domain
 {
-    public abstract class Frequency<TSelf> : Frequency where TSelf : Frequency<TSelf>, new()
+    public abstract class Frequency
     {
-        public static readonly TSelf Instance = new TSelf();
-
-        protected Frequency(string id, TimeDuration duration)
-            : base(id, duration)
+        protected Frequency(TimeDuration duration)
         {
-        }
-    }
-
-    public abstract class Frequency : Enumeration<string>
-    {
-        protected Frequency(string id, TimeDuration duration)
-            : base(id)
-        {
-            if (duration is null)
-            {
-                throw new ArgumentNullException(nameof(duration));
-            }
             if (duration is null)
             {
                 throw new ArgumentNullException(nameof(duration));
@@ -37,7 +22,7 @@ namespace Abacus.Domain
         {
             return date.AddYears(Duration.Years)
                        .AddMonths(Duration.Months)
-                       .AddDays(Duration.Weeks * 7)
+                       .AddWeeks(Duration.Weeks)
                        .AddDays(Duration.Days)
                        .AddHours(Duration.Hours)
                        .AddSeconds(Duration.Seconds)

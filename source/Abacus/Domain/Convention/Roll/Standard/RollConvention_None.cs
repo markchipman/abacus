@@ -2,18 +2,8 @@
 
 namespace Abacus.Domain
 {
-    internal sealed class RollConvention_None : RollConvention<RollConvention_None>
+    internal sealed class RollConvention_None : RollConvention
     {
-        /// <summary>
-        /// No roll, roll convention.
-        ///
-        /// Does not roll date.
-        /// </summary>
-        public RollConvention_None()
-                    : base("NONE")
-        {
-        }
-
         public override DateTime Roll(DateTime date) => date;
     }
 }

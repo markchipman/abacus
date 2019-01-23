@@ -2,18 +2,8 @@
 
 namespace Abacus.Domain
 {
-    internal sealed class RollConvention_IMM : RollConvention<RollConvention_IMM>
+    internal sealed class RollConvention_IMM : RollConvention
     {
-        /// <summary>
-        /// International Money Market roll convention.
-        /// 
-        /// Rolls dates to 3rd Wednesday of the current month.
-        /// </summary>
-        public RollConvention_IMM()
-            : base("IMM")
-        {
-        }
-
         public override DateTime Roll(DateTime date)
         {
             var firstOfMonth = new DateTime(date.Year, date.Month, 1);

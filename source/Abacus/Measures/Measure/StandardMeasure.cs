@@ -2,8 +2,12 @@
 {
     public sealed class StandardMeasure
     {
-        public static readonly Measure PricingModel = Measure_PricingModel.Instance;
-        public static readonly Measure PresentValue = Measure_PresentValue.Instance;
-        public static readonly Measure FutureValue = Measure_FutureValue.Instance;
+        static StandardMeasure()
+        {
+        }
+
+        public static readonly Measure PricingModel = new Measure_PricingModel();
+        public static readonly Measure PresentValue = new Measure_PresentValue();
+        public static readonly Measure FutureValue = new Measure_FutureValue();
     }
 }

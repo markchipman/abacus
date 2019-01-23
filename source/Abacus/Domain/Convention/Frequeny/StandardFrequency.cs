@@ -2,11 +2,15 @@
 {
     public static class StandardFrequency
     {
-        public static readonly Frequency _Annually = Frequency_Annual.Instance;
-        public static readonly Frequency _SemiAnnually = Frequency_SemiAnnual.Instance;
-        public static readonly Frequency _Quarterly = Frequency_Quarterly.Instance;
-        public static readonly Frequency _Monthly = Frequency_Monthly.Instance;
-        public static readonly Frequency _Weekly = Frequency_Weekly.Instance;
-        public static readonly Frequency _Daily = Frequency_Daily.Instance;
+        static StandardFrequency()
+        {
+        }
+
+        public static readonly Frequency _Annually = new Frequency_Annual();
+        public static readonly Frequency _SemiAnnually = new Frequency_SemiAnnual();
+        public static readonly Frequency _Quarterly = new Frequency_Quarterly();
+        public static readonly Frequency _Monthly = new Frequency_Monthly();
+        public static readonly Frequency _Weekly = new Frequency_Weekly();
+        public static readonly Frequency _Daily = new Frequency_Daily();
     }
 }
