@@ -6,28 +6,7 @@ namespace Abacus.Domain
 {
     public abstract class Frequency
     {
-        protected Frequency(TimeDuration duration)
-        {
-            if (duration is null)
-            {
-                throw new ArgumentNullException(nameof(duration));
-            }
-
-            Duration = duration;
-        }
-
-        public TimeDuration Duration { get; }
-
-        public DateTime NextEventDate(DateTime date)
-        {
-            return date.AddYears(Duration.Years)
-                       .AddMonths(Duration.Months)
-                       .AddWeeks(Duration.Weeks)
-                       .AddDays(Duration.Days)
-                       .AddHours(Duration.Hours)
-                       .AddSeconds(Duration.Seconds)
-                       .AddMilliseconds(Duration.Milliseconds);
-        }
+        public abstract DateTime NextEventDate(DateTime date);
 
         public IEnumerable<TimePeriod> GenerateTimePeriods(DateTime startDate, DateTime endDate, bool endOnNextStartDate = false)
         {
