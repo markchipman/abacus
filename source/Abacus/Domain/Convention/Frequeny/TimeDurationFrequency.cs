@@ -16,7 +16,7 @@ namespace Abacus.Domain
 
         public TimeDuration Duration { get; }
 
-        public override DateTime NextEventDate(DateTime date)
+        public sealed override DateTime NextEventDate(DateTime date)
         {
             return date.AddYears(Duration.Years)
                        .AddMonths(Duration.Months)
