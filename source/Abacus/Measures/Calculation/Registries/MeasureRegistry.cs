@@ -6,16 +6,16 @@ namespace Abacus.Measures.Services
 
     public class MeasureRegistry : IMeasureRegistry
     {
-        public IReadOnlyList<Measure> AllmeasureTypes { get; }
+        public IReadOnlyList<Measure> AllMeasures { get; }
 
-        public IReadOnlyList<Measure> GetmeasureTypesForTarget<TTarget>()
+        public IReadOnlyList<Measure> GetMeasuresForTarget<TTarget>()
         {
             throw new NotImplementedException();
         }
 
-        public IReadOnlyList<Measure> GetmeasureTypesForTarget<TTarget>(TTarget target)
+        public IReadOnlyList<Measure> GetMeasuresForTarget<TTarget>(TTarget target)
         {
-            return GetmeasureTypesForTarget<TTarget>();
+            return GetMeasuresForTarget<TTarget>();
         }
     }
 }
