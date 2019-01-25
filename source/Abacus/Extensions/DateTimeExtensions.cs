@@ -14,6 +14,18 @@
             return Math.Abs(monthsApart);
         }
 
+        public static DateTime NextDayOfMonth(this DateTime date, int dayOfMonth, bool ignoreToday = true)
+        {
+            if (!ignoreToday && date.Day == dayOfMonth)
+            {
+                return date;
+            }
+            else
+            {
+                throw new NotImplementedException(); // TODO
+            }
+        }
+
         public static DateTime NextDayOfWeek(this DateTime date, DayOfWeek dayOfWeek, bool ignoreToday = true)
         {
             var daysToAdd = (((int)dayOfWeek - (int)date.DayOfWeek + 7) % 7) + (ignoreToday ? 1 : 0);

@@ -4,8 +4,6 @@ namespace Abacus.Domain
 {
     internal sealed class RollConvention_IMM : RollConvention
     {
-        public override bool IsEOM => false;
-
         public override bool Matches(DateTime date)
         {
             var firstOfMonth = new DateTime(date.Year, date.Month, 1);

@@ -4,13 +4,9 @@ namespace Abacus.Domain
 {
     public abstract class RollConvention
     {
-        public abstract bool IsEOM { get; }
+        public virtual bool IsEOM { get; } = false;
 
-        public virtual bool Matches(DateTime date)
-        {
-            var adjustedDate = Roll(date);
-            return adjustedDate == date;
-        }
+        public abstract bool Matches(DateTime date);
 
         public abstract DateTime Roll(DateTime date);
 
