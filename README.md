@@ -14,4 +14,4 @@ It uses idea, bits, and pieces of various existing open source pricing libraries
 
 ---
 
-[ [LICENSE](https://github.com/ckarcz/abacus/blob/master/LICENSE) ]
+[ [LICENSE : NOSL3.0](https://opensource.org/licenses/NOSL3.0) ]
