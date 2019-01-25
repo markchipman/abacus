@@ -14,10 +14,18 @@
             return Math.Abs(monthsApart);
         }
 
-        public static DateTime ClosestDayOfWeek(this DateTime date, DayOfWeek dayOfWeek, int weeks = 0)
+        public static DateTime NextDayOfWeek(this DateTime date, DayOfWeek dayOfWeek, bool ignoreToday = true)
         {
-            var nextDayOfWeek = date.AddDays(((int)dayOfWeek) - ((int)date.DayOfWeek) + (7 * weeks));
-            return nextDayOfWeek;
+            var daysToAdd = (((int)dayOfWeek - (int)date.DayOfWeek + 7) % 7) + (ignoreToday ? 1 : 0);
+            var next = date.AddDays(daysToAdd);
+            return next;
+        }
+
+        public static DateTime PreviousDayOfWeek(this DateTime date, DayOfWeek dayOfWeek, bool ignoreToday = true)
+        {
+            var daysToSub = (((int)dayOfWeek - (int)date.DayOfWeek + 7) % 7) + (ignoreToday ? 1 : 0);
+            var prev = date.AddDays(-daysToSub);
+            return prev;
         }
 
         public static bool IsLastDayOfMonth(this DateTime date)

@@ -2,7 +2,7 @@
 
 namespace Abacus.Domain
 {
-    public class HolidayCalendar_SAT_SUN : HolidayCalendar
+    public sealed class HolidayCalendar_SAT_SUN : HolidayCalendar
     {
         public override bool IsHoliday(DateTime date)
         {
@@ -12,14 +12,14 @@ namespace Abacus.Domain
 
         public override DateTime NextHoliday(DateTime date)
         {
-            if (date.DayOfWeek == DayOfWeek.Sunday)
+            if (date.DayOfWeek == DayOfWeek.Saturday)
             {
                 var next = date.AddDays(1);
                 return next;
             }
             else
             {
-                var next = date.ClosestDayOfWeek(DayOfWeek.Saturday, +1);
+                var next = date.NextDayOfWeek(DayOfWeek.Saturday);
                 return next;
             }
         }
@@ -51,22 +51,26 @@ namespace Abacus.Domain
             }
             else
             {
-                var next = date.AddDays(-7);
+                var next = date.PreviousDayOfWeek(DayOfWeek.Sunday);
                 return next;
             }
         }
 
         public override DateTime PreviousNonHoliday(DateTime date)
         {
-            if (date.DayOfWeek == DayOfWeek.Sunday)
+            if (date.DayOfWeek == DayOfWeek.Monday)
+            {
+                var next = date.AddDays(-3);
+                return next;
+            }
+            else if (date.DayOfWeek == DayOfWeek.Sunday)
             {
                 var next = date.AddDays(-2);
                 return next;
             }
             else
             {
-                var next = date.AddDays(-1);
-                return next;
+                return date.AddDays(-1);
             }
         }
     }
