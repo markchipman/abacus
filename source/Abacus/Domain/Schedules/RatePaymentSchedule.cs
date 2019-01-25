@@ -28,10 +28,10 @@ namespace Abacus.Domain
             {
                 var periodStartDate = timePeriod.Start;
                 var periodEndDate = timePeriod.End;
-                var periodAdjustedStartDate = scheduleInfo.RollConvention.Roll(periodStartDate);
-                var periodAdjustedEndDate = scheduleInfo.RollConvention.Roll(periodEndDate);
+                var rolledStartDate = scheduleInfo.RollConvention.Roll(periodStartDate);
+                var rolledEndDate = scheduleInfo.RollConvention.Roll(periodEndDate);
 
-                var period = new RatePaymentPeriod(periodStartDate, periodEndDate, periodAdjustedStartDate, periodAdjustedEndDate, periodEndDate, periodAdjustedEndDate, notional, rate);
+                var period = new RatePaymentPeriod(periodStartDate, periodEndDate, rolledStartDate, rolledEndDate, periodEndDate, rolledEndDate, notional, rate);
                 periods.Add(period);
             }
 

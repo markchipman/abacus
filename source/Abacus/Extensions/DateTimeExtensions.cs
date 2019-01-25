@@ -4,7 +4,8 @@
     {
         public static DateTime AddWeeks(this DateTime date, int weeks)
         {
-            return date.AddDays(weeks * 7);
+            var result = date.AddDays(weeks * 7);
+            return result;
         }
 
         public static int MonthsApart(this DateTime startDate, DateTime endDate)
@@ -13,19 +14,28 @@
             return Math.Abs(monthsApart);
         }
 
+        public static DateTime ClosestDayOfWeek(this DateTime date, DayOfWeek dayOfWeek, int weeks = 0)
+        {
+            var nextDayOfWeek = date.AddDays(((int)dayOfWeek) - ((int)date.DayOfWeek) + (7 * weeks));
+            return nextDayOfWeek;
+        }
+
         public static bool IsLastDayOfMonth(this DateTime date)
         {
-            return date.AddDays(1).Month == date.Month + 1;
+            var IsLastDayOfMonth = date.AddDays(1).Month == date.Month + 1;
+            return IsLastDayOfMonth;
         }
 
         public static bool IsLastDayOfFebruary(this DateTime date)
         {
-            return date.Month == 2 && date.IsLastDayOfMonth();
+            var isLastDayOfFebruary = date.Month == 2 && date.IsLastDayOfMonth();
+            return isLastDayOfFebruary;
         }
 
         public static bool IsLeapDay(this DateTime date)
         {
-            return date.Month == 2 && date.Day == 29 && DateTime.IsLeapYear(date.Year);
+            var isLeapDay = date.Month == 2 && date.Day == 29 && DateTime.IsLeapYear(date.Year);
+            return isLeapDay;
         }
 
         public static int CountLeapDays(this DateTime startDate, DateTime endDate)

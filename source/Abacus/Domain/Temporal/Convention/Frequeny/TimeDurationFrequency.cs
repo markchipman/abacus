@@ -18,13 +18,14 @@ namespace Abacus.Domain
 
         public sealed override DateTime NextEventDate(DateTime date)
         {
-            return date.AddYears(Duration.Years)
-                       .AddMonths(Duration.Months)
-                       .AddWeeks(Duration.Weeks)
-                       .AddDays(Duration.Days)
-                       .AddHours(Duration.Hours)
-                       .AddSeconds(Duration.Seconds)
-                       .AddMilliseconds(Duration.Milliseconds);
+            var next = date.AddYears(Duration.Years)
+                           .AddMonths(Duration.Months)
+                           .AddWeeks(Duration.Weeks)
+                           .AddDays(Duration.Days)
+                           .AddHours(Duration.Hours)
+                           .AddSeconds(Duration.Seconds)
+                           .AddMilliseconds(Duration.Milliseconds);
+            return next;
         }
     }
 }

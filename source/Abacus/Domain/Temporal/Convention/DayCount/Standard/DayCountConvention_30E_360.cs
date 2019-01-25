@@ -4,7 +4,7 @@ namespace Abacus.Domain
 {
     internal sealed class DayCountConvention_30E_360 : DayCountConvention
     {
-        public override decimal YearFraction(DateTime startDate, DateTime endDate, DateTime paymentDate)
+        public override decimal YearFraction(DateTime startDate, DateTime endDate)
         {
             var y1 = startDate.Year;
             var m1 = startDate.Month;

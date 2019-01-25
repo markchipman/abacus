@@ -2,12 +2,12 @@
 
 namespace Abacus.Domain
 {
-    internal sealed class DayCountConvention_ACT_365F : DayCountConvention
+    internal sealed class DayCountConvention_ACT_364 : DayCountConvention
     {
-        public override decimal YearFraction(DateTime startDate, DateTime endDate, DateTime paymentDate)
+        public override decimal YearFraction(DateTime startDate, DateTime endDate)
         {
             var numerator = (endDate - startDate).Days;
-            var denominator = 365;
+            var denominator = 364;
 
             var yearFraction = numerator / denominator;
 

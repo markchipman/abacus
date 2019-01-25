@@ -37,7 +37,7 @@ namespace Abacus.Domain
                 while ((j >= 0) && (sorted[j].CompareTo(value) > 0))
                 {
                     sorted[j + 1] = sorted[j];
-                    j = j - 1;
+                    j -= 1;
                 }
                 sorted[j + 1] = value;
             }
