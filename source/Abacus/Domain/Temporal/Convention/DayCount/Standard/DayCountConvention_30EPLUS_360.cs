@@ -2,7 +2,7 @@
 
 namespace Abacus.Domain
 {
-    internal sealed class DayCountConvention_30EPLUS_360 : DayCountConvention
+    internal sealed class DayCountConvention_30EPlus_360 : DayCountConvention
     {
         public override decimal YearFraction(DateTime startDate, DateTime endDate)
         {

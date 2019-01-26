@@ -6,6 +6,7 @@
         {
         }
 
-        public static readonly HolidayCalendar _SAT_SUN = new HolidayCalendar_SAT_SUN();
+        public static readonly HolidayCalendar _None = new HolidayCalendar_None();
+        public static readonly HolidayCalendar _Sat_Sun = new HolidayCalendar_Sat_Sun();
     }
 }

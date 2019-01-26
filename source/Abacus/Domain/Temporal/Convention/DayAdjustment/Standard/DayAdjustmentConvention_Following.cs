@@ -2,7 +2,7 @@
 
 namespace Abacus.Domain
 {
-    internal sealed class DayAdjustmentConvention_F : DayAdjustmentConvention
+    internal sealed class DayAdjustmentConvention_Following : DayAdjustmentConvention
     {
         protected override DateTime DoAdjust(DateTime date, HolidayCalendar calendar)
         {

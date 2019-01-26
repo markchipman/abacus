@@ -12,8 +12,8 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Abacus.WebApi.Controllers
 {
-    [Route("api/calculate")]
     [ApiController]
+    [Route("api/calculate")]
     public class CalculationController : ControllerBase
     {
         [HttpGet("measureTypes")]

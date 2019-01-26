@@ -8,12 +8,12 @@ namespace Abacus.Domain
 
         public virtual bool IsNotHoliday(DateTime date) => !IsHoliday(date);
 
-        public abstract DateTime NextHoliday(DateTime date);
+        public abstract DateTime? NextHoliday(DateTime date);
 
-        public abstract DateTime NextNonHoliday(DateTime date);
+        public abstract DateTime? NextNonHoliday(DateTime date);
 
-        public abstract DateTime PreviousHoliday(DateTime date);
+        public abstract DateTime? PreviousHoliday(DateTime date);
 
-        public abstract DateTime PreviousNonHoliday(DateTime date);
+        public abstract DateTime? PreviousNonHoliday(DateTime date);
     }
 }

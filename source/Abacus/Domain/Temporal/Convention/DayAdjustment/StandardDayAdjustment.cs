@@ -6,7 +6,8 @@
         {
         }
 
-        public static readonly DayAdjustmentConvention _F = new DayAdjustmentConvention_F();
-        public static readonly DayAdjustmentConvention _MF = new DayAdjustmentConvention_MF();
+        public static readonly DayAdjustmentConvention _None = new DayAdjustmentConvention_None();
+        public static readonly DayAdjustmentConvention _Following = new DayAdjustmentConvention_Following();
+        public static readonly DayAdjustmentConvention _ModifiedFollowing = new DayAdjustmentConvention_ModifiedFollowing();
     }
 }

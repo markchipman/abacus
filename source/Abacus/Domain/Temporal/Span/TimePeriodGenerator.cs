@@ -16,11 +16,12 @@ namespace Abacus.Domain
 
             do
             {
-                var nextEventDate = frequency.Next(periodStartDate);
-                if (nextEventDate == periodStartDate)
+                var nextEvent = frequency.Next(periodStartDate);
+                if (nextEvent is null || nextEvent == periodStartDate)
                 {
                     yield break;
                 }
+                var nextEventDate = nextEvent.Value;
 
                 var periodEndDate = nextEventDate;
                 if (!endOnNextStartDate)

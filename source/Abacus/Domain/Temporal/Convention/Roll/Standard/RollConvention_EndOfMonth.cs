@@ -2,7 +2,7 @@
 
 namespace Abacus.Domain
 {
-    internal sealed class RollConvention_EOM : RollConvention
+    internal sealed class RollConvention_EndOfMonth : RollConvention
     {
         public override bool IsEOM => true;
 

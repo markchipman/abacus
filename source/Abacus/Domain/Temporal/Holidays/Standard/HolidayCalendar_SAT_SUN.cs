@@ -2,7 +2,7 @@
 
 namespace Abacus.Domain
 {
-    public sealed class HolidayCalendar_SAT_SUN : HolidayCalendar
+    internal sealed class HolidayCalendar_Sat_Sun : HolidayCalendar
     {
         public override bool IsHoliday(DateTime date)
         {
@@ -10,7 +10,7 @@ namespace Abacus.Domain
             return isHoliday;
         }
 
-        public override DateTime NextHoliday(DateTime date)
+        public override DateTime? NextHoliday(DateTime date)
         {
             if (date.DayOfWeek == DayOfWeek.Saturday)
             {
@@ -24,7 +24,7 @@ namespace Abacus.Domain
             }
         }
 
-        public override DateTime NextNonHoliday(DateTime date)
+        public override DateTime? NextNonHoliday(DateTime date)
         {
             if (date.DayOfWeek == DayOfWeek.Friday)
             {
@@ -42,7 +42,7 @@ namespace Abacus.Domain
             }
         }
 
-        public override DateTime PreviousHoliday(DateTime date)
+        public override DateTime? PreviousHoliday(DateTime date)
         {
             if (date.DayOfWeek == DayOfWeek.Sunday)
             {
@@ -56,7 +56,7 @@ namespace Abacus.Domain
             }
         }
 
-        public override DateTime PreviousNonHoliday(DateTime date)
+        public override DateTime? PreviousNonHoliday(DateTime date)
         {
             if (date.DayOfWeek == DayOfWeek.Monday)
             {

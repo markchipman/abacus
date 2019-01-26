@@ -21,6 +21,11 @@ namespace Abacus.WebApi
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<ApiBehaviorOptions>(options =>
+            {
+                options.SuppressInferBindingSourcesForParameters = true;
+            });
+
             services.AddMvc(options =>
             {
                 options.OutputFormatters.Clear();
