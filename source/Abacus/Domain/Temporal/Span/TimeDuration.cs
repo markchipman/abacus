@@ -22,7 +22,7 @@ namespace Abacus.Domain
             {
                 throw new ArgumentOutOfRangeException(nameof(days) + " must be a whole number");
             }
-            if (hours < 0)
+            if (hours < 0) 
             {
                 throw new ArgumentOutOfRangeException(nameof(hours) + " must be a whole number");
             }
