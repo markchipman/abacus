@@ -6,6 +6,8 @@ namespace Abacus.Domain
     {
         public abstract bool IsHoliday(DateTime date);
 
+        public virtual bool IsNotHoliday(DateTime date) => !IsHoliday(date);
+
         public abstract DateTime NextHoliday(DateTime date);
 
         public abstract DateTime NextNonHoliday(DateTime date);

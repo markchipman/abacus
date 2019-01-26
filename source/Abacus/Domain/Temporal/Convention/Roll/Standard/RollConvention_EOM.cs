@@ -6,30 +6,17 @@ namespace Abacus.Domain
     {
         public override bool IsEOM => true;
 
-        public override bool Matches(DateTime date)
+        protected override bool NeedsRoll(DateTime date)
         {
-            var isEndOfMonth = date.Day == DateTime.DaysInMonth(date.Year, date.Month);
-            return isEndOfMonth;
+            var notEndOfMonth = date.Day != DateTime.DaysInMonth(date.Year, date.Month);
+            return notEndOfMonth;
         }
 
-        public override DateTime Roll(DateTime date)
-        {
-            var endOfMonth = Matches(date) ? date : RollForward(date);
-            return endOfMonth;
-        }
-
-        public override DateTime RollForward(DateTime date)
+        protected override DateTime DoRoll(DateTime date)
         {
             var dateNextMonth = date.AddMonths(1);
             var nextMonthLastDay = new DateTime(dateNextMonth.Year, dateNextMonth.Month, DateTime.DaysInMonth(dateNextMonth.Year, dateNextMonth.Month));
             return nextMonthLastDay;
-        }
-
-        public override DateTime RollBackward(DateTime date)
-        {
-            var dateLastMonth = date.AddMonths(-1);
-            var lastMonthLastDay = new DateTime(dateLastMonth.Year, dateLastMonth.Month, DateTime.DaysInMonth(dateLastMonth.Year, dateLastMonth.Month));
-            return lastMonthLastDay;
         }
     }
 }

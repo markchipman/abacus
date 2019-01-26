@@ -23,7 +23,7 @@ namespace Abacus.Domain
 
             var periods = new List<RatePaymentPeriod>();
 
-            var timePeriods = scheduleInfo.Frequency.GenerateTimePeriods(scheduleInfo.StartDate, scheduleInfo.EndDate).ToList();
+            var timePeriods = new TimePeriodGenerator().GenerateTimePeriods(scheduleInfo.StartDate, scheduleInfo.EndDate, scheduleInfo.Frequency).ToList();
             foreach (var timePeriod in timePeriods)
             {
                 var periodStartDate = timePeriod.Start;

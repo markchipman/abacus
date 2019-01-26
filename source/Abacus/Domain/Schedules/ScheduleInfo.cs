@@ -21,8 +21,8 @@ namespace Abacus.Domain
             Frequency = frequency;
             RollConvention = rollConvention;
             ExDate = exDate;
-            AdjustedStartDate = rollConvention.RollForward(StartDate);
-            AdjustedEndDate = rollConvention.RollForward(EndDate);
+            AdjustedStartDate = rollConvention.Roll(StartDate);
+            AdjustedEndDate = rollConvention.Roll(EndDate);
         }
 
         public DateTime StartDate { get; }

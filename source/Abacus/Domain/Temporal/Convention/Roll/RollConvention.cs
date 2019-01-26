@@ -6,12 +6,14 @@ namespace Abacus.Domain
     {
         public virtual bool IsEOM { get; } = false;
 
-        public abstract bool Matches(DateTime date);
+        public virtual DateTime Roll(DateTime date)
+        {
+            var result = NeedsRoll(date) ? DoRoll(date) : date;
+            return result;
+        }
 
-        public abstract DateTime Roll(DateTime date);
+        protected abstract bool NeedsRoll(DateTime date);
 
-        public abstract DateTime RollForward(DateTime date);
-
-        public abstract DateTime RollBackward(DateTime date);
+        protected abstract DateTime DoRoll(DateTime date);
     }
 }

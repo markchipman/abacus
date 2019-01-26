@@ -11,18 +11,13 @@ namespace Abacus.Domain
             this.dayOfMonth = dayOfMonth;
         }
 
-        public override bool Matches(DateTime date)
+        protected override bool NeedsRoll(DateTime date)
         {
-            return date.Day == dayOfMonth;
+            var notDayOfMonth = date.Day != dayOfMonth;
+            return notDayOfMonth;
         }
 
-        public override DateTime Roll(DateTime date)
-        {
-            var result = Matches(date) ? date : RollForward(date);
-            return result;
-        }
-
-        public override DateTime RollForward(DateTime date)
+        protected override DateTime DoRoll(DateTime date)
         {
             if (date.Day < dayOfMonth)
             {
@@ -39,11 +34,6 @@ namespace Abacus.Domain
                 var result = date.AddDays(daysToAdd);
                 return result;
             }
-        }
-
-        public override DateTime RollBackward(DateTime date)
-        {
-            throw new NotImplementedException();
         }
     }
 }
