@@ -1,12 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace Abacus.Domain
 {
 
     public class Curve : ReadOnlyCollection<Point>
     {
+        public Curve(IEnumerable<Point> points)
+            : this(points?.ToList() ?? throw new ArgumentNullException(nameof(points)))
+        {
+        }
+
         public Curve(IList<Point> points)
             : base(Sort(points ?? throw new ArgumentNullException(nameof(points))))
         {

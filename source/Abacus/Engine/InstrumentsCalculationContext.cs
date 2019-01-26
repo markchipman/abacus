@@ -62,20 +62,18 @@ namespace Abacus.Engine
             }
         }
 
-        public static IReadOnlyList<ICalculationContext> CreateCalculationContexts(IEnumerable<Instrument> instruments)
+        public static IEnumerable<ICalculationContext> CreateCalculationContexts(IEnumerable<Instrument> instruments)
         {
             if (instruments == null)
             {
                 throw new ArgumentNullException(nameof(instruments));
             }
 
-            var calculationContexts = new List<ICalculationContext>();
             foreach (var instrument in instruments)
             {
                 var instrumentCalculationContext = instrument.ToCalculationContext();
-                calculationContexts.Add(instrumentCalculationContext);
+                yield return instrumentCalculationContext;
             }
-            return calculationContexts;
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
 namespace Abacus.Domain
 {
@@ -23,7 +22,7 @@ namespace Abacus.Domain
 
             var periods = new List<RatePaymentPeriod>();
 
-            var timePeriods = new TimePeriodGenerator().GenerateTimePeriods(scheduleInfo.StartDate, scheduleInfo.EndDate, scheduleInfo.Frequency).ToList();
+            var timePeriods = TimePeriod.Generate(scheduleInfo.StartDate, scheduleInfo.EndDate, scheduleInfo.Frequency);
             foreach (var timePeriod in timePeriods)
             {
                 var periodStartDate = timePeriod.Start;

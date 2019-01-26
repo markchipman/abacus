@@ -8,14 +8,14 @@ namespace Abacus.Measures.Services
     {
         public IReadOnlyList<Measure> AllMeasures { get; }
 
-        public IReadOnlyList<Measure> GetMeasuresForTarget<TTarget>()
+        public IEnumerable<Measure> GetMeasuresForTarget<TTarget>()
         {
             throw new NotImplementedException();
         }
 
-        public IReadOnlyList<Measure> GetMeasuresForTarget<TTarget>(TTarget target)
+        public IEnumerable<Measure> GetMeasuresForTarget<TTarget>(TTarget target)
         {
-            return GetMeasuresForTarget<TTarget>();
+            throw new NotImplementedException();
         }
     }
 }

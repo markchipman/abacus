@@ -6,8 +6,8 @@ namespace Abacus.Measures.Services
     {
         IReadOnlyList<Measure> AllMeasures { get; }
 
-        IReadOnlyList<Measure> GetMeasuresForTarget<TTarget>();
+        IEnumerable<Measure> GetMeasuresForTarget<TTarget>();
 
-        IReadOnlyList<Measure> GetMeasuresForTarget<TTarget>(TTarget target);
+        IEnumerable<Measure> GetMeasuresForTarget<TTarget>(TTarget target);
     }
 }
