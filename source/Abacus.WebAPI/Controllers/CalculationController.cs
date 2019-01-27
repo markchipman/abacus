@@ -34,7 +34,7 @@ namespace Abacus.WebApi.Controllers
             var valuationDate = DateTime.Now;
             var instruments = new Instrument[]
             {
-                new FixedCouponBond(Counterparty.DummyCounterparty, new CurrencyAmount(1_000_000m, new Currency("GBP")), new Rate(0.00_1m, StandardFrequency._Annually), new ScheduleInfo(tradeStartDate, tradeStartDate.AddYears(2), StandardFrequency._Monthly, StandardRollConvention._IMM)),
+                new FixedCouponBond(Counterparty.DummyCounterparty, new CurrencyAmount(1_000_000m, new Currency("GBP")), new Rate(0.00_1m, StandardFrequency._Annually), new ScheduleInfo(tradeStartDate, tradeStartDate.AddYears(2), StandardFrequency._Monthly, StandardDayRollConvention._IMM)),
                 new FixedCouponBond(Counterparty.DummyCounterparty, new CurrencyAmount(20_000_000m, new Currency("GBP")), new Rate(0.00_2m, StandardFrequency._Annually), new ScheduleInfo(tradeStartDate, tradeStartDate.AddYears(5), StandardFrequency._Quarterly)),
                 new FixedCouponBond(Counterparty.DummyCounterparty, new CurrencyAmount(500_000_000m, new Currency("GBP")), new Rate(0.00_25m, StandardFrequency._Annually), new ScheduleInfo(tradeStartDate, tradeStartDate.AddYears(10), StandardFrequency._SemiAnnually)),
                 new FixedCouponBond(Counterparty.DummyCounterparty, new CurrencyAmount(1_000_000_000m, new Currency("GBP")), new Rate(0.00_02m, StandardFrequency._Annually), new ScheduleInfo(valuationDate, valuationDate.AddMonths(6), StandardFrequency._Weekly))

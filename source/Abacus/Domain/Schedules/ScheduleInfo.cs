@@ -5,7 +5,7 @@ namespace Abacus.Domain
 {
     public class ScheduleInfo
     {
-        public ScheduleInfo(DateTime startDate, DateTime endDate, Frequency frequency, RollConvention rollConvention = null, DateTime? exDate = null)
+        public ScheduleInfo(DateTime startDate, DateTime endDate, Frequency frequency, DayRollConvention rollConvention = null, DateTime? exDate = null)
         {
             if (frequency == null)
             {
@@ -13,7 +13,7 @@ namespace Abacus.Domain
             }
             if (rollConvention == null)
             {
-                rollConvention = StandardRollConvention._None;
+                rollConvention = StandardDayRollConvention._None;
             }
 
             StartDate = startDate;
@@ -35,7 +35,7 @@ namespace Abacus.Domain
 
         public Frequency Frequency { get; }
 
-        public RollConvention RollConvention { get; }
+        public DayRollConvention RollConvention { get; }
 
         public DateTime? ExDate { get; }
 

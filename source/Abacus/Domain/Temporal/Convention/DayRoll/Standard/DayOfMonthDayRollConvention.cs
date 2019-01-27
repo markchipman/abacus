@@ -2,22 +2,22 @@
 
 namespace Abacus.Domain
 {
-    public class DayRollConvention : RollConvention
+    public class DayOfMonthDayRollConvention : DayRollConvention
     {
         private readonly int dayOfMonth;
 
-        public DayRollConvention(int dayOfMonth)
+        public DayOfMonthDayRollConvention(int dayOfMonth)
         {
             this.dayOfMonth = dayOfMonth;
         }
 
-        protected override bool NeedsRoll(DateTime date)
+        public override bool IsRollDate(DateTime date)
         {
-            var notDayOfMonth = date.Day != dayOfMonth;
+            var notDayOfMonth = date.Day == dayOfMonth;
             return notDayOfMonth;
         }
 
-        protected override DateTime DoRoll(DateTime date)
+        public override DateTime NextRoll(DateTime date)
         {
             if (date.Day < dayOfMonth)
             {

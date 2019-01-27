@@ -2,17 +2,17 @@
 
 namespace Abacus.Domain
 {
-    internal sealed class RollConvention_IMM : RollConvention
+    internal sealed class DayRollConvention_IMM : DayRollConvention
     {
-        protected override bool NeedsRoll(DateTime date)
+        public override bool IsRollDate(DateTime date)
         {
             var firstOfMonth = new DateTime(date.Year, date.Month, 1);
             var thirdWedOfMonth = firstOfMonth.AddDays(((int)DayOfWeek.Wednesday) - ((int)firstOfMonth.DayOfWeek) + 14);
-            var notThirdWedOfMonth = date != thirdWedOfMonth;
-            return notThirdWedOfMonth;
+            var isThirdWedOfMonth = date == thirdWedOfMonth;
+            return isThirdWedOfMonth;
         }
 
-        protected override DateTime DoRoll(DateTime date)
+        public override DateTime NextRoll(DateTime date)
         {
             var firstOfMonth = new DateTime(date.Year, date.Month, 1);
             var thirdWedOfMonth = firstOfMonth.AddDays(((int)DayOfWeek.Wednesday) - ((int)firstOfMonth.DayOfWeek) + 14);

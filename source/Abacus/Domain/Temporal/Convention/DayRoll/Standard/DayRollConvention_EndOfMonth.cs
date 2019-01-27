@@ -2,17 +2,17 @@
 
 namespace Abacus.Domain
 {
-    internal sealed class RollConvention_EndOfMonth : RollConvention
+    internal sealed class DayRollConvention_EndOfMonth : DayRollConvention
     {
         public override bool IsEOM => true;
 
-        protected override bool NeedsRoll(DateTime date)
+        public override bool IsRollDate(DateTime date)
         {
-            var notEndOfMonth = date.Day != DateTime.DaysInMonth(date.Year, date.Month);
-            return notEndOfMonth;
+            var isEndOfMonth = date.Day == DateTime.DaysInMonth(date.Year, date.Month);
+            return isEndOfMonth;
         }
 
-        protected override DateTime DoRoll(DateTime date)
+        public override DateTime NextRoll(DateTime date)
         {
             var dateNextMonth = date.AddMonths(1);
             var nextMonthLastDay = new DateTime(dateNextMonth.Year, dateNextMonth.Month, DateTime.DaysInMonth(dateNextMonth.Year, dateNextMonth.Month));

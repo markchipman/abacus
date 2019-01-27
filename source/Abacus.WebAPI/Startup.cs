@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
@@ -21,15 +22,15 @@ namespace Abacus.WebApi
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<ApiBehaviorOptions>(options =>
+            services.Configure<ApiBehaviorOptions>(o =>
             {
-                options.SuppressInferBindingSourcesForParameters = true;
+                o.SuppressInferBindingSourcesForParameters = true;
             });
 
-            services.AddMvc(options =>
+            services.AddMvcCore(o =>
             {
-                options.OutputFormatters.Clear();
-                options.OutputFormatters.Add(new AbacusJsonOutputFormatter(new JsonSerializerSettings
+                o.OutputFormatters.Clear();
+                o.OutputFormatters.Add(new AbacusJsonOutputFormatter(new JsonSerializerSettings
                 {
                     ContractResolver = new CamelCasePropertyNamesContractResolver(),
                     Converters =
@@ -44,7 +45,14 @@ namespace Abacus.WebApi
                     FloatFormatHandling = FloatFormatHandling.DefaultValue,
                     Formatting = Formatting.None
                 }));
-            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            })
+            .AddApiExplorer()
+            .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddSwaggerGen(o =>
+            {
+                o.SwaggerDoc("v1", new OpenApiInfo { Title = "Abacus Api", Version = "V1" });
+            });
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -60,6 +68,12 @@ namespace Abacus.WebApi
 
             app.UseHttpsRedirection();
             app.UseMvc();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(o =>
+            {
+                o.SwaggerEndpoint("/swagger/v1/swagger.json", "Abacus Api V1");
+            });
         }
     }
 }
