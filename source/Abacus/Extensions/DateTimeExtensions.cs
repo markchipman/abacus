@@ -14,7 +14,7 @@
             return Math.Abs(monthsApart);
         }
 
-        public static DateTime NextDayOfMonth(this DateTime date, int dayOfMonth, bool ignoreToday = true)
+        public static DateTime NextDayOfMonth(this DateTime date, int dayOfMonth, bool ignoreToday = false)
         {
             if (!ignoreToday && date.Day == dayOfMonth)
             {
@@ -26,16 +26,18 @@
             }
         }
 
-        public static DateTime NextDayOfWeek(this DateTime date, DayOfWeek dayOfWeek, bool ignoreToday = true)
+        public static DateTime NextDayOfWeek(this DateTime date, DayOfWeek dayOfWeek, bool ignoreToday = false)
         {
-            var daysToAdd = (((int)dayOfWeek - (int)date.DayOfWeek + 7) % 7) + (ignoreToday ? 1 : 0);
+            date = ignoreToday ? date.AddDays(1) : date;
+            var daysToAdd = (((int)dayOfWeek - (int)date.DayOfWeek + 7) % 7);
             var next = date.AddDays(daysToAdd);
             return next;
         }
 
-        public static DateTime PreviousDayOfWeek(this DateTime date, DayOfWeek dayOfWeek, bool ignoreToday = true)
+        public static DateTime PreviousDayOfWeek(this DateTime date, DayOfWeek dayOfWeek, bool ignoreToday = false)
         {
-            var daysToSub = (((int)dayOfWeek - (int)date.DayOfWeek + 7) % 7) + (ignoreToday ? 1 : 0);
+            date = ignoreToday ? date.AddDays(-1) : date;
+            var daysToSub = (((int)date.DayOfWeek - (int)dayOfWeek) % 7);
             var prev = date.AddDays(-daysToSub);
             return prev;
         }

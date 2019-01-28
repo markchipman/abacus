@@ -8,7 +8,7 @@ namespace Abacus.WebApi.Models
     public class HolidayCalendarDateParam : HolidayCalendarParam
     {
         [Required]
-        [FromRoute]
+        [FromRoute(Name = "date")]
         public DateTime Date { get; set; }
     }
 }

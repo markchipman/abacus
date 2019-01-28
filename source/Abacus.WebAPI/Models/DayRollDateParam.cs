@@ -8,7 +8,7 @@ namespace Abacus.WebApi.Models
     public class DayRollDateParam : DayRollConventionParam
     {
         [Required]
-        [FromRoute]
+        [FromRoute(Name = "date")]
         public DateTime Date { get; set; }
     }
 }

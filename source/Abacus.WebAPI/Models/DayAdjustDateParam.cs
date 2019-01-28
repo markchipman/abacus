@@ -8,11 +8,11 @@ namespace Abacus.WebApi.Models
     public class AdjustDayParam : DayAdjustConventionParam
     {
         [Required]
-        [FromRoute]
+        [FromRoute(Name = "calendar")]
         public string Calendar { get; set; }
 
         [Required]
-        [FromRoute]
+        [FromRoute(Name = "date")]
         public DateTime Date { get; set; }
     }
 }

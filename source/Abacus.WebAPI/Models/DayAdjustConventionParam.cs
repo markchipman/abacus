@@ -6,7 +6,7 @@ namespace Abacus.WebApi.Models
     public class DayAdjustConventionParam
     {
         [Required]
-        [FromRoute]
+        [FromRoute(Name = "dayAjustConvention")]
         public string DayAdjustConvention { get; set; }
     }
 }

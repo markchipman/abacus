@@ -89,7 +89,7 @@ namespace Abacus.WebApi.Controllers
         }
 
         [HttpGet("holiday/{calendar}/next-holiday/{date}")]
-        public IActionResult NextHoliday(HolidayCalendarDateParam param)
+        public IActionResult NextHoliday(HolidayCalendarNextPrevDateParam param)
         {
             if (ModelState.IsValid)
             {
@@ -97,7 +97,7 @@ namespace Abacus.WebApi.Controllers
                 {
                     return NotFound(param.Calendar);
                 }
-                var result = calendar.NextHoliday(param.Date);
+                var result = calendar.NextHoliday(param.Date, param.IncludeDate);
                 return Ok(result);
             }
             else
@@ -107,7 +107,7 @@ namespace Abacus.WebApi.Controllers
         }
 
         [HttpGet("holiday/{calendar}/next-nonHoliday/{date}")]
-        public IActionResult NextNonHoliday(HolidayCalendarDateParam param)
+        public IActionResult NextNonHoliday(HolidayCalendarNextPrevDateParam param)
         {
             if (ModelState.IsValid)
             {
@@ -115,7 +115,7 @@ namespace Abacus.WebApi.Controllers
                 {
                     return NotFound(param.Calendar);
                 }
-                var result = calendar.NextNonHoliday(param.Date);
+                var result = calendar.NextNonHoliday(param.Date, param.IncludeDate);
                 return Ok(result);
             }
             else
@@ -125,7 +125,7 @@ namespace Abacus.WebApi.Controllers
         }
 
         [HttpGet("holiday/{calendar}/prev-holiday/{date}")]
-        public IActionResult PreviousHoliday(HolidayCalendarDateParam param)
+        public IActionResult PreviousHoliday(HolidayCalendarNextPrevDateParam param)
         {
             if (ModelState.IsValid)
             {
@@ -133,7 +133,7 @@ namespace Abacus.WebApi.Controllers
                 {
                     return NotFound(param.Calendar);
                 }
-                var result = calendar.PreviousHoliday(param.Date);
+                var result = calendar.PreviousHoliday(param.Date, param.IncludeDate);
                 return Ok(result);
             }
             else
@@ -143,7 +143,7 @@ namespace Abacus.WebApi.Controllers
         }
 
         [HttpGet("holiday/{calendar}/prev-non-holiday/{date}")]
-        public IActionResult PreviousNonHoliday(HolidayCalendarDateParam param)
+        public IActionResult PreviousNonHoliday(HolidayCalendarNextPrevDateParam param)
         {
             if (ModelState.IsValid)
             {
@@ -151,7 +151,7 @@ namespace Abacus.WebApi.Controllers
                 {
                     return NotFound(param.Calendar);
                 }
-                var result = calendar.PreviousNonHoliday(param.Date);
+                var result = calendar.PreviousNonHoliday(param.Date, param.IncludeDate);
                 return Ok(result);
             }
             else
@@ -242,7 +242,7 @@ namespace Abacus.WebApi.Controllers
             }
         }
 
-        [HttpGet("day-roll/{dayCountConvention}/is-eom")]
+        [HttpGet("day-roll/{dayRollConvention}/is-eom")]
         public IActionResult IsEndOfMonth(DayRollConventionParam param)
         {
             if (ModelState.IsValid)

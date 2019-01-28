@@ -4,10 +4,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace Abacus.WebApi
 {
@@ -51,7 +51,7 @@ namespace Abacus.WebApi
 
             services.AddSwaggerGen(o =>
             {
-                o.SwaggerDoc("v1", new OpenApiInfo { Title = "Abacus Api", Version = "V1" });
+                o.SwaggerDoc("v1", new Info { Title = "Abacus Api", Version = "V1" });
             });
         }
 

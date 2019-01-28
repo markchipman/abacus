@@ -8,11 +8,11 @@ namespace Abacus.WebApi.Models
     public class YearFractionParam : DayCountConventionParam
     {
         [Required]
-        [FromRoute]
+        [FromRoute(Name = "startDate")]
         public DateTime StartDate { get; set; }
 
         [Required]
-        [FromRoute]
+        [FromRoute(Name = "endDate")]
         public DateTime EndDate { get; set; }
     }
 }
