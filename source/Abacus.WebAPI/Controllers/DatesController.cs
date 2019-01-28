@@ -260,7 +260,7 @@ namespace Abacus.WebApi.Controllers
             }
         }
 
-        [HttpGet("day-roll/{dayCountConvention}/is-roll/{date}")]
+        [HttpGet("day-roll/{dayRollConvention}/is-roll/{date}")]
         public IActionResult IsRollDate(DayRollDateParam param)
         {
             if (ModelState.IsValid)
@@ -278,7 +278,7 @@ namespace Abacus.WebApi.Controllers
             }
         }
 
-        [HttpGet("day-roll/{dayCountConvention}/roll/{date}")]
+        [HttpGet("day-roll/{dayRollConvention}/roll/{date}")]
         public IActionResult RollDate(DayRollDateParam param)
         {
             if (ModelState.IsValid)
@@ -296,7 +296,7 @@ namespace Abacus.WebApi.Controllers
             }
         }
 
-        [HttpGet("day-roll/{dayCountConvention}/next-roll/{date}")]
+        [HttpGet("day-roll/{dayRollConvention}/next-roll/{date}")]
         public IActionResult NextRoll(DayRollDateParam param)
         {
             if (ModelState.IsValid)

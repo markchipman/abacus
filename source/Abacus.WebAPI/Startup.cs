@@ -51,6 +51,7 @@ namespace Abacus.WebApi
 
             services.AddSwaggerGen(o =>
             {
+                //o.OperationFilter<SwashbuckleDefaultValuesOperationFilter>();
                 o.SwaggerDoc("v1", new Info { Title = "Abacus Api", Version = "V1" });
             });
         }
